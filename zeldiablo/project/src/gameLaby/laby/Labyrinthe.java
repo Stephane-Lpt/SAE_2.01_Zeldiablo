@@ -156,7 +156,7 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && courante[0]!=this.monstre.x && courante[1]!=this.monstre.y) {
+        if (!(this.murs[suivante[0]][suivante[1]]) && (suivante[0]!=this.monstre.getX() || suivante[1]!=this.monstre.getY())) {
             // on met a jour personnage
             this.pj.x = suivante[0];
             this.pj.y = suivante[1];
@@ -171,7 +171,7 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && courante[0]!=this.pj.x && courante[1]!=this.pj.y) {
+        if (!this.murs[suivante[0]][suivante[1]] && (suivante[0]!=this.pj.getX() || suivante[1]!=this.pj.getY())) {
             // on met a jour personnage
             this.monstre.x = suivante[0];
             this.monstre.y = suivante[1];
