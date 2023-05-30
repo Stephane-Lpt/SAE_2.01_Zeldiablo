@@ -20,24 +20,6 @@
             <version>5.8.1</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-graphics</artifactId>
-<<<<<<< HEAD
-            <version>18.0.2</version>
-=======
-            <version>19</version>
->>>>>>> 6e2d0dd4694134bba184b0dcc5ceed100ae97618
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-<<<<<<< HEAD
-            <version>18.0.2</version>
-=======
-            <version>19</version>
->>>>>>> 6e2d0dd4694134bba184b0dcc5ceed100ae97618
-        </dependency>
     </dependencies>
 
 </project>

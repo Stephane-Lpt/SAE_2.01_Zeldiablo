@@ -32,7 +32,7 @@ public class Labyrinthe {
      * attribut du personnage
      */
     public Perso pj;
-    public Perso monstre;
+    public Monstre monstre;
 
     /**
      * les murs du labyrinthe
@@ -124,7 +124,7 @@ public class Labyrinthe {
                         // pas de mur
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute PJ
-                        this.monstre = new Perso(colonne, numeroLigne);
+                        this.monstre = new Monstre(colonne, numeroLigne);
                         break;
 
                     default:
@@ -156,10 +156,25 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]]) {
+        if (!this.murs[suivante[0]][suivante[1]] && courante[0]!=this.monstre.x && courante[1]!=this.monstre.y) {
             // on met a jour personnage
             this.pj.x = suivante[0];
             this.pj.y = suivante[1];
+        }
+    }
+
+    public void deplacerMonstre(String action) {
+        // case courante
+        int[] courante = {this.monstre.x, this.monstre.y};
+
+        // calcule case suivante
+        int[] suivante = getSuivant(courante[0], courante[1], action);
+
+        // si c'est pas un mur, on effectue le deplacement
+        if (!this.murs[suivante[0]][suivante[1]] && courante[0]!=this.pj.x && courante[1]!=this.pj.y) {
+            // on met a jour personnage
+            this.monstre.x = suivante[0];
+            this.monstre.y = suivante[1];
         }
     }
 
