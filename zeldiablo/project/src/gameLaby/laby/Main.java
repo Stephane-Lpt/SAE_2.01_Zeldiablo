@@ -2,7 +2,7 @@ package gameLaby.laby;
 
 import java.io.IOException;
 
-/**
+    /**
  * charge et affiche un labyrinthe
  */
 public class Main {
