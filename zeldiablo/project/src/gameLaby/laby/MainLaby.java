@@ -8,7 +8,7 @@ public class MainLaby {
     public static void main(String[] args){
         int width = 800;
         int height = 800;
-        int pFPS = 10;
+        int pFPS = 20;
 
         // creation des objets
         LabyJeu jeuLaby = new LabyJeu();
