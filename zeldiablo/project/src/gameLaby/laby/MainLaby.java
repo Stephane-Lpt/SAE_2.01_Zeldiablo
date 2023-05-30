@@ -6,8 +6,8 @@ import moteurJeu.MoteurJeu;
 
 public class MainLaby {
     public static void main(String[] args){
-        int width = 800;
-        int height = 800;
+        int width = 500;
+        int height = 1000;
         int pFPS = 20;
 
         // creation des objets
