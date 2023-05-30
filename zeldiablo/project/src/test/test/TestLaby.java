@@ -1,116 +1,151 @@
 package test.test;
 
+import gameLaby.laby.Labyrinthe;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
+import static gameLaby.laby.Labyrinthe.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestLaby {
 
-    @Test
-    public void testGenererLaby_ok(){
-        //initialisation
+    Labyrinthe laby;
+    Labyrinthe labyMurs;
 
-
-        //méthode testée
-
-
-        //vérification
-
+    @BeforeEach
+    public void beforeEach() throws IOException{
+        laby = new Labyrinthe("labySimple/laby0.txt");
+        labyMurs = new Labyrinthe("labySimple/labyTestMurs.txt");
     }
 
     @Test
-    public void testDeplacementPerso_haut() {
+    public void testGenererLaby_ok() throws IOException {
         //initialisation
-
+        String genLaby = "XXXXXXXXXX" + "\n"
+                       + "X.....XX.X" + "\n"
+                       + "X.X......X" + "\n"
+                       + "X......X.X" + "\n"
+                       + "X........X" + "\n"
+                       + "X..XXP...X" + "\n"
+                       + "XXXXXXXXXX" + "\n";
 
         //méthode testée
-
+        Labyrinthe laby = new Labyrinthe("labySimple/laby1.txt");
+        String resToString = "";
+        for (int y = 0; y < laby.getLengthY(); y++) {
+            // affiche la ligne
+            for (int x = 0; x < laby.getLength(); x++) {
+                if (laby.getMur(x, y))
+                    resToString += "X";
+                else if(laby.pj.getX() == x && laby.pj.getY() == y)
+                    resToString += "P";
+                else
+                    resToString += ".";
+            }
+            // saut de ligne
+            resToString += "\n";
+        }
 
         //vérification
+        assertEquals(genLaby, resToString);
+    }
 
+
+    @Test
+    public void testDeplacerPerso_haut() {
+        //méthode testée
+        this.laby.deplacerPerso(HAUT);
+
+        //vérification
+        int X = this.laby.pj.getX();
+        int Y = this.laby.pj.getY();
+        assertEquals(3, X);
+        assertEquals(1, Y);
     }
 
     @Test
-    public void testDeplacementPerso_bas() {
-        //initialisation
-
-
+    public void testDeplacerPerso_bas() {
         //méthode testée
-
+        this.laby.deplacerPerso(BAS);
 
         //vérification
-
+        int X = this.laby.pj.getX();
+        int Y = this.laby.pj.getY();
+        assertEquals(3, X);
+        assertEquals(3, Y);
     }
 
     @Test
-    public void testDeplacementPerso_gauche() {
-        //initialisation
-
-
+    public void testDeplacerPerso_gauche() {
         //méthode testée
-
+        this.laby.deplacerPerso(GAUCHE);
 
         //vérification
-
+        int X = this.laby.pj.getX();
+        int Y = this.laby.pj.getY();
+        assertEquals(2, X);
+        assertEquals(2, Y);
     }
 
     @Test
-    public void testDeplacementPerso_droite() {
-        //initialisation
-
-
+    public void testDeplacerPerso_droite() {
         //méthode testée
-
+        this.laby.deplacerPerso(DROITE);
 
         //vérification
-
+        int X = this.laby.pj.getX();
+        int Y = this.laby.pj.getY();
+        assertEquals(4, X);
+        assertEquals(2, Y);
     }
 
     @Test
-    public void testDeplacementPerso_murHaut() {
-        //initialisation
-
-
+    public void testDeplacerPerso_murHaut() {
         //méthode testée
-
+        this.labyMurs.deplacerPerso(HAUT);
 
         //vérification
-
+        int X = this.labyMurs.pj.getX();
+        int Y = this.labyMurs.pj.getY();
+        assertEquals(1, X);
+        assertEquals(1, Y);
     }
 
     @Test
-    public void testDeplacementPerso_murBas() {
-        //initialisation
-
-
+    public void testDeplacerPerso_murBas() {
         //méthode testée
-
+        this.labyMurs.deplacerPerso(BAS);
 
         //vérification
-
+        int X = this.labyMurs.pj.getX();
+        int Y = this.labyMurs.pj.getY();
+        assertEquals(1, X);
+        assertEquals(1, Y);
     }
 
     @Test
-    public void testDeplacementPerso_murGauche() {
-        //initialisation
-
-
+    public void testDeplacerPerso_murGauche() {
         //méthode testée
-
+        this.labyMurs.deplacerPerso(GAUCHE);
 
         //vérification
-
+        int X = this.labyMurs.pj.getX();
+        int Y = this.labyMurs.pj.getY();
+        assertEquals(1, X);
+        assertEquals(1, Y);
     }
 
     @Test
-    public void testDeplacementPerso_murDroit() {
-        //initialisation
-
-
+    public void testDeplacerPerso_murDroit() {
         //méthode testée
-
+        this.labyMurs.deplacerPerso(DROITE);
 
         //vérification
-
+        int X = this.labyMurs.pj.getX();
+        int Y = this.labyMurs.pj.getY();
+        assertEquals(1, X);
+        assertEquals(1, Y);
     }
 }

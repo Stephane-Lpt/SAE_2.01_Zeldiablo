@@ -1,0 +1,7 @@
+- fonctionnalité 1 : nom
+- descriptif texte : [...]
+- critères de validation :
+   - critère 1 [...]
+   - critère 2 [...]
+
+[....]

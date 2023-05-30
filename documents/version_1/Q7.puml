@@ -27,9 +27,5 @@ class Perso{
     + getY() : int
 }
 
-class Main{
-    + {static} Main(String[])
-}
-
 Labyrinthe "1" -> "1" Perso : + pj
 @enduml
