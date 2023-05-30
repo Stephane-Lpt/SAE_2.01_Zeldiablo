@@ -1,0 +1,10 @@
+@startuml
+class Labyrinthe{
+
+}
+class Perso{
+
+}
+
+Labyrinthe "1" -> Perso
+@enduml
