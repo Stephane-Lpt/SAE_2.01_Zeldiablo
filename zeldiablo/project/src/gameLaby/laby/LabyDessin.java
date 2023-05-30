@@ -27,24 +27,24 @@ public class LabyDessin implements DessinJeu {
 
         // dessin raquette
         gc.setFill(Color.BLACK);
-        for(int i=0;i<laby.getLaby().getLength()){
-            for(int j=0;j<laby.getLaby().getLengthY()){
-                if(laby.getLaby().getMur(i,j)){
-                    gc.fillRect();
+        double tailleCaseH = canvas.getWidth()/laby.getLaby().getLengthY();
+        double tailleCaseL = canvas.getHeight()/laby.getLaby().getLength();
+        double origineLargeurC = 0;
+        double origineHauteurC = 0;
+        for(int i=0;i<laby.getLaby().getLengthY();i++){
+            for(int j=0;j<laby.getLaby().getLength();j++){
+                if(laby.getLaby().getMur(j,i)){
+                    gc.fillRect(origineLargeurC,origineHauteurC, tailleCaseL, tailleCaseH);
                 }
+                else if(laby.getLaby().pj.x == i && laby.getLaby().pj.y == j){
+                    gc.setFill(Color.RED);
+                    gc.fillOval(origineLargeurC,origineHauteurC, tailleCaseL, tailleCaseH);
+                    gc.setFill(Color.BLACK);
+                }
+                origineLargeurC += tailleCaseL;
             }
+            origineHauteurC += tailleCaseH;
+            origineLargeurC = 0;
         }
-
-        Raquette raquette = arkanoid.getRaquette();
-        double px = raquette.getPx() - Raquette.RAQUETTE_TAILLE / 2;
-        double py = raquette.getPy();
-        gc.fillRect(px, py, Raquette.RAQUETTE_TAILLE, 10);
-
-        // dessin balle
-        gc.setFill(Color.RED);
-        Balle balle = arkanoid.getBalle();
-        double bx = balle.getPx();
-        double by = balle.getPy();
-        gc.fillOval(bx - 5, by - 5, 10, 10);
     }
 }
