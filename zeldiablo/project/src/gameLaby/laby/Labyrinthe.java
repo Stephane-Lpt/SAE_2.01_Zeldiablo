@@ -144,7 +144,7 @@ public class Labyrinthe {
 
     /**
      * deplace le personnage en fonction de l'action.
-     * gere la collision avec les murs
+     * gere la collision avec les murs et les personnages
      *
      * @param action une des actions possibles
      */
@@ -163,6 +163,12 @@ public class Labyrinthe {
         }
     }
 
+    /**
+     * deplace un monstre en fonction de l'action.
+     * gere la collision avec les murs et les personnages
+     *
+     * @param action une des actions possibles
+     */
     public void deplacerMonstre(String action) {
         // case courante
         int[] courante = {this.monstre.x, this.monstre.y};

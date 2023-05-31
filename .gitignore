@@ -29,3 +29,7 @@ replay_pid*
 
 # OS files
 *.db
+
+# Pom XML dependencies
+*.xml
+./zeldiablo/project/pom.xml
