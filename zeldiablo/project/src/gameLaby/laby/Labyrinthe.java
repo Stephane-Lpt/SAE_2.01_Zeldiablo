@@ -20,6 +20,10 @@ public class Labyrinthe {
 
     public static final char MONSTRE = 'M';
 
+    public static final char CASEPIEGEE = 'p';
+
+    public static final char CASEDECLENCHEUR = 'd';
+
     /**
      * constantes actions possibles
      */
