@@ -226,4 +226,14 @@ public class Labyrinthe {
         // utilise le tableau de boolean
         return this.murs[x][y];
     }
+
+    /**
+     * Méthode qui vérifie qu'une case est libre
+     * @param x coordonée en abscisses
+     * @param y coordonéé et ordonée
+     * @return vrai si la case est libre et faux sinon
+     */
+    public boolean etreLibre(int x, int y){
+        return ((!this.murs[x][y]) && !(this.heros.etrePresent(x, y)) && !(this.monstre.etrePresent(x, y)));
+    }
 }
