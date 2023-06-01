@@ -11,7 +11,7 @@ public class Heros extends Perso{
      * @param x position selon x
      * @param y position selon y
      */
-    public Heros(int x, int y){
-        super(x, y);
+    public Heros(int x, int y, int pp){
+        super(x, y, pp);
     }
 }

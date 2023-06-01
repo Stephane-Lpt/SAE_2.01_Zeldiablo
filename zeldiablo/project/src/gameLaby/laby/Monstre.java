@@ -11,7 +11,7 @@ public class Monstre extends Perso{
      * @param x position selon x
      * @param y position selon y
      */
-    public Monstre(int x, int y){
-        super(x, y);
+    public Monstre(int x, int y, int pp){
+        super(x, y, pp);
     }
 }

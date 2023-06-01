@@ -40,27 +40,26 @@ public class LabyDessin implements DessinJeu {
                 if(laby.getLaby().getMur(j,i)){
                     gc.fillRect(origineLargeurC,origineHauteurC, tailleCaseL, tailleCaseH);
                 }
-                else if(laby.getLaby().heros.x == j && laby.getLaby().heros.y == i){
-                    gc.setFill(Color.RED);
-                    gc.fillOval(origineLargeurC,origineHauteurC, tailleCaseL, tailleCaseH);
-                    gc.setFill(Color.BLACK);
-                }
-                else if(laby.getLaby().monstre.x == j && laby.getLaby().monstre.y == i){
-                    gc.setFill(Color.PURPLE);
-                    gc.fillOval(origineLargeurC,origineHauteurC, tailleCaseL, tailleCaseH);
-                    gc.setFill(Color.BLACK);
-                }
                 origineLargeurC += tailleCaseL;
             }
             origineHauteurC += tailleCaseH;
             origineLargeurC = 0;
         }
 
-        for(CaissePiegee c : laby.getLaby().caissesPiegees){
-            if(c.getTrouvee){
-                gc.setFill(Color.ALICEBLUE);
+        // Affihage des cases piégées
+        for(CasePiegee c : laby.getLaby().casesPiegees){
+            if(c.getTrouvee()){
+                gc.setFill(Color.SADDLEBROWN);
                 gc.fillRect(c.getX()*tailleCaseL, c.getY()*tailleCaseH, tailleCaseL, tailleCaseH); // Si la case a pour coordonnées 2,4 alors, le coin supérieur gauche du rectangle sera à 2 * la taille d'une case en largeur
             }
         }
+
+        // Affichage du monstre
+        gc.setFill(Color.PURPLE);
+        gc.fillOval(laby.getLaby().monstre.x*tailleCaseL,laby.getLaby().monstre.y*tailleCaseH, tailleCaseL, tailleCaseH);
+
+        // Affichage du perso en dernier pour qu'il soit au premier plan
+        gc.setFill(Color.RED);
+        gc.fillOval(laby.getLaby().heros.x*tailleCaseL, laby.getLaby().heros.y*tailleCaseH, tailleCaseL, tailleCaseH);
     }
 }

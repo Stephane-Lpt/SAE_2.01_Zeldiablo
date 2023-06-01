@@ -3,6 +3,7 @@ package gameLaby.laby;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * classe labyrinthe. represente un labyrinthe avec
@@ -42,6 +43,17 @@ public class Labyrinthe {
      * les murs du labyrinthe
      */
     public boolean[][] murs;
+
+
+    /**
+     * Les cases piégées du labyrinthe
+     */
+    public ArrayList<CasePiegee> casesPiegees;
+
+    /**
+     * Les cases déclencheurs du labyrinthe
+     */
+    public ArrayList<CaseDeclencheur> casesDeclencheurs;
 
     /**
      * retourne la case suivante selon une actions
@@ -99,6 +111,11 @@ public class Labyrinthe {
         this.heros = null;
         this.monstre=null;
 
+        // On instancie les cases piégées et déclencheurs
+        this.casesPiegees = new ArrayList<CasePiegee>();
+        this.casesDeclencheurs = new ArrayList<CaseDeclencheur>();
+
+
         // lecture des cases
         String ligne = bfRead.readLine();
 
@@ -122,15 +139,21 @@ public class Labyrinthe {
                         // pas de mur
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute PJ
-                        this.heros = new Heros(colonne, numeroLigne);
+                        this.heros = new Heros(colonne, numeroLigne, 10);
                         break;
                     case MONSTRE:
                         // pas de mur
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute PJ
-                        this.monstre = new Monstre(colonne, numeroLigne);
+                        this.monstre = new Monstre(colonne, numeroLigne, 10);
+                        break;
+                    case CASEPIEGEE:
+                        this.casesPiegees.add(new CasePiegee(colonne, numeroLigne));
                         break;
 
+                    case CASEDECLENCHEUR:
+                        this.casesDeclencheurs.add(new CaseDeclencheur(colonne, numeroLigne));
+                        break;
                     default:
                         throw new Error("caractere inconnu " + c);
                 }
@@ -155,7 +178,6 @@ public class Labyrinthe {
     public void deplacerPerso(String action) {
         // case courante
         int[] courante = {this.heros.x, this.heros.y};
-
         // calcule case suivante
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
@@ -164,7 +186,29 @@ public class Labyrinthe {
             // on met a jour personnage
             this.heros.x = suivante[0];
             this.heros.y = suivante[1];
+
+            // Ici on met ce qu'il se passe pour vérifier si aux coordonnées suivantes il y a une case piégée
+            int caseP = this.casesPiegees.indexOf(new Case(suivante[0], suivante[1]));
+
+            int caseD = this.casesDeclencheurs.indexOf(new Case(suivante[0], suivante[1])); // Case declencheur
+
+            if(caseP != -1){
+                // Si le piège n'a pas encore été effectif
+                this.heros.changerPv(-1);
+                this.casesPiegees.get(caseP).setTrouvee();
+
+
+            }// On vérifie si dans ce cas là, il y a une case déclencheur
+
+            else if(caseD != -1){
+                this.heros.changerPv(-1);
+                this.casesDeclencheurs.get(caseD).setTrouvee();
+                System.out.println("Le héros vient de subir un effet");
+            }
+
         }
+
+
     }
 
     /**
@@ -185,6 +229,8 @@ public class Labyrinthe {
             // on met a jour personnage
             this.monstre.x = suivante[0];
             this.monstre.y = suivante[1];
+
+            //
         }
     }
 
