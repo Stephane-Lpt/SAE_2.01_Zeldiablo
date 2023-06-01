@@ -99,15 +99,18 @@ class Perso{
 }
 
 class Monstre{
-    + Perso(int, int)
+    + Monstre(int, int)
 }
 
-Labyrinthe "1" -> "1" Perso : + pj
-Labyrinthe "1" -> "1" Monstre : + monstre
+class Heros{
+    + Heros(int, int)
+}
+Labyrinthe "1" -> "1" Perso : + heros
+Labyrinthe "1" -> "1" Perso : + monstre
 LabyJeu "1" -> "1" Labyrinthe : + laby
 
 Perso <|-- Monstre
-
+Perso <|-- Heros
 DessinJeu <|.. LabyDessin
 
 
