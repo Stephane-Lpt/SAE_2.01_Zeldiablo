@@ -3,6 +3,9 @@ package gameLaby.laby;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * classe labyrinthe. represente un labyrinthe avec
@@ -164,28 +167,6 @@ public class Labyrinthe {
     }
 
     /**
-     * deplace un monstre en fonction de l'action.
-     * gere la collision avec les murs et les personnages
-     *
-     * @param action une des actions possibles
-     */
-    public void deplacerMonstre(String action) {
-        // case courante
-        int[] courante = {this.monstre.x, this.monstre.y};
-
-        // calcule case suivante
-        int[] suivante = getSuivant(courante[0], courante[1], action);
-
-        // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && (suivante[0]!=this.heros.getX() || suivante[1]!=this.heros.getY())) {
-            // on met a jour personnage
-            this.monstre.x = suivante[0];
-            this.monstre.y = suivante[1];
-        }
-    }
-
-
-    /**
      * jamais fini
      *
      * @return fin du jeu
@@ -225,6 +206,38 @@ public class Labyrinthe {
     public boolean getMur(int x, int y) {
         // utilise le tableau de boolean
         return this.murs[x][y];
+    }
+
+    /**
+     * deplace un monstre en fonction de l'action.
+     * gere la collision avec les murs et les personnages
+     */
+    public void deplacerMonstre() {
+        int[] courante = {this.monstre.x, this.monstre.y};
+        int[] h=getSuivant(courante[0], courante[1], Labyrinthe.HAUT);
+        int[] b=getSuivant(courante[0], courante[1], Labyrinthe.BAS);
+        int[] d=getSuivant(courante[0], courante[1], Labyrinthe.DROITE);
+        int[] g=getSuivant(courante[0], courante[1], Labyrinthe.GAUCHE);
+
+        Tuple tH=new Tuple(h, Math.sqrt(Math.pow(this.heros.x - h[0], 2) + Math.pow(this.heros.y - h[1], 2)));
+        Tuple tB=new Tuple(b, Math.sqrt(Math.pow(this.heros.x - b[0], 2) + Math.pow(this.heros.y - b[1], 2)));
+        Tuple tD=new Tuple(d, Math.sqrt(Math.pow(this.heros.x - d[0], 2) + Math.pow(this.heros.y - d[1], 2)));
+        Tuple tG=new Tuple(g, Math.sqrt(Math.pow(this.heros.x - g[0], 2) + Math.pow(this.heros.y - g[1], 2)));
+
+        ArrayList<Tuple> classement = new ArrayList<Tuple>();
+        classement.addAll(Arrays.asList(tH,tB,tD,tG));
+
+        Collections.sort(classement, (t1, t2) -> Double.compare(t1.getDist(), t2.getDist()));
+
+        for (int i = 0; i < classement.size(); i++) {
+            int[] suivante = classement.get(i).getCoord();
+
+            if (etreLibre(suivante[0], suivante[1])) {
+                this.monstre.x = suivante[0];
+                this.monstre.y = suivante[1];
+                break;
+            }
+        }
     }
 
     /**
