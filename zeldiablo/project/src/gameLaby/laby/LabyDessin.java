@@ -37,7 +37,7 @@ public class LabyDessin implements DessinJeu {
                 if(laby.getLaby().getMur(j,i)){
                     gc.fillRect(origineLargeurC,origineHauteurC, tailleCaseL, tailleCaseH);
                 }
-                else if(laby.getLaby().pj.x == j && laby.getLaby().pj.y == i){
+                else if(laby.getLaby().heros.x == j && laby.getLaby().heros.y == i){
                     gc.setFill(Color.RED);
                     gc.fillOval(origineLargeurC,origineHauteurC, tailleCaseL, tailleCaseH);
                     gc.setFill(Color.BLACK);
