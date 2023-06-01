@@ -31,8 +31,8 @@ public class Labyrinthe {
     /**
      * attribut du personnage
      */
-    public Perso pj;
-    public Monstre monstre;
+    public Perso heros;
+    public Perso monstre;
 
     /**
      * les murs du labyrinthe
@@ -92,7 +92,7 @@ public class Labyrinthe {
 
         // creation labyrinthe vide
         this.murs = new boolean[nbColonnes][nbLignes];
-        this.pj = null;
+        this.heros = null;
         this.monstre=null;
 
         // lecture des cases
@@ -118,7 +118,7 @@ public class Labyrinthe {
                         // pas de mur
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute PJ
-                        this.pj = new Perso(colonne, numeroLigne);
+                        this.heros = new Perso(colonne, numeroLigne);
                         break;
                     case MONSTRE:
                         // pas de mur
@@ -150,7 +150,7 @@ public class Labyrinthe {
      */
     public void deplacerPerso(String action) {
         // case courante
-        int[] courante = {this.pj.x, this.pj.y};
+        int[] courante = {this.heros.x, this.heros.y};
 
         // calcule case suivante
         int[] suivante = getSuivant(courante[0], courante[1], action);
@@ -158,8 +158,8 @@ public class Labyrinthe {
         // si c'est pas un mur, on effectue le deplacement
         if (!(this.murs[suivante[0]][suivante[1]]) && (suivante[0]!=this.monstre.getX() || suivante[1]!=this.monstre.getY())) {
             // on met a jour personnage
-            this.pj.x = suivante[0];
-            this.pj.y = suivante[1];
+            this.heros.x = suivante[0];
+            this.heros.y = suivante[1];
         }
     }
 
@@ -177,7 +177,7 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && (suivante[0]!=this.pj.getX() || suivante[1]!=this.pj.getY())) {
+        if (!this.murs[suivante[0]][suivante[1]] && (suivante[0]!=this.heros.getX() || suivante[1]!=this.heros.getY())) {
             // on met a jour personnage
             this.monstre.x = suivante[0];
             this.monstre.y = suivante[1];
