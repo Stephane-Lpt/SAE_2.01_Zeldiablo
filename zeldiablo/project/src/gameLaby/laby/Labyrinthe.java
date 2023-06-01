@@ -187,20 +187,12 @@ public class Labyrinthe {
             this.heros.x = suivante[0];
             this.heros.y = suivante[1];
 
-            // Ici on met ce qu'il se passe pour vérifier si aux coordonnées suivantes il y a une case piégée
-            int caseP = this.casesPiegees.indexOf(new Case(suivante[0], suivante[1]));
-
-            int caseD = this.casesDeclencheurs.indexOf(new Case(suivante[0], suivante[1])); // Case declencheur
-
-            if(caseP != -1){
-                // Si le piège n'a pas encore été effectif
-                this.heros.changerPv(-1);
-                this.casesPiegees.get(caseP).setTrouvee();
+            verifierCasePiegee(suivante[0], suivante[1], this.heros);
 
 
-            }// On vérifie si dans ce cas là, il y a une case déclencheur
-
-            else if(caseD != -1){
+            // On vérifie si dans ce cas là, il y a une case déclencheur
+            int caseD = this.casesDeclencheurs.indexOf(new Case(suivante[0], suivante[1]));
+            if(caseD != -1){
                 this.heros.changerPv(-1);
                 this.casesDeclencheurs.get(caseD).setTrouvee();
                 System.out.println("Le héros vient de subir un effet");
@@ -230,9 +222,25 @@ public class Labyrinthe {
             this.monstre.x = suivante[0];
             this.monstre.y = suivante[1];
 
-            //
+            // Ici on met ce qu'il se passe pour vérifier si aux coordonnées suivantes il y a une case piégée
+            verifierCasePiegee(suivante[0], suivante[1], this.monstre);
+
         }
     }
+
+
+        public void verifierCasePiegee(int x, int y, Perso p){
+            int caseP = this.casesPiegees.indexOf(new Case(x, y));
+            if(caseP != -1){
+                // Si le piège n'a pas encore été effectif
+                if(p instanceof Monstre){
+                    this.monstre.changerPv(-1);
+                }else if(p instanceof Heros){
+                    this.heros.changerPv(-1);
+                }
+                this.casesPiegees.get(caseP).setTrouvee();
+            }
+        }
 
 
     /**
