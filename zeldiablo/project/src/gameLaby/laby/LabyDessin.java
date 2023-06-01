@@ -21,15 +21,18 @@ public class LabyDessin implements DessinJeu {
         // recupere un pinceau pour dessiner
         final GraphicsContext gc = canvas.getGraphicsContext2D();
 
+        double largeurFenetre = canvas.getWidth();
+        double hauteurFenetre = canvas.getHeight();
+
         // dessin fond
         gc.setFill(Color.WHITE);
-        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        gc.fillRect(0, 0, largeurFenetre, hauteurFenetre);
 
 
         // dessin raquette
         gc.setFill(Color.BLACK);
-        double tailleCaseH = canvas.getWidth()/laby.getLaby().getLengthY();
-        double tailleCaseL = canvas.getHeight()/laby.getLaby().getLength();
+        double tailleCaseH = largeurFenetre/laby.getLaby().getLengthY();
+        double tailleCaseL = hauteurFenetre/laby.getLaby().getLength();
         double origineLargeurC = 0;
         double origineHauteurC = 0;
         for(int i=0;i<laby.getLaby().getLengthY();i++){
@@ -51,6 +54,13 @@ public class LabyDessin implements DessinJeu {
             }
             origineHauteurC += tailleCaseH;
             origineLargeurC = 0;
+        }
+
+        for(CaissePiegee c : laby.getLaby().caissesPiegees){
+            if(c.getTrouvee){
+                gc.setFill(Color.ALICEBLUE);
+                gc.fillRect(c.getX()*tailleCaseL, c.getY()*tailleCaseH, tailleCaseL, tailleCaseH); // Si la case a pour coordonnées 2,4 alors, le coin supérieur gauche du rectangle sera à 2 * la taille d'une case en largeur
+            }
         }
     }
 }
