@@ -1,0 +1,15 @@
+@startuml
+participant "main: Main" as main
+participant "laby: Labyrinthe" as laby
+
+main -> laby : etreLibre(1, 2)
+
+activate laby
+    laby -> laby : this.heros.etrePresent(1, 2)
+    laby --> laby
+    laby -> laby : this.monstre.etrePresent(1, 2)
+    laby --> laby
+    main <-- laby
+deactivate laby
+
+@enduml
