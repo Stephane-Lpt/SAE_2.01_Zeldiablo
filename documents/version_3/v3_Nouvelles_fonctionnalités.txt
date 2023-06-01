@@ -1,7 +1,33 @@
-- fonctionnalité 1 : nom
-- descriptif texte : [...]
+- fonctionnalité 1 : 1.4 Cases déclencheur
+- descriptif texte : Lorsque une entité arrive sur certaines cases, ces cases déclenchent un eet.
 - critères de validation :
-   - critère 1 [...]
-   - critère 2 [...]
+   - critère 1 Les cases avec effet sont des cases traversables.
+   - critère 2 Lorsqu'un personnage (héros ou monstre) marche sur cette case, elle déclenche immédiatement un effet
+   - critère 3 Cet effet se traduit pour le moment, par un affichage dans la console à préciser.
 
-[....]
+- foncitonnalité 2 : 1.5 Cases piégées
+- descriptif texte : Lorsque une entité (héros ou monstre) arrive sur une case piégée, il subit des dégâts.
+- crtières de validation :
+    - critère 1 Les dégâts ne se déclenchent que lorsque le joueur arrive sur la case, il peut ensuite rester sur cette case aussi longtemps qu'il le souhaite sans subir d'autres dégâts.
+    - critère 2 Lorsque la case devient à nouveau vide, le piège se réamorce
+    - critère 3 (optionnel) Lorsqu'une case a été détectée comme un piège, elle s'affiche différemment dans le labyrinthe (en brun) ce qui permet au joueur d'en tenir compte ensuite
+
+
+- fonctionnalité 3 : 2.5 Monstres avec intelligence variable
+- descriptif texte : En plus d'être de type différents (orc, troll, fantôme), les monstres peuvent avoir
+                     des degré d'intelligence différent. En fonction de ce degré d'intelligence, ils se déplacent
+                     différemment.
+- critères de validation :
+    - critère 1 Un monstre d'intelligence nulle reste immobile.
+    - critère 2 Un monstre d'intelligence faible se déplace au hasard.
+    - critère 3 Un monstre d'intelligence moyenne cherche à se rapprocher du héros sans prendre
+    en compte les obstacles.
+    - critère 4 Un monstre d'intelligence forte se rapproche du héros en évitant les obstacles.
+    - critère 5 Plusieurs monstres avec des intelligences diérentes peuvent être présents dans le
+    même labyrinthe.
+    - critère 6 Chaque type de monstre (Orc, Fantome, Troll) peut avoir n'importe quel type
+    d'intelligence. On peut avoir dans le même labyrinthe des Orc d'intelligence nulle,
+    faible, moyenne et forte. Idem pour les trolls et les fantômes.
+    COO- TD - Projet Zeldiabolo - Liste des fonctionnalités 8
+    - critère 7 pour tester que cela fonctionne, il faut créer un seul labyrinthe contenant tous les
+    couples (type de monstre/intelligence).
