@@ -13,11 +13,13 @@ public class TestLaby {
 
     Labyrinthe laby;
     Labyrinthe labyMurs;
+    Labyrinthe labyMonstre;
 
     @BeforeEach
     public void beforeEach() throws IOException{
         laby = new Labyrinthe("labySimple/laby0.txt");
         labyMurs = new Labyrinthe("labySimple/labyTestMurs.txt");
+        labyMonstre = new Labyrinthe("labySimple/laby1.txt");
     }
 
     @Test
@@ -147,5 +149,22 @@ public class TestLaby {
         int Y = this.labyMurs.pj.getY();
         assertEquals(1, X);
         assertEquals(1, Y);
+    }
+
+    @Test
+    public void testDeplacerPerso_dansMonstre() {
+        //initialisation
+        this.labyMonstre.deplacerPerso(HAUT);
+        this.labyMonstre.deplacerPerso(HAUT);
+        this.labyMonstre.deplacerPerso(GAUCHE);
+
+        //méthode testée
+        this.labyMonstre.deplacerPerso(HAUT);
+
+        //vérification
+        int X = this.labyMonstre.pj.getX();
+        int Y = this.labyMonstre.pj.getY();
+        assertEquals(4, X);
+        assertEquals(3, Y);
     }
 }

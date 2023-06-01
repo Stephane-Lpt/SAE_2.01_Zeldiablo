@@ -1,0 +1,14 @@
+Bilan Version 2 :
+
+Bugs résolus : 
+	- affichage du labyrinthe
+
+Bugs restants :
+	- classes Perso et Monstre mal ilmpéméntées
+
+Ce qui a été validé :
+	- ajout de la classe Monstre
+	- le monstre a une position initiale
+	- le monstre début sur une case décrite dans le fichier labyrinthe
+	- le monstre est considéré dans les déplacements du personnage
+	- le monstre se déplace aléatoirement
