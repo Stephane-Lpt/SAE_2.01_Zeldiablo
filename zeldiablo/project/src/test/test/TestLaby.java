@@ -41,7 +41,7 @@ public class TestLaby {
             for (int x = 0; x < laby.getLength(); x++) {
                 if (laby.getMur(x, y))
                     resToString += "X";
-                else if(laby.pj.getX() == x && laby.pj.getY() == y)
+                else if(laby.heros.getX() == x && laby.heros.getY() == y)
                     resToString += "P";
                 else
                     resToString += ".";
@@ -61,8 +61,8 @@ public class TestLaby {
         this.laby.deplacerPerso(HAUT);
 
         //vérification
-        int X = this.laby.pj.getX();
-        int Y = this.laby.pj.getY();
+        int X = this.laby.heros.getX();
+        int Y = this.laby.heros.getY();
         assertEquals(3, X);
         assertEquals(1, Y);
     }
@@ -73,8 +73,8 @@ public class TestLaby {
         this.laby.deplacerPerso(BAS);
 
         //vérification
-        int X = this.laby.pj.getX();
-        int Y = this.laby.pj.getY();
+        int X = this.laby.heros.getX();
+        int Y = this.laby.heros.getY();
         assertEquals(3, X);
         assertEquals(3, Y);
     }
@@ -85,8 +85,8 @@ public class TestLaby {
         this.laby.deplacerPerso(GAUCHE);
 
         //vérification
-        int X = this.laby.pj.getX();
-        int Y = this.laby.pj.getY();
+        int X = this.laby.heros.getX();
+        int Y = this.laby.heros.getY();
         assertEquals(2, X);
         assertEquals(2, Y);
     }
@@ -97,8 +97,8 @@ public class TestLaby {
         this.laby.deplacerPerso(DROITE);
 
         //vérification
-        int X = this.laby.pj.getX();
-        int Y = this.laby.pj.getY();
+        int X = this.laby.heros.getX();
+        int Y = this.laby.heros.getY();
         assertEquals(4, X);
         assertEquals(2, Y);
     }
@@ -109,8 +109,8 @@ public class TestLaby {
         this.labyMurs.deplacerPerso(HAUT);
 
         //vérification
-        int X = this.labyMurs.pj.getX();
-        int Y = this.labyMurs.pj.getY();
+        int X = this.labyMurs.heros.getX();
+        int Y = this.labyMurs.heros.getY();
         assertEquals(1, X);
         assertEquals(1, Y);
     }
@@ -121,8 +121,8 @@ public class TestLaby {
         this.labyMurs.deplacerPerso(BAS);
 
         //vérification
-        int X = this.labyMurs.pj.getX();
-        int Y = this.labyMurs.pj.getY();
+        int X = this.labyMurs.heros.getX();
+        int Y = this.labyMurs.heros.getY();
         assertEquals(1, X);
         assertEquals(1, Y);
     }
@@ -133,8 +133,8 @@ public class TestLaby {
         this.labyMurs.deplacerPerso(GAUCHE);
 
         //vérification
-        int X = this.labyMurs.pj.getX();
-        int Y = this.labyMurs.pj.getY();
+        int X = this.labyMurs.heros.getX();
+        int Y = this.labyMurs.heros.getY();
         assertEquals(1, X);
         assertEquals(1, Y);
     }
@@ -145,8 +145,8 @@ public class TestLaby {
         this.labyMurs.deplacerPerso(DROITE);
 
         //vérification
-        int X = this.labyMurs.pj.getX();
-        int Y = this.labyMurs.pj.getY();
+        int X = this.labyMurs.heros.getX();
+        int Y = this.labyMurs.heros.getY();
         assertEquals(1, X);
         assertEquals(1, Y);
     }
@@ -162,8 +162,8 @@ public class TestLaby {
         this.labyMonstre.deplacerPerso(HAUT);
 
         //vérification
-        int X = this.labyMonstre.pj.getX();
-        int Y = this.labyMonstre.pj.getY();
+        int X = this.labyMonstre.heros.getX();
+        int Y = this.labyMonstre.heros.getY();
         assertEquals(4, X);
         assertEquals(3, Y);
     }
