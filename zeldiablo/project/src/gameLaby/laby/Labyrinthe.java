@@ -1,8 +1,12 @@
 package gameLaby.laby;
 
+import Graphes.*;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLOutput;
+import java.util.List;
 
 /**
  * classe labyrinthe. represente un labyrinthe avec
@@ -47,7 +51,7 @@ public class Labyrinthe {
      * @param action action effectuee
      * @return case suivante
      */
-    static int[] getSuivant(int x, int y, String action) {
+    public static int[] getSuivant(int x, int y, String action) {
         switch (action) {
             case HAUT:
                 // on monte une ligne
@@ -229,11 +233,70 @@ public class Labyrinthe {
 
     /**
      * Méthode qui vérifie qu'une case est libre
-     * @param x coordonée en abscisses
-     * @param y coordonéé et ordonée
+     * @param x coordonnée en abscisses
+     * @param y coordonnée et ordonnée
      * @return vrai si la case est libre et faux sinon
      */
     public boolean etreLibre(int x, int y){
         return ((!this.murs[x][y]) && !(this.heros.etrePresent(x, y)) && !(this.monstre.etrePresent(x, y)));
+    }
+
+    /**
+     * Méthode qui permet de générer un graphe à partir d'un labyrinthe
+     *
+     * @return le graphe
+     */
+    public GrapheListe genererGraphe() {
+        GrapheListe graphe = new GrapheListe();
+
+        // Parcourir toutes les cases du labyrinthe
+        for (int i = 0; i < this.murs.length; i++) {
+            for (int j = 0; j < this.murs[i].length; j++) {
+                String nomNoeud = "(" + i + "," + j + ")";
+
+                // Vérifier les déplacements possibles pour chaque case
+                if (!this.murs[i][j]) {
+                    // Vérifier le déplacement vers le haut
+                    if (j > 0 && !this.murs[i][j - 1]) {
+                        String nomNoeudArrivee = "(" + i + "," + (j - 1) + ")";
+                        graphe.ajouterArc(nomNoeud, nomNoeudArrivee, 1); // Ajouter un arc avec un coût de 1
+                    }
+
+                    // Vérifier le déplacement vers le bas
+                    if (j < this.murs[i].length - 1 && !this.murs[i][j + 1]) {
+                        String nomNoeudArrivee = "(" + i + "," + (j + 1) + ")";
+                        graphe.ajouterArc(nomNoeud, nomNoeudArrivee, 1); // Ajouter un arc avec un coût de 1
+                    }
+
+                    // Vérifier le déplacement vers la gauche
+                    if (i > 0 && !this.murs[i - 1][j]) {
+                        String nomNoeudArrivee = "(" + (i - 1) + "," + j + ")";
+                        graphe.ajouterArc(nomNoeud, nomNoeudArrivee, 1); // Ajouter un arc avec un coût de 1
+                    }
+
+                    // Vérifier le déplacement vers la droite
+                    if (i < this.murs.length - 1 && !this.murs[i + 1][j]) {
+                        String nomNoeudArrivee = "(" + (i + 1) + "," + j + ")";
+                        graphe.ajouterArc(nomNoeud, nomNoeudArrivee, 1); // Ajouter un arc avec un coût de 1
+                    }
+                }
+            }
+        }
+
+        return graphe;
+    }
+
+    public void deplacerMonstreIntelligent(){
+
+        GrapheListe g = this.genererGraphe();
+
+        //On utilise Dijkstra
+        Valeur dij = (new Dijkstra()).resoudre(g, "("+this.monstre.x+","+this.monstre.y+")");
+        //On utilise calculerChemin
+        List<String> l = dij.calculerChemin("("+this.heros.x+","+this.heros.y+")");
+
+        // on met a jour la position du monstre
+        this.monstre.x = Integer.parseInt(l.get(1).substring(1, 2));
+        this.monstre.y = Integer.parseInt(l.get(1).substring(3, 4));
     }
 }

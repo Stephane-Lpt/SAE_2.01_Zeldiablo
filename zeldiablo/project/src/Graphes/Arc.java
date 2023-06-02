@@ -1,4 +1,4 @@
-package gameLaby.laby;
+package Graphes;
 
 /**
  * Classe représente un arc partant d'un nœud grâce à une destination et un coût

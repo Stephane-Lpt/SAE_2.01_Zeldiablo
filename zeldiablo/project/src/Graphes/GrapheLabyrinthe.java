@@ -1,4 +1,7 @@
-package gameLaby.laby;
+package Graphes;
+
+import gameLaby.laby.*;
+import Graphes.*;
 
 import java.util.ArrayList;
 import java.util.List;

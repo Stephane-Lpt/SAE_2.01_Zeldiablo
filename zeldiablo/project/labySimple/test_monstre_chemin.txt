@@ -1,9 +1,9 @@
 7
 10
 XXXXXXXXXX
-X.....XX.X
-X.X.M....X
+XMXP..XX.X
+X.X......X
 X......X.X
 X........X
-X..XXP...X
+X..XX....X
 XXXXXXXXXX

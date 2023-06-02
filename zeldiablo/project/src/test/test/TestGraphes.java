@@ -1,10 +1,16 @@
+package test.test;
+
+import Graphes.Dijkstra;
+import Graphes.GrapheListe;
+import Graphes.Valeur;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestChargement {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class TestGraphes {
 
     @Test
     public void testAjouterArc_ok(){
@@ -102,57 +108,7 @@ public class TestChargement {
 
     }
 
-    @Test
-    public void testPointFixe_ValeurOk(){
-        //initialisation des données
-        GrapheListe g = new GrapheListe();
-        BellmanFord b = new BellmanFord();
-        g.ajouterArc("A", "B", 30);
-        g.ajouterArc("B", "C", 20);
-        g.ajouterArc("C", "A", 10);
 
-        //méthode testée
-        Valeur res = b.resoudre(g, "A");
-
-        //vérification
-        assertEquals(0.0, res.getValeur("A"));
-        assertEquals(30.0, res.getValeur("B"));
-        assertEquals(50.0, res.getValeur("C"));
-    }
-
-    @Test
-    public void testPointFixe_ValeurPasBon(){
-        //initialisation des données
-        GrapheListe g = new GrapheListe();
-        BellmanFord b = new BellmanFord();
-        g.ajouterArc("A", "B", 30);
-        g.ajouterArc("B", "C", 20);
-        g.ajouterArc("C", "A", 10);
-
-        //méthode testée
-        Valeur res = b.resoudre(g, "Z");
-
-        //vérification
-        assertEquals(null, res);
-    }
-
-    @Test
-    public void testPointFixe_ParentOk(){
-        //initialisation des données
-        GrapheListe g = new GrapheListe();
-        BellmanFord b = new BellmanFord();
-        g.ajouterArc("A", "B", 30);
-        g.ajouterArc("B", "C", 20);
-        g.ajouterArc("C", "A", 10);
-
-        //méthode testée
-        Valeur res = b.resoudre(g, "A");
-
-        //vérification
-        assertEquals(null, res.getParent("A"));
-        assertEquals("A", res.getParent("B"));
-        assertEquals("B", res.getParent("C"));
-    }
 
     @Test
     public void testDijkstra_ValeurOk(){
