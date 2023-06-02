@@ -1,0 +1,274 @@
+@startuml
+
+participant "laby : Labyrinthe" as laby
+participant "g : GrapheListe" as g
+participant "arc : Arc" as arc
+participant "noeud : Noeud" as noeud
+participant "d : Dijkstra" as d
+participant "v : Valeur" as v
+participant "Q : List<String>" as Q
+participant "res : List<String>" as res
+
+
+laby -> laby : genererGraphe()
+activate laby
+create g
+laby -> g : new GrapheListe
+
+loop !finTableauMursDim1
+    loop !finTableauMursDim2
+
+        alt Pas du mur
+            alt deplacement vers le haut
+            g -> g : ajouterArc(nomNoeud, nomNoeudArrivee, 1)
+            activate g
+                alt noeud de départ et d'arrivée existent
+                    loop tous les noeuds de ensNoeuds
+                        alt noeud égal au noeud de départ
+                            arc -> noeud : ajouterArc(destination, cout)
+                            activate noeud
+                                loop tous les arcs
+                                    alt si la destination n'existe pas
+                                        noeud -> arc : new Arc(destination, cout)
+                                    end
+                                end
+                            deactivate noeud
+                        end
+                    end
+                else
+                    alt noeud de départ inexistant
+                        arc -> noeud : new Noeud(depart)
+                    end
+
+                    alt noeud de destination inexistant
+                        arc -> noeud : new Noeud(destination)
+                    end
+
+                    loop tous les noeuds de ensNoeuds
+                        alt noeud égal au noeud de départ
+                            arc -> noeud : ajouterArc(destination, cout)
+                            activate noeud
+                                loop tous les arcs
+                                    alt si la destination n'existe pas
+                                        noeud -> arc : new Arc(destination, cout)
+                                    end
+                                end
+                            deactivate noeud
+                        end
+                    end
+                end
+            deactivate g
+
+            end
+
+            alt deplacement vers le bas
+            g -> g : ajouterArc(nomNoeud, nomNoeudArrivee, 1)
+            activate g
+                alt noeud de départ et d'arrivée existent
+                    loop tous les noeuds de ensNoeuds
+                        alt noeud égal au noeud de départ
+                            arc -> noeud : ajouterArc(destination, cout)
+                            activate noeud
+                                loop tous les arcs
+                                    alt si la destination n'existe pas
+                                        noeud -> arc : new Arc(destination, cout)
+                                    end
+                                end
+                            deactivate noeud
+                        end
+                    end
+                else
+                    alt noeud de départ inexistant
+                        arc -> noeud : new Noeud(depart)
+                    end
+
+                    alt noeud de destination inexistant
+                        arc -> noeud : new Noeud(destination)
+                    end
+
+                    loop tous les noeuds de ensNoeuds
+                        alt noeud égal au noeud de départ
+                            arc -> noeud : ajouterArc(destination, cout)
+                            activate noeud
+                                loop tous les arcs
+                                    alt si la destination n'existe pas
+                                        noeud -> arc : new Arc(destination, cout)
+                                    end
+                                end
+                            deactivate noeud
+                        end
+                    end
+                end
+            deactivate g
+            end
+
+            alt deplacement vers la gauche
+            g -> g : ajouterArc(nomNoeud, nomNoeudArrivee, 1)
+            activate g
+                alt noeud de départ et d'arrivée existent
+                    loop tous les noeuds de ensNoeuds
+                        alt noeud égal au noeud de départ
+                            arc -> noeud : ajouterArc(destination, cout)
+                            activate noeud
+                                loop tous les arcs
+                                    alt si la destination n'existe pas
+                                        noeud -> arc : new Arc(destination, cout)
+                                    end
+                                end
+                            deactivate noeud
+                        end
+                    end
+                else
+                    alt noeud de départ inexistant
+                        arc -> noeud : new Noeud(depart)
+                    end
+
+                    alt noeud de destination inexistant
+                        arc -> noeud : new Noeud(destination)
+                    end
+
+                    loop tous les noeuds de ensNoeuds
+                        alt noeud égal au noeud de départ
+                            arc -> noeud : ajouterArc(destination, cout)
+                            activate noeud
+                                loop tous les arcs
+                                    alt si la destination n'existe pas
+                                        noeud -> arc : new Arc(destination, cout)
+                                    end
+                                end
+                            deactivate noeud
+                        end
+                    end
+                end
+            deactivate g
+            end
+
+            alt deplacement vers la droite
+            g -> g : ajouterArc(nomNoeud, nomNoeudArrivee, 1)
+            activate g
+                alt noeud de départ et d'arrivée existent
+                    loop tous les noeuds de ensNoeuds
+                        alt noeud égal au noeud de départ
+                            arc -> noeud : ajouterArc(destination, cout)
+                            activate noeud
+                                loop tous les arcs
+                                    alt si la destination n'existe pas
+                                        noeud -> arc : new Arc(destination, cout)
+                                    end
+                                end
+                            deactivate noeud
+                        end
+                    end
+                else
+                    alt noeud de départ inexistant
+                        arc -> noeud : new Noeud(depart)
+                    end
+
+                    alt noeud de destination inexistant
+                        arc -> noeud : new Noeud(destination)
+                    end
+
+                    loop tous les noeuds de ensNoeuds
+                        alt noeud égal au noeud de départ
+                            arc -> noeud : ajouterArc(destination, cout)
+                            activate noeud
+                                loop tous les arcs
+                                    alt si la destination n'existe pas
+                                        noeud -> arc : new Arc(destination, cout)
+                                    end
+                                end
+                            deactivate noeud
+                        end
+                    end
+                end
+            deactivate g
+            end
+
+        end
+
+    end
+end
+laby <-- g
+deactivate laby
+
+create d
+laby -> d : new Dijkstra()
+laby -> d : resoudre(g, "("+this.monstre.x+","+this.monstre.y+")")
+activate d
+    alt si liste de Noeuds contient depart
+        create v
+        d -> v : new Valeur()
+
+        create Q
+        d -> Q : new ArrayList<String>()
+
+        loop pour tous les noeuds de la liste de noeuds
+            d -> v : setValeur(g.listeNoeuds().get(i), Double.MAX_VALUE)
+            d -> v : setParent(g.listeNoeuds().get(i), null)
+
+            v -> Q : add(g.listeNoeuds().get(i))
+        end
+
+        d -> v : setValeur(depart, 0)
+
+        group while [tant que Q n'est pas vide]
+            loop on recherche la plus petite distance (s) dans la liste
+
+                d -> v : getValeur(s)
+                activate v
+                d <-- v : distance
+                deactivate v
+
+                alt distance < disstanceMinimale
+                    d <-- v
+                    note left
+                        on mets à jour les données
+                    end note
+                end
+            end
+
+            d -> Q : remove(plusPetitSommet)
+
+            loop pour tous les arcs du plus petit sommet
+                d -> arc : getDest()
+                activate arc
+                d <-- arc : dest
+                deactivate arc
+
+                d -> arc : getCout()
+                activate arc
+                d <-- arc : cout
+                deactivate arc
+
+                d -> v : getValeur(plusPetitSommet)
+                activate v
+                d <-- v : distanceDepart
+                deactivate v
+
+                alt si la distance de destinatioin est plus petite que la distance actuelle
+                    d -> v : setValeur(dest, distanceDestination)
+                    d -> v : setParent(dest, plusPetitSommet)
+                end alt
+            end loop
+        end while
+    end
+    laby <-- d : v
+deactivate d
+
+laby -> v : calculerChemin("("+this.heros.x+","+this.heros.y+")")
+activate v
+    create res
+    v -> res : new ArrayList<String>()
+    v -> res : add(0, destination)
+    v -> v : getParent(destination)
+    v <-- v : nomCourant
+    group while [tant que nomCourant != null]
+        v -> res : add(0, nomCourant)
+        v -> v : getParent(nomCourant)
+            v <-- v : nomCourant
+    end while
+
+    laby <-- v : res
+deactivate v
+
+@enduml
