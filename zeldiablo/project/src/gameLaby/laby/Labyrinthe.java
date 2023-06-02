@@ -5,12 +5,10 @@ import Graphes.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-<<<<<<< HEAD
 import java.sql.SQLOutput;
 import java.util.List;
-=======
 import java.util.*;
->>>>>>> 8e7623a4192d137534cfdba015dd7fff692a21d7
+
 
 /**
  * classe labyrinthe. represente un labyrinthe avec
