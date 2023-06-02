@@ -241,7 +241,7 @@ public class Labyrinthe {
             else if (casePresente instanceof CaseDeclencheur){
                 // On vérifie si dans ce cas là, il y a une case déclencheur
                 casePresente.setTrouvee();
-                System.out.println("Le héros vient de subir un effet");
+                System.out.println("Un personnage vient de subir un effet");
             }
         }
     }

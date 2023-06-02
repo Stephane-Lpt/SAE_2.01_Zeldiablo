@@ -1,5 +1,3 @@
-package test.test;
-
 import Graphes.Dijkstra;
 import Graphes.GrapheListe;
 import Graphes.Valeur;
