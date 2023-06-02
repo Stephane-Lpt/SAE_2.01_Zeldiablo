@@ -89,13 +89,18 @@ class Labyrinthe{
     + getMur(int, int) : boolean
 }
 
-class Perso{
+class Entite{
     + x : int
     + y : int
     + Perso(int, int)
     + etrePresent(int, int) : boolean
     + getX() : int
     + getY() : int
+}
+
+class Perso{
+    + pv : int
+    + Perso(int,int)
 }
 
 class Monstre{
@@ -105,12 +110,28 @@ class Monstre{
 class Heros{
     + Heros(int, int)
 }
-Labyrinthe "1" -> "1" Heros: - heros
-Labyrinthe "1" -> "1" Monstre : - monstre
+
+class Case{
+
+}
+
+class CasePiege{
+
+}
+
+class CaseDeclencheur{
+
+}
+
+Labyrinthe "1" -> "0..*" Entite : - entites
 LabyJeu "1" -> "1" Labyrinthe : - laby
 
+Entite <|-- Perso
+Entite <|-- Case
 Perso <|-- Monstre
 Perso <|-- Heros
+Case <|-- CaseDeclencheur
+Case <|-- CasePiege
 DessinJeu <|.. LabyDessin
 
 
