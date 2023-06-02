@@ -1,4 +1,4 @@
-package test.test;
+package test;
 
 import gameLaby.laby.Labyrinthe;
 import org.junit.jupiter.api.BeforeEach;
