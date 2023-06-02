@@ -1,0 +1,13 @@
+@startuml
+participant "main: Main" as main
+participant "laby: Labyrinthe" as laby
+
+main -> laby : deplacerMonstre(Gauche)
+
+activate laby
+    laby -> laby : getSuivant(monstre.x,monstre.y, Gauche)
+    laby --> laby
+    main <-- laby
+deactivate laby
+
+@enduml
