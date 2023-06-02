@@ -88,27 +88,6 @@ public class TestGraphes {
         assertEquals(resultatAttendu, resTest);
     }
 
-    @Test
-    public void testToGraphViz_ok(){
-        //création du graphe
-        GrapheListe g = new GrapheListe();
-
-        //méthode testée
-        g.ajouterArc("A", "B", 30);
-        g.ajouterArc("B", "C", 20);
-        g.ajouterArc("C", "A", 10);
-        String resTest = g.toGraphviz();
-        String resultatAttendu = "digraph G {" + "\n"
-                               + "A -> B [label = 30]" + "\n"
-                               + "B -> C [label = 20]" + "\n"
-                               + "C -> A [label = 10]" + "\n}";
-
-        //vérification
-        assertEquals(resultatAttendu, resTest);
-
-    }
-
-
 
     @Test
     public void testDijkstra_ValeurOk(){

@@ -27,26 +27,6 @@ public class GrapheListe implements Graphe {
     }
 
     /**
-     * Constructeur de GrapheListe, il initialise les deux listes à partir d'un fichier donné en paramètre
-     *
-     * @param f chemin vers le fichier contenant les données nécessaires à l'initialisation des deux listes
-     * @throws IOException
-     */
-    public GrapheListe(String f) throws IOException {
-        this.ensNom=new ArrayList<String>();
-        this.ensNoeuds=new ArrayList<Noeud>();
-        BufferedReader fichier=new BufferedReader(new FileReader(f));
-        String ligne=fichier.readLine();
-
-        while(ligne!=null){
-            String[] l=ligne.split("\t");
-            this.ajouterArc(l[0], l[1], Double.parseDouble(l[2]));
-            ligne=fichier.readLine();
-        }
-        fichier.close();
-    }
-
-    /**
      * méthode qui permet de retourner la liste des arcs partant du nœud passé en paramètre
      *
      * @param n nœud pour lequel on veut connaitre la liste des arcs
@@ -103,33 +83,6 @@ public class GrapheListe implements Graphe {
     }
 
     /**
-     * Méthode qui permet de lire un fichier et de l'interpréter pour le transformer en un graphe
-     *
-     * @param fichier nom du fichier à lire
-     * @return retourne une chaine de caractère correspondant à l'interprétation du fichier
-     * @throws IOException
-     */
-    public String produireFichier(String fichier) throws IOException{
-        BufferedWriter fich =new BufferedWriter (new FileWriter ("newTest.txt") ) ;
-        BufferedReader f=new BufferedReader(new FileReader(fichier));
-        String tete=f.readLine();
-        String[] t=tete.split("\t");
-        String ligne=f.readLine();
-        while(ligne!=null){
-            String[] l=ligne.split("\t");
-            for(int i=1; i<t.length; i++){
-                if(l[i].compareTo("0.")!=0){
-                    fich.write(l[0]+"\t"+t[i]+"\t"+l[i]+"\n");
-                }
-            }
-            ligne=f.readLine();
-        }
-        fich.close();
-        f.close();
-        return "newTest.txt";
-    }
-
-    /**
      * méthode qui permet d'obtenir tous les noms des nœuds d'un graphe
      *
      * @return une liste de tous les noms des nœuds d'un graohe
@@ -163,44 +116,5 @@ public class GrapheListe implements Graphe {
         return res;
     }
 
-    /**
-     * Méthode qui permet d'afficher un graphe de manière que l'application GraphViz puisse le lire
-     *
-     * @return une chaine de caractère compréhensible par l'application GraphViz
-     */
-    public String toGraphviz(){
-        String res = "";
-        res += "digraph G {\n";
-        for(Noeud element: this.ensNoeuds){
-            if(element.getArc().size()!=0){
-                for(Arc element2: element.getArc()){
-                    res += element.getNom() + " -> " + element2.getDest() + " [label = " + (int)element2.getCout() + "]\n";
-                }
-            }
-        }
-        res += "}";
-        return res;
-    }
-
-    /**
-     * méthode qui permet de générer un graphe automatiquement entre 2 noeuds
-     *
-     * @param max nombre de noeuds du graphe
-     */
-    public void genererGraphe(int max){
-
-        //on parcourt autant de fois la boucla qu'on veut de noeuds
-        for(int i=0; i<max-1; i++){
-
-            //on ajoute un arc qui passe par tous les noeuds
-            this.ajouterArc(String.valueOf(i), String.valueOf(i+1), (int)(Math.random()*100));
-
-            int maxB=(int)(Math.random()*3);
-            //on ajoute un nombre aléatoire d'arcs (entre 1 et 4) à tous les noeuds
-            for(int j=0; j<=maxB; j++){
-                this.ajouterArc(String.valueOf(i), String.valueOf((int)(Math.random()*(max-1))), (int)(Math.random()*100));
-            }
-        }
-    }
 
 }

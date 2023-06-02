@@ -1,4 +1,4 @@
-package test.test;
+package test;
 
 import gameLaby.laby.Labyrinthe;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +31,7 @@ public class TestComportementMonstre {
     @Test
     public void testDeplacerMonstre_Bas(){
         //méthode testée
-        this.labyMonstreBas.deplacerMonstre(BAS);
+        this.labyMonstreBas.deplacerMonstre();
 
         //vérification
         int x = this.labyMonstreBas.monstre.getX();
@@ -43,7 +43,7 @@ public class TestComportementMonstre {
     @Test
     public void testDeplacerMonstre_Haut(){
         //méthode testée
-        this.labyMonstreHaut.deplacerMonstre(HAUT);
+        this.labyMonstreHaut.deplacerMonstre();
 
         //vérification
         int x = this.labyMonstreHaut.monstre.getX();
@@ -55,7 +55,7 @@ public class TestComportementMonstre {
     @Test
     public void testDeplacerMonstre_Droite(){
         //méthode testée
-        this.labyMonstreDroite.deplacerMonstre(DROITE);
+        this.labyMonstreDroite.deplacerMonstre();
 
         //vérification
         int x = this.labyMonstreDroite.monstre.getX();
@@ -67,7 +67,7 @@ public class TestComportementMonstre {
     @Test
     public void testDeplacerMonstre_Gauche(){
         //méthode testée
-        this.labyMonstreGauche.deplacerMonstre(GAUCHE);
+        this.labyMonstreGauche.deplacerMonstre();
 
         //vérification
         int x = this.labyMonstreGauche.monstre.getX();
@@ -79,7 +79,7 @@ public class TestComportementMonstre {
     @Test
     public void testDeplacerMonstre_Chemin(){
         //méthode testée, 1er appel
-        this.labyMonstreChemin.deplacerMonstre(BAS);
+        this.labyMonstreChemin.deplacerMonstre();
 
         //1ere vérification
         int x = this.labyMonstreChemin.monstre.getX();
@@ -88,7 +88,7 @@ public class TestComportementMonstre {
         assertEquals(2, y);
 
         //méthode testée, 2eme appel
-        this.labyMonstreChemin.deplacerMonstre(BAS);
+        this.labyMonstreChemin.deplacerMonstre();
 
         //2eme vérification
         x = this.labyMonstreChemin.monstre.getX();
@@ -97,7 +97,7 @@ public class TestComportementMonstre {
         assertEquals(3, y);
 
         //méthode testée, 3eme appel
-        this.labyMonstreChemin.deplacerMonstre(DROITE);
+        this.labyMonstreChemin.deplacerMonstre();
 
         //3eme vérification
         x = this.labyMonstreChemin.monstre.getX();
@@ -106,7 +106,7 @@ public class TestComportementMonstre {
         assertEquals(3, y);
 
         //méthode testée, 4eme appel
-        this.labyMonstreChemin.deplacerMonstre(DROITE);
+        this.labyMonstreChemin.deplacerMonstre();
 
         //4eme vérification
         x = this.labyMonstreChemin.monstre.getX();
@@ -115,7 +115,7 @@ public class TestComportementMonstre {
         assertEquals(3, y);
 
         //méthode testée, 5eme appel
-        this.labyMonstreChemin.deplacerMonstre(HAUT);
+        this.labyMonstreChemin.deplacerMonstre();
 
         //5eme vérification
         x = this.labyMonstreChemin.monstre.getX();
