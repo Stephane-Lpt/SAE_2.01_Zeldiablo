@@ -1,6 +1,9 @@
 @startuml
 participant "main: Main" as main
 participant "laby: Labyrinthe" as laby
+participant "monstre : Monstre" as monstre
+participant "heros : Heros" as heros
+participant "cases : ArrayList<Case>" as case
 
 main -> laby : deplacerMonstre(Gauche)
 
@@ -8,6 +11,26 @@ activate laby
     laby -> laby : getSuivant(monstre.x,monstre.y, Gauche)
     laby --> laby
     main <-- laby
+    laby -> laby : etreLibre(suivant[0],suivant[1])
+    laby -> heros : etrePresent(suivant[0], suivant[1]
+    activate heros
+        laby <-- heros
+    deactivate heros
+    laby -> monstre : etrePresent(suivant[0], suivant[1]
+    activate monstre
+        laby <-- monstre
+    deactivate monstre
+    laby --> laby
+    alt (Si la case est libre)
+            laby -> monstre: monstre.x = suivante[0]
+            laby -> monstre: monstre.y = suivante[1]
+            laby -> laby : verifierPresenceCase(suivant[0], suivant[1])
+            laby -> monstre : changerPv(-1)
+            activate monstre
+                laby <-- monstre
+            deactivate monstre
+
+    end
 deactivate laby
 
 @enduml
