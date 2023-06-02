@@ -98,6 +98,9 @@ class Entite{
 class Perso{
     + pv : int
     + Perso(int,int)
+    + changerPv(int):
+    + getPv():int
+    + etreMort(): boolean
 }
 
 class Monstre{
@@ -109,15 +112,18 @@ class Heros{
 }
 
 class Case{
-
+    - trouvee: boolean
+    + Case(int,int)
+    + setTrouvee():
+    + getTrouvee(): boolean
 }
 
 class CasePiege{
-
+    + CasePiege():
 }
 
 class CaseDeclencheur{
-
+    + CaseDeclencheur():
 }
 
 
