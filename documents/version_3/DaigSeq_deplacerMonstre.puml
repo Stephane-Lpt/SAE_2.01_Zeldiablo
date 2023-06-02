@@ -1,0 +1,38 @@
+@startuml
+skinparam monochrome true
+
+actor "Utilisateur" as user
+participant "Labyrinthe" as laby
+participant "Monstre" as monstre
+participant "Tuple" as tuple
+participant "Héros" as heros
+
+user -> laby: deplacerMonstre()
+activate laby
+
+laby -> laby: courante = {monstre.x, monstre.y}
+laby -> laby: getSuivant(courante[0], courante[1], HAUT)
+laby -> laby: getSuivant(courante[0], courante[1], BAS)
+laby -> laby: getSuivant(courante[0], courante[1], DROITE)
+laby -> laby: getSuivant(courante[0], courante[1], GAUCHE)
+laby -> tuple: new Tuple(h, distance(h, heros))
+laby -> tuple: new Tuple(b, distance(b, heros))
+laby -> tuple: new Tuple(d, distance(d, heros))
+laby -> tuple: new Tuple(g, distance(g, heros))
+
+laby -> tuple: new ArrayList<Tuple>()
+laby -> classement: addAll(Tuple)
+
+laby -> classement: sort(comparerDistances)
+
+loop i (pour chaque tuple dans classement)
+    laby -> tuple: suivante = classement.get(i).getCoord()
+    laby -> laby: estLibre(suivante[0], suivante[1])
+    alt (si la case suivante est libre)
+        laby -> monstre: monstre.x = suivante[0]
+        laby -> monstre: monstre.y = suivante[1]
+    end
+end
+
+deactivate laby
+@enduml

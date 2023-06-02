@@ -1,5 +1,3 @@
-package test.test;
-
 import gameLaby.laby.Labyrinthe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

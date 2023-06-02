@@ -40,9 +40,8 @@ public class LabyJeu implements Jeu{
         if (clavier.bas) {
             this.laby.deplacerPerso(Labyrinthe.BAS);
         }
-        if (Math.random() < (secondes / 10)) {
-            String[] t = {Labyrinthe.BAS, Labyrinthe.DROITE, Labyrinthe.GAUCHE, Labyrinthe.HAUT};
-            this.laby.deplacerMonstre(t[(int)(Math.random() * t.length)]);
+        if (Math.random() < (secondes / 5)) {
+            this.laby.deplacerMonstre();
         }
     }
 
