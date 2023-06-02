@@ -46,14 +46,10 @@ public class Labyrinthe {
 
 
     /**
-     * Les cases piégées du labyrinthe
+     * Les cases du labyrinthe
      */
-    public ArrayList<CasePiegee> casesPiegees;
+    public ArrayList<Case> cases;
 
-    /**
-     * Les cases déclencheurs du labyrinthe
-     */
-    public ArrayList<CaseDeclencheur> casesDeclencheurs;
 
     /**
      * retourne la case suivante selon une actions
@@ -112,8 +108,7 @@ public class Labyrinthe {
         this.monstre=null;
 
         // On instancie les cases piégées et déclencheurs
-        this.casesPiegees = new ArrayList<CasePiegee>();
-        this.casesDeclencheurs = new ArrayList<CaseDeclencheur>();
+        this.cases = new ArrayList<Case>();
 
 
         // lecture des cases
@@ -148,11 +143,11 @@ public class Labyrinthe {
                         this.monstre = new Monstre(colonne, numeroLigne, 10);
                         break;
                     case CASEPIEGEE:
-                        this.casesPiegees.add(new CasePiegee(colonne, numeroLigne));
+                        this.cases.add(new CasePiegee(colonne, numeroLigne));
                         break;
 
                     case CASEDECLENCHEUR:
-                        this.casesDeclencheurs.add(new CaseDeclencheur(colonne, numeroLigne));
+                        this.cases.add(new CaseDeclencheur(colonne, numeroLigne));
                         break;
                     default:
                         throw new Error("caractere inconnu " + c);
@@ -187,35 +182,59 @@ public class Labyrinthe {
             this.heros.x = suivante[0];
             this.heros.y = suivante[1];
 
-            verifierCasePiegee(suivante[0], suivante[1], this.heros);
+            verifierPresenceCase(suivante[0], suivante[1], this.heros);
 
-
-            // On vérifie si dans ce cas là, il y a une case déclencheur
-            int caseD = this.casesDeclencheurs.indexOf(new Case(suivante[0], suivante[1]));
-            if(caseD != -1){
-                this.heros.changerPv(-1);
-                this.casesDeclencheurs.get(caseD).setTrouvee();
-                System.out.println("Le héros vient de subir un effet");
-            }
 
         }
 
 
     }
 
-    public void verifierCasePiegee(int x, int y, Perso p){
-        int caseP = this.casesPiegees.indexOf(new Case(x, y));
-        if(caseP != -1){
-            // Si le piège n'a pas encore été effectif
-            if(p instanceof Monstre){
-                this.monstre.changerPv(-1);
-            }else if(p instanceof Heros){
-                this.heros.changerPv(-1);
-            }
-            this.casesPiegees.get(caseP).setTrouvee();
+    /**
+     * deplace un monstre en fonction de l'action.
+     * gere la collision avec les murs et les personnages
+     *
+     * @param action une des actions possibles
+     */
+    public void deplacerMonstre(String action) {
+        // case courante
+        int[] courante = {this.monstre.x, this.monstre.y};
+
+        // calcule case suivante
+        int[] suivante = getSuivant(courante[0], courante[1], action);
+
+        // si c'est pas un mur, on effectue le deplacement
+        if (!this.murs[suivante[0]][suivante[1]] && (suivante[0]!=this.heros.getX() || suivante[1]!=this.heros.getY())) {
+            // on met a jour personnage
+            this.monstre.x = suivante[0];
+            this.monstre.y = suivante[1];
+
+            // Ici on met ce qu'il se passe pour vérifier si aux coordonnées suivantes il y a une case piégée
+            verifierPresenceCase(suivante[0], suivante[1], this.monstre);
         }
     }
 
+
+        public void verifierPresenceCase(int x, int y, Perso p){
+            int indiceCase = this.cases.indexOf(new Case(x, y)); // new Case pour comparer des objets car indexOf compare deux objets en utilisant la méthode equals de Case que l'on a redéfini.
+            if(indiceCase != -1) {
+                Case casePresente = this.cases.get(indiceCase);
+                if (casePresente instanceof CasePiegee){
+                    // Si le piège n'a pas encore été effectif
+                    if (p instanceof Monstre) {
+                        this.monstre.changerPv(-1);
+                    } else if (p instanceof Heros) {
+                        this.heros.changerPv(-1);
+                    }
+                casePresente.setTrouvee();
+                }
+                else if (casePresente instanceof CaseDeclencheur){
+                    // On vérifie si dans ce cas là, il y a une case déclencheur
+                    casePresente.setTrouvee();
+                    System.out.println("Le héros vient de subir un effet");
+                }
+            }
+        }
 
     /**
      * jamais fini

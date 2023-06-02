@@ -45,8 +45,8 @@ public class LabyDessin implements DessinJeu {
         }
 
         // Affihage des cases piégées
-        for(CasePiegee c : laby.getLaby().casesPiegees){
-            if(c.getTrouvee()){
+        for(Case c : laby.getLaby().cases){
+            if(c.getTrouvee() && c instanceof CasePiegee){
                 gc.setFill(Color.SADDLEBROWN);
                 gc.fillRect(c.getX()*tailleCaseL, c.getY()*tailleCaseH, tailleCaseL, tailleCaseH); // Si la case a pour coordonnées 2,4 alors, le coin supérieur gauche du rectangle sera à 2 * la taille d'une case en largeur
             }

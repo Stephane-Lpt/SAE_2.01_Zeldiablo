@@ -123,7 +123,8 @@ class CaseDeclencheur{
 
 }
 
-Labyrinthe "1" -> "0..*" Entite : - entites
+Labyrinthe "1" -> "0..*" Case : - cases
+Labyrinthe "1" -> "1" Heros : - heros
 LabyJeu "1" -> "1" Labyrinthe : - laby
 
 Entite <|-- Perso
