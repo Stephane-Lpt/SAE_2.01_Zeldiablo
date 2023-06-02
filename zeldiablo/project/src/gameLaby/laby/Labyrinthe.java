@@ -214,27 +214,32 @@ public class Labyrinthe {
         }
     }
 
-
-        public void verifierPresenceCase(int x, int y, Perso p){
-            int indiceCase = this.cases.indexOf(new Case(x, y)); // new Case pour comparer des objets car indexOf compare deux objets en utilisant la méthode equals de Case que l'on a redéfini.
-            if(indiceCase != -1) {
-                Case casePresente = this.cases.get(indiceCase);
-                if (casePresente instanceof CasePiegee){
-                    // Si le piège n'a pas encore été effectif
-                    if (p instanceof Monstre) {
-                        this.monstre.changerPv(-1);
-                    } else if (p instanceof Heros) {
-                        this.heros.changerPv(-1);
-                    }
+    /**
+     * permet de vérifier s'il y a une case (Déclencheur, Piège, ...) présente à des coordonnées du labyrinthe ET de faire une action sur le personnage qui est sur la case
+     * @param x numéro de colonne de la case dont on veut connaitre la présence
+     * @param y numéro de ligne de la case dont on veut connaitre la présence
+     * @param p le personnage qui est sur la case qui va subir une action selon le type de la case
+     */
+    public void verifierPresenceCase(int x, int y, Perso p){
+        int indiceCase = this.cases.indexOf(new Case(x, y)); // new Case pour comparer des objets car indexOf compare deux objets en utilisant la méthode equals de Case que l'on a redéfini.
+        if(indiceCase != -1) {
+            Case casePresente = this.cases.get(indiceCase);
+            if (casePresente instanceof CasePiegee){
+                // Si le piège n'a pas encore été effectif
+                if (p instanceof Monstre) {
+                    this.monstre.changerPv(-1);
+                } else if (p instanceof Heros) {
+                    this.heros.changerPv(-1);
+                }
+            casePresente.setTrouvee();
+            }
+            else if (casePresente instanceof CaseDeclencheur){
+                // On vérifie si dans ce cas là, il y a une case déclencheur
                 casePresente.setTrouvee();
-                }
-                else if (casePresente instanceof CaseDeclencheur){
-                    // On vérifie si dans ce cas là, il y a une case déclencheur
-                    casePresente.setTrouvee();
-                    System.out.println("Le héros vient de subir un effet");
-                }
+                System.out.println("Le héros vient de subir un effet");
             }
         }
+    }
 
     /**
      * jamais fini
