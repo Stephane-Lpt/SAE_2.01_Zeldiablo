@@ -3,20 +3,19 @@ participant "main: Main" as main
 participant "laby: Labyrinthe" as laby
 participant "monstre : Monstre" as monstre
 participant "heros : Heros" as heros
-participant "cases : ArrayList<Case>" as case
+participant "cases : ArrayList<Case>" as cases
 
 main -> laby : deplacerMonstre(Gauche)
 
 activate laby
     laby -> laby : getSuivant(monstre.x,monstre.y, Gauche)
     laby --> laby
-    main <-- laby
-    laby -> laby : etreLibre(suivant[0],suivant[1])
-    laby -> heros : etrePresent(suivant[0], suivant[1]
+    laby -> laby : etreLibre(suivante[0],suivante[1])
+    laby -> heros : etrePresent(suivante[0], suivante[1]
     activate heros
         laby <-- heros
     deactivate heros
-    laby -> monstre : etrePresent(suivant[0], suivant[1]
+    laby -> monstre : etrePresent(suivante[0], suivante[1]
     activate monstre
         laby <-- monstre
     deactivate monstre
@@ -24,13 +23,40 @@ activate laby
     alt (Si la case est libre)
             laby -> monstre: monstre.x = suivante[0]
             laby -> monstre: monstre.y = suivante[1]
-            laby -> laby : verifierPresenceCase(suivant[0], suivant[1])
-            laby -> monstre : changerPv(-1)
-            activate monstre
-                laby <-- monstre
-            deactivate monstre
-
+            laby -> laby : verifierPresenceCase(suivante[0], suivante[1])
+            laby -> cases : indexOf(new Case(suivante[0], suivante[1])
+            activate cases
+                laby <-- cases
+            deactivate cases
+            alt (Une case existe à ses coordonnées)
+                laby -> cases : get(index)
+                activate cases
+                    laby <-- cases : CasePresente : Case
+                deactivate cases
+                alt (la case presente est un Piège)
+                    laby -> monstre : changerPv(-1)
+                    activate monstre
+                        laby <-- monstre
+                    deactivate monstre
+                    laby -> casePresente : setTrouve()
+                    activate casePresente
+                        laby <-- casePresente
+                    deactivate casePresente
+                end
+                alt (la case presente est un Déclencheur)
+                    laby -> monstre : changerPv(-1)
+                    activate monstre
+                        laby <-- monstre
+                    deactivate monstre
+                    laby -> casePresente : setTrouve()
+                    activate casePresente
+                        laby <-- casePresente
+                    deactivate casePresente
+                end
+            end
+            laby <-- laby
     end
+    main <-- laby
 deactivate laby
 
 @enduml
