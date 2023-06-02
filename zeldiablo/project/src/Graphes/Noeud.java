@@ -37,12 +37,6 @@ public class Noeud {
         return (this.nom.compareTo(other.nom)==0);
     }
 
-    /*
-    public boolean equals(String s){
-        return (this.nom==s);
-    }
-    */
-
     /**
      * Méthode qui permet d'ajouter un arc adjacent à un nœud
      * @param destination nœud destination de l'arc
