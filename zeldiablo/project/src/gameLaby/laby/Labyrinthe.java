@@ -190,31 +190,6 @@ public class Labyrinthe {
 
     }
 
-    /**
-     * deplace un monstre en fonction de l'action.
-     * gere la collision avec les murs et les personnages
-     *
-     * @param action une des actions possibles
-     */
-    public void deplacerMonstre(String action) {
-        // case courante
-        int[] courante = {this.monstre.x, this.monstre.y};
-
-        // calcule case suivante
-        int[] suivante = getSuivant(courante[0], courante[1], action);
-
-        // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && (suivante[0]!=this.heros.getX() || suivante[1]!=this.heros.getY())) {
-            // on met a jour personnage
-            this.monstre.x = suivante[0];
-            this.monstre.y = suivante[1];
-
-            // Ici on met ce qu'il se passe pour vérifier si aux coordonnées suivantes il y a une case piégée
-            verifierPresenceCase(suivante[0], suivante[1], this.monstre);
-        }
-    }
-
-
         public void verifierPresenceCase(int x, int y, Perso p){
             int indiceCase = this.cases.indexOf(new Case(x, y)); // new Case pour comparer des objets car indexOf compare deux objets en utilisant la méthode equals de Case que l'on a redéfini.
             if(indiceCase != -1) {
@@ -305,6 +280,7 @@ public class Labyrinthe {
             if (etreLibre(suivante[0], suivante[1])) {
                 this.monstre.x = suivante[0];
                 this.monstre.y = suivante[1];
+                verifierPresenceCase(suivante[0], suivante[1], this.monstre);
                 break;
             }
         }
