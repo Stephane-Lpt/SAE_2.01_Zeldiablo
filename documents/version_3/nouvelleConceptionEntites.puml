@@ -119,11 +119,11 @@ class Case{
 }
 
 class CasePiege{
-    + CasePiege():
+    + CasePiege(int,int):
 }
 
 class CaseDeclencheur{
-    + CaseDeclencheur():
+    + CaseDeclencheur(int,int):
 }
 
 
