@@ -1,7 +1,9 @@
 package gameLaby.laby;
 
+import javafx.application.Platform;
 import moteurJeu.Clavier;
 import moteurJeu.Jeu;
+import moteurJeu.MoteurJeu;
 
 import java.io.IOException;
 
@@ -43,6 +45,9 @@ public class LabyJeu implements Jeu{
         if (Math.random() < (secondes / 5)) {
             this.laby.deplacerMonstre();
         }
+        if(etreFini()){
+            Platform.exit();
+        }
     }
 
     /**
@@ -57,7 +62,7 @@ public class LabyJeu implements Jeu{
      * @return booleen true si le jeu est fini
      */
     public boolean etreFini(){
-        return false;
+        return this.laby.etreFini();
     }
 
     public Labyrinthe getLaby(){

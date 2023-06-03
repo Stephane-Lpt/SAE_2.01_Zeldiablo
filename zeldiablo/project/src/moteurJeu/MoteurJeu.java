@@ -150,7 +150,6 @@ public class MoteurJeu extends Application {
     private void startAnimation(final Canvas canvas) {
         // stocke la derniere mise e jour
         final LongProperty lastUpdateTime = new SimpleLongProperty(0);
-
         // timer pour boucle de jeu
         final AnimationTimer timer = new AnimationTimer() {
             @Override

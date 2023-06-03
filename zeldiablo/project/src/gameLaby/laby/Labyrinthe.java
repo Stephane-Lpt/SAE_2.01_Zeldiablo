@@ -62,6 +62,8 @@ public class Labyrinthe {
      */
     public Amulette amulette;
 
+    public Entite depart;
+
     /**
      * retourne la case suivante selon une actions
      *
@@ -146,11 +148,12 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute PJ
                         this.heros = new Heros(colonne, numeroLigne, 10);
+                        this.depart=new Entite(colonne, numeroLigne);
                         break;
                     case MONSTRE:
                         // pas de mur
                         this.murs[colonne][numeroLigne] = false;
-                        // ajoute PJ
+                        // ajoute monstre
                         this.monstre = new Monstre(colonne, numeroLigne, 10);
                         break;
                     case CASEPIEGEE:
@@ -162,6 +165,8 @@ public class Labyrinthe {
                         break;
 
                     case AMULETTE:
+                        // pas de mur
+                        this.murs[colonne][numeroLigne] = false;
                         this.amulette=new Amulette(colonne, numeroLigne);
                         break;
                     default:
@@ -199,6 +204,9 @@ public class Labyrinthe {
 
             verifierPresenceCase(suivante[0], suivante[1], this.heros);
 
+            if((this.heros.x==this.amulette.x) && (this.heros.y==this.amulette.y) && !(this.amulette.getPossede())){
+                this.amulette.setPossede();
+            }
 
         }
 
@@ -239,7 +247,12 @@ public class Labyrinthe {
      * @return fin du jeu
      */
     public boolean etreFini() {
-        return false;
+        if((this.heros.x==this.depart.x) && (this.heros.y==this.depart.y) && (this.amulette.getPossede())){
+            System.out.println("Bien joué, tu as gagné");
+            return true;
+        } else{
+            return false;
+        }
     }
 
     // ##################################
