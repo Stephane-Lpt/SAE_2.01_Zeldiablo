@@ -2,12 +2,12 @@ package gameLaby.laby;
 
 
 /**
- * gere une entite situe en x,y
+ * gere une entité situe en x,y
  */
 public class Entite {
 
     /**
-     * position de l'entite
+     * position de l'entité
      */
     int x, y;
 
@@ -24,11 +24,11 @@ public class Entite {
     }
 
     /**
-     * permet de savoir si le personnage est en x,y
+     * permet de savoir si l'entité est en x,y
      *
      * @param dx position testee
      * @param dy position testee
-     * @return true si le personnage est bien en (dx,dy)
+     * @return true si l'entité est bien en (dx,dy)
      */
     public boolean etrePresent(int dx, int dy) {
 
@@ -40,7 +40,7 @@ public class Entite {
     // ############################################
 
     /**
-     * @return position x du personnage
+     * @return position x de l'entité
      */
     public int getX() {
         // getter
@@ -48,10 +48,26 @@ public class Entite {
     }
 
     /**
-     * @return position y du personnage
+     * @return position y de l'entité
      */
     public int getY() {
         //getter
         return this.y;
+    }
+
+    /**
+     * change la position de l'entité
+     */
+    public void setX(int x) {
+        //setter
+       this.x = x;
+    }
+
+    /**
+     * change la position de l'entité
+     */
+    public void setY(int y) {
+        //setter
+        this.y = y;
     }
 }
