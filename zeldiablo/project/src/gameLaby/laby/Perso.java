@@ -57,5 +57,5 @@ public abstract class Perso extends Entite{
      * La puissance de l'attaque dépend du type de personnage et de celui qui le subit
      * @param p person qui subit l'attaque
      */
-    //public abstract void attaquer(Perso p);
+    public abstract void attaquer(Perso p);
 }

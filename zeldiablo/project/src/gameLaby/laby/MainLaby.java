@@ -15,7 +15,6 @@ public class MainLaby {
         // parametrage du moteur de jeu
         MoteurJeu.setTaille(width,height);
         MoteurJeu.setFPS(pFPS);
-
         // lancement du jeu
         MoteurJeu.launch(jeuLaby, dessinLaby);
     }
