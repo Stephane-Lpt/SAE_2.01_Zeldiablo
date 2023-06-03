@@ -32,8 +32,8 @@ public class TestComportementMonstre {
         this.labyMonstreBas.deplacerMonstre();
 
         //vérification
-        int x = this.labyMonstreBas.monstre.getX();
-        int y = this.labyMonstreBas.monstre.getY();
+        int x = this.labyMonstreBas.monstres.get(0).getX();
+        int y = this.labyMonstreBas.monstres.get(0).getY();
         assertEquals(4, x);
         assertEquals(3, y);
     }
@@ -44,8 +44,8 @@ public class TestComportementMonstre {
         this.labyMonstreHaut.deplacerMonstre();
 
         //vérification
-        int x = this.labyMonstreHaut.monstre.getX();
-        int y = this.labyMonstreHaut.monstre.getY();
+        int x = this.labyMonstreHaut.monstres.get(0).getX();
+        int y = this.labyMonstreHaut.monstres.get(0).getY();
         assertEquals(4, x);
         assertEquals(3, y);
     }
@@ -56,8 +56,8 @@ public class TestComportementMonstre {
         this.labyMonstreDroite.deplacerMonstre();
 
         //vérification
-        int x = this.labyMonstreDroite.monstre.getX();
-        int y = this.labyMonstreDroite.monstre.getY();
+        int x = this.labyMonstreDroite.monstres.get(0).getX();
+        int y = this.labyMonstreDroite.monstres.get(0).getY();
         assertEquals(5, x);
         assertEquals(4, y);
     }
@@ -68,8 +68,8 @@ public class TestComportementMonstre {
         this.labyMonstreGauche.deplacerMonstre();
 
         //vérification
-        int x = this.labyMonstreGauche.monstre.getX();
-        int y = this.labyMonstreGauche.monstre.getY();
+        int x = this.labyMonstreGauche.monstres.get(0).getX();
+        int y = this.labyMonstreGauche.monstres.get(0).getY();
         assertEquals(3, x);
         assertEquals(4, y);
     }
@@ -80,8 +80,8 @@ public class TestComportementMonstre {
         this.labyMonstreChemin.deplacerMonstre();
 
         //1ere vérification
-        int x = this.labyMonstreChemin.monstre.getX();
-        int y = this.labyMonstreChemin.monstre.getY();
+        int x = this.labyMonstreChemin.monstres.get(0).getX();
+        int y = this.labyMonstreChemin.monstres.get(0).getY();
         assertEquals(1, x);
         assertEquals(2, y);
 
@@ -90,8 +90,8 @@ public class TestComportementMonstre {
 
         //2eme vérification
         //Le monstre ne choisi pas le bon chemin et reste bloqué dans un cul de sac
-        x = this.labyMonstreChemin.monstre.getX();
-        y = this.labyMonstreChemin.monstre.getY();
+        x = this.labyMonstreChemin.monstres.get(0).getX();
+        y = this.labyMonstreChemin.monstres.get(0).getY();
         assertEquals(1, x);
         assertEquals(1, y);
     }
@@ -102,8 +102,8 @@ public class TestComportementMonstre {
         this.labyMonstreIntelligent.deplacerMonstreIntelligent();
 
         //1er vérification
-        int x = this.labyMonstreIntelligent.monstre.getX();
-        int y = this.labyMonstreIntelligent.monstre.getY();
+        int x = this.labyMonstreIntelligent.monstres.get(0).getX();
+        int y = this.labyMonstreIntelligent.monstres.get(0).getY();
         assertEquals(1, x);
         assertEquals(3, y);
 
@@ -111,8 +111,8 @@ public class TestComportementMonstre {
         this.labyMonstreIntelligent.deplacerMonstreIntelligent();
 
         //2eme vérification
-        x = this.labyMonstreIntelligent.monstre.getX();
-        y = this.labyMonstreIntelligent.monstre.getY();
+        x = this.labyMonstreIntelligent.monstres.get(0).getX();
+        y = this.labyMonstreIntelligent.monstres.get(0).getY();
         assertEquals(1, x);
         assertEquals(2, y);
 
@@ -120,8 +120,8 @@ public class TestComportementMonstre {
         this.labyMonstreIntelligent.deplacerMonstreIntelligent();
 
         //3eme vérification
-        x = this.labyMonstreIntelligent.monstre.getX();
-        y = this.labyMonstreIntelligent.monstre.getY();
+        x = this.labyMonstreIntelligent.monstres.get(0).getX();
+        y = this.labyMonstreIntelligent.monstres.get(0).getY();
         assertEquals(1, x);
         assertEquals(1, y);
 
@@ -129,8 +129,8 @@ public class TestComportementMonstre {
         this.labyMonstreIntelligent.deplacerMonstreIntelligent();
 
         //4eme vérification
-        x = this.labyMonstreIntelligent.monstre.getX();
-        y = this.labyMonstreIntelligent.monstre.getY();
+        x = this.labyMonstreIntelligent.monstres.get(0).getX();
+        y = this.labyMonstreIntelligent.monstres.get(0).getY();
         assertEquals(2, x);
         assertEquals(1, y);
 
@@ -138,8 +138,8 @@ public class TestComportementMonstre {
         this.labyMonstreIntelligent.deplacerMonstreIntelligent();
 
         //5eme vérification
-        x = this.labyMonstreIntelligent.monstre.getX();
-        y = this.labyMonstreIntelligent.monstre.getY();
+        x = this.labyMonstreIntelligent.monstres.get(0).getX();
+        y = this.labyMonstreIntelligent.monstres.get(0).getY();
         assertEquals(3, x);
         assertEquals(1, y);
 
@@ -147,8 +147,8 @@ public class TestComportementMonstre {
         this.labyMonstreIntelligent.deplacerMonstreIntelligent();
 
         //6eme vérification
-        x = this.labyMonstreIntelligent.monstre.getX();
-        y = this.labyMonstreIntelligent.monstre.getY();
+        x = this.labyMonstreIntelligent.monstres.get(0).getX();
+        y = this.labyMonstreIntelligent.monstres.get(0).getY();
         assertEquals(4, x);
         assertEquals(1, y);
 
@@ -156,8 +156,8 @@ public class TestComportementMonstre {
         this.labyMonstreIntelligent.deplacerMonstreIntelligent();
 
         //7eme vérification
-        x = this.labyMonstreIntelligent.monstre.getX();
-        y = this.labyMonstreIntelligent.monstre.getY();
+        x = this.labyMonstreIntelligent.monstres.get(0).getX();
+        y = this.labyMonstreIntelligent.monstres.get(0).getY();
         assertEquals(5, x);
         assertEquals(1, y);
 
@@ -165,8 +165,8 @@ public class TestComportementMonstre {
         this.labyMonstreIntelligent.deplacerMonstreIntelligent();
 
         //8eme vérification
-        x = this.labyMonstreIntelligent.monstre.getX();
-        y = this.labyMonstreIntelligent.monstre.getY();
+        x = this.labyMonstreIntelligent.monstres.get(0).getX();
+        y = this.labyMonstreIntelligent.monstres.get(0).getY();
         assertEquals(6, x);
         assertEquals(1, y);
 
@@ -174,8 +174,8 @@ public class TestComportementMonstre {
         this.labyMonstreIntelligent.deplacerMonstreIntelligent();
 
         //9eme vérification
-        x = this.labyMonstreIntelligent.monstre.getX();
-        y = this.labyMonstreIntelligent.monstre.getY();
+        x = this.labyMonstreIntelligent.monstres.get(0).getX();
+        y = this.labyMonstreIntelligent.monstres.get(0).getY();
         assertEquals(6, x);
         assertEquals(2, y);
 
@@ -183,8 +183,8 @@ public class TestComportementMonstre {
         this.labyMonstreIntelligent.deplacerMonstreIntelligent();
 
         //10eme vérification
-        x = this.labyMonstreIntelligent.monstre.getX();
-        y = this.labyMonstreIntelligent.monstre.getY();
+        x = this.labyMonstreIntelligent.monstres.get(0).getX();
+        y = this.labyMonstreIntelligent.monstres.get(0).getY();
         assertEquals(6, x);
         assertEquals(3, y);
 
@@ -192,8 +192,8 @@ public class TestComportementMonstre {
         this.labyMonstreIntelligent.deplacerMonstreIntelligent();
 
         //11eme vérification
-        x = this.labyMonstreIntelligent.monstre.getX();
-        y = this.labyMonstreIntelligent.monstre.getY();
+        x = this.labyMonstreIntelligent.monstres.get(0).getX();
+        y = this.labyMonstreIntelligent.monstres.get(0).getY();
         assertEquals(7, x);
         assertEquals(3, y);
     }
