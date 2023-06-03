@@ -96,7 +96,7 @@ class Entite{
 }
 
 class Perso{
-    + pv : int
+    - pv : int
     + Perso(int,int)
     + changerPv(int):
     + getPv():int
