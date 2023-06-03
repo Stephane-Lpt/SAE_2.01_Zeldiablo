@@ -36,7 +36,6 @@ public class LabyJeu implements Jeu{
         if (clavier.haut) {
             this.laby.deplacerPerso(Labyrinthe.HAUT);
         }
-
         if (clavier.bas) {
             this.laby.deplacerPerso(Labyrinthe.BAS);
         }

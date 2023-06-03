@@ -53,8 +53,12 @@ public class LabyDessin implements DessinJeu {
         }
 
         // Affichage du monstre
-        gc.setFill(Color.PURPLE);
-        gc.fillOval(laby.getLaby().monstre.x*tailleCaseL,laby.getLaby().monstre.y*tailleCaseH, tailleCaseL, tailleCaseH);
+
+
+        for(Monstre m : laby.getLaby().monstres){
+            gc.setFill(Color.PURPLE);
+            gc.fillOval(m.x*tailleCaseL,m.y*tailleCaseH, tailleCaseL, tailleCaseH);
+        }
 
         // Affichage du perso en dernier pour qu'il soit au premier plan
         gc.setFill(Color.RED);

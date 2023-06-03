@@ -2,7 +2,7 @@ package gameLaby.laby;
 /**
  * gere un personnage situe en x,y
  */
-public class Perso extends Entite{
+public abstract class Perso extends Entite{
 
     /**
      * Points de vie du personnage
@@ -50,4 +50,12 @@ public class Perso extends Entite{
     public boolean etreMort(){
         return this.pv <= 0;
     }
+
+
+    /**
+     * permet à un perso d'attaquer un autre perso
+     * La puissance de l'attaque dépend du type de personnage et de celui qui le subit
+     * @param p person qui subit l'attaque
+     */
+    //public abstract void attaquer(Perso p);
 }

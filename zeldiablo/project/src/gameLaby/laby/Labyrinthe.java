@@ -44,6 +44,12 @@ public class Labyrinthe {
     public Heros heros;
     public Monstre monstre;
 
+
+    /**
+     * Liste de tous les monstres figurants sur le labyrinthe
+     */
+    public ArrayList<Monstre> monstres;
+
     /**
      * les murs du labyrinthe
      */
@@ -114,6 +120,7 @@ public class Labyrinthe {
 
         // On instancie les cases piégées et déclencheurs
         this.cases = new ArrayList<Case>();
+        this.monstres = new ArrayList<Monstre>();
 
 
         // lecture des cases
@@ -145,7 +152,7 @@ public class Labyrinthe {
                         // pas de mur
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute PJ
-                        this.monstre = new Monstre(colonne, numeroLigne, 10);
+                        this.monstres.add(new Monstre(colonne, numeroLigne, 10));
                         break;
                     case CASEPIEGEE:
                         this.cases.add(new CasePiegee(colonne, numeroLigne));
@@ -182,7 +189,7 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-        if (!(this.murs[suivante[0]][suivante[1]]) && (suivante[0]!=this.monstre.getX() || suivante[1]!=this.monstre.getY())) {
+        if (etreLibre(suivante[0], suivante[1])){
             // on met a jour personnage
             this.heros.x = suivante[0];
             this.heros.y = suivante[1];
@@ -209,7 +216,7 @@ public class Labyrinthe {
             if (casePresente instanceof CasePiegee){
                 // Si le piège n'a pas encore été effectif
                 if (p instanceof Monstre) {
-                    this.monstre.changerPv(-1);
+                    p.changerPv(-1);
                 } else if (p instanceof Heros) {
                     this.heros.changerPv(-1);
                 }
@@ -270,32 +277,37 @@ public class Labyrinthe {
      * gere la collision avec les murs et les personnages
      */
     public void deplacerMonstre() {
-        int[] courante = {this.monstre.x, this.monstre.y};
-        int[] h=getSuivant(courante[0], courante[1], Labyrinthe.HAUT);
-        int[] b=getSuivant(courante[0], courante[1], Labyrinthe.BAS);
-        int[] d=getSuivant(courante[0], courante[1], Labyrinthe.DROITE);
-        int[] g=getSuivant(courante[0], courante[1], Labyrinthe.GAUCHE);
 
-        Tuple tH=new Tuple(h, Math.sqrt(Math.pow(this.heros.x - h[0], 2) + Math.pow(this.heros.y - h[1], 2)));
-        Tuple tB=new Tuple(b, Math.sqrt(Math.pow(this.heros.x - b[0], 2) + Math.pow(this.heros.y - b[1], 2)));
-        Tuple tD=new Tuple(d, Math.sqrt(Math.pow(this.heros.x - d[0], 2) + Math.pow(this.heros.y - d[1], 2)));
-        Tuple tG=new Tuple(g, Math.sqrt(Math.pow(this.heros.x - g[0], 2) + Math.pow(this.heros.y - g[1], 2)));
+        for(Monstre m : this.monstres){
+            int[] courante = {m.x, m.y};
+            int[] h=getSuivant(courante[0], courante[1], Labyrinthe.HAUT);
+            int[] b=getSuivant(courante[0], courante[1], Labyrinthe.BAS);
+            int[] d=getSuivant(courante[0], courante[1], Labyrinthe.DROITE);
+            int[] g=getSuivant(courante[0], courante[1], Labyrinthe.GAUCHE);
 
-        ArrayList<Tuple> classement = new ArrayList<Tuple>();
-        classement.addAll(Arrays.asList(tH,tB,tD,tG));
+            Tuple tH=new Tuple(h, Math.sqrt(Math.pow(this.heros.x - h[0], 2) + Math.pow(this.heros.y - h[1], 2)));
+            Tuple tB=new Tuple(b, Math.sqrt(Math.pow(this.heros.x - b[0], 2) + Math.pow(this.heros.y - b[1], 2)));
+            Tuple tD=new Tuple(d, Math.sqrt(Math.pow(this.heros.x - d[0], 2) + Math.pow(this.heros.y - d[1], 2)));
+            Tuple tG=new Tuple(g, Math.sqrt(Math.pow(this.heros.x - g[0], 2) + Math.pow(this.heros.y - g[1], 2)));
 
-        Collections.sort(classement, (t1, t2) -> Double.compare(t1.getDist(), t2.getDist()));
+            ArrayList<Tuple> classement = new ArrayList<Tuple>();
+            classement.addAll(Arrays.asList(tH,tB,tD,tG));
 
-        for (int i = 0; i < classement.size(); i++) {
-            int[] suivante = classement.get(i).getCoord();
+            Collections.sort(classement, (t1, t2) -> Double.compare(t1.getDist(), t2.getDist()));
 
-            if (etreLibre(suivante[0], suivante[1])) {
-                this.monstre.x = suivante[0];
-                this.monstre.y = suivante[1];
-                verifierPresenceCase(suivante[0], suivante[1], this.monstre);
-                break;
+            for (int i = 0; i < classement.size(); i++) {
+                int[] suivante = classement.get(i).getCoord();
+
+                if (etreLibre(suivante[0], suivante[1])) {
+                    m.x = suivante[0];
+                    m.y = suivante[1];
+                    verifierPresenceCase(suivante[0], suivante[1], m);
+                    break;
+                }
             }
         }
+
+
     }
 
     /**
@@ -305,7 +317,12 @@ public class Labyrinthe {
      * @return vrai si la case est libre et faux sinon
      */
     public boolean etreLibre(int x, int y){
-        return ((!this.murs[x][y]) && !(this.heros.etrePresent(x, y)) && !(this.monstre.etrePresent(x, y)));
+        boolean noMonsters = true;
+        for(Monstre m : this.monstres){
+            if(m.etrePresent(x, y))
+                noMonsters = false;
+        }
+        return ((!this.murs[x][y]) && !(this.heros.etrePresent(x, y)) && noMonsters);
     }
 
     /**
@@ -355,15 +372,19 @@ public class Labyrinthe {
 
     public void deplacerMonstreIntelligent(){
 
-        GrapheListe g = this.genererGraphe();
+        for(Monstre m : this.monstres){
+            GrapheListe g = this.genererGraphe();
 
-        //On utilise Dijkstra
-        Valeur dij = (new Dijkstra()).resoudre(g, "("+this.monstre.x+","+this.monstre.y+")");
-        //On utilise calculerChemin
-        List<String> l = dij.calculerChemin("("+this.heros.x+","+this.heros.y+")");
+            //On utilise Dijkstra
+            Valeur dij = (new Dijkstra()).resoudre(g, "("+m.x+","+m.y+")");
+            //On utilise calculerChemin
+            List<String> l = dij.calculerChemin("("+this.heros.x+","+this.heros.y+")");
 
-        // on met a jour la position du monstre
-        this.monstre.x = Integer.parseInt(l.get(1).substring(1, 2));
-        this.monstre.y = Integer.parseInt(l.get(1).substring(3, 4));
+            // on met a jour la position du monstre
+            m.x = Integer.parseInt(l.get(1).substring(1, 2));
+            m.y = Integer.parseInt(l.get(1).substring(3, 4));
+        }
+
+
     }
 }
