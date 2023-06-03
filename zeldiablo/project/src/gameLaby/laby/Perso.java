@@ -7,7 +7,7 @@ public class Perso extends Entite{
     /**
      * Points de vie du personnage
      */
-    int pv;
+    private int pv;
 
     /**
      * constructeur
