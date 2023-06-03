@@ -2,6 +2,7 @@ Bilan Version 3 :
 
 Bugs résolus : 
 	- Toutes les classes sont mieux implémentées
+	- Correction mineure de l'affichage du labyrinthe qui s'actualisait mal lors du redimensionnement (inversement hauteur et largeur)
 
 Bugs restants :
 	- Le monstre bouge encore même s'il est collé au joueur
