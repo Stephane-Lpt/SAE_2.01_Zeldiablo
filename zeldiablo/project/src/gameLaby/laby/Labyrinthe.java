@@ -195,29 +195,6 @@ public class Labyrinthe {
 
     }
 
-    /**
-     * deplace un monstre en fonction de l'action.
-     * gere la collision avec les murs et les personnages
-     *
-     * @param action une des actions possibles
-     */
-    public void deplacerMonstre(String action) {
-        // case courante
-        int[] courante = {this.monstre.x, this.monstre.y};
-
-        // calcule case suivante
-        int[] suivante = getSuivant(courante[0], courante[1], action);
-
-        // si c'est pas ni un mur; ni un héros, on effectue le déplacement
-        if (etreLibre(suivante[0], suivante[1])) {
-            // on met a jour personnage
-            this.monstre.x = suivante[0];
-            this.monstre.y = suivante[1];
-
-            // Ici on met ce qu'il se passe pour vérifier si aux coordonnées suivantes il y a une case piégée
-            verifierPresenceCase(suivante[0], suivante[1], this.monstre);
-        }
-    }
 
     /**
      * permet de vérifier s'il y a une case (Déclencheur, Piège, ...) présente à des coordonnées du labyrinthe ET de faire une action sur le personnage qui est sur la case
