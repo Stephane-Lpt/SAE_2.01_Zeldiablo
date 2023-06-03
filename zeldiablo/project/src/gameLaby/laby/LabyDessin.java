@@ -29,8 +29,8 @@ public class LabyDessin implements DessinJeu {
 
         // dessin raquette
         gc.setFill(Color.BLACK);
-        double tailleCaseH = largeurFenetre/laby.getLaby().getLengthY();
-        double tailleCaseL = hauteurFenetre/laby.getLaby().getLength();
+        double tailleCaseH = hauteurFenetre/laby.getLaby().getLengthY();
+        double tailleCaseL = largeurFenetre/laby.getLaby().getLength();
         double origineLargeurC = 0;
         double origineHauteurC = 0;
         for(int i=0;i<laby.getLaby().getLengthY();i++){
