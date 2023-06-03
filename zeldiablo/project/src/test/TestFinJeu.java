@@ -23,7 +23,7 @@ public class TestFinJeu {
 
         //récupération de l'amulette
         //vérification
-        assertTrue(possede());
+        assertTrue(this.labyAmulette.amulette.getPossede());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class TestFinJeu {
         //vérification, on déplace le personnage sur la case de sortie
         this.labyAmulette.heros.setX(5);
         this.labyAmulette.heros.setX(5);
-        assertTrue(partieFinie?);
+        assertTrue(this.labyAmulette.etreFini());
     }
 
     @Test
@@ -47,7 +47,7 @@ public class TestFinJeu {
         //vérification, on déplace le personnage sur la case de sortie
         this.labyAmulette.heros.setX(5);
         this.labyAmulette.heros.setY(5);
-        assertFalse(partieFinie?);
+        assertFalse(this.labyAmulette.etreFini());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class TestFinJeu {
 
         //non récupération de l'amulette
         //vérification
-        assertFalse(possede());
+        assertFalse(this.labyAmulette.amulette.getPossede());
     }
 
     @Test
@@ -75,7 +75,7 @@ public class TestFinJeu {
 
         //récupération de l'amulette
         //vérification
-        assertTrue(possede());
+        assertTrue(this.labyAmulette.amulette.getPossede());
     }
 
     @Test
@@ -87,6 +87,6 @@ public class TestFinJeu {
         //vérification, on déplace le monstre sur la case de sortie
         this.labyAmulette.monstre.setX(5);
         this.labyAmulette.monstre.setX(5);
-        assertFalse(partieFinie?);
+        assertFalse(this.labyAmulette.etreFini());
     }
 }
