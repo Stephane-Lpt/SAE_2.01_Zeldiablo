@@ -32,7 +32,7 @@ public class TestLaby {
                        + "XXXXXXXXXX" + "\n";
 
         //méthode testée
-        Labyrinthe laby = new Labyrinthe("labySimple/laby1.txt");
+        Labyrinthe laby = new Labyrinthe("zeldiablo/project/labySimple/laby1.txt");
         String resToString = "";
         for (int y = 0; y < laby.getLengthY(); y++) {
             // affiche la ligne
