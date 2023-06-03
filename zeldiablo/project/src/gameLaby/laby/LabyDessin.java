@@ -52,6 +52,15 @@ public class LabyDessin implements DessinJeu {
             }
         }
 
+        if(!laby.getLaby().amulette.getPossede()){
+            gc.setFill(Color.YELLOW);
+            gc.fillOval(laby.getLaby().amulette.x*tailleCaseL,laby.getLaby().amulette.y*tailleCaseH, tailleCaseL, tailleCaseH);
+        }
+
+        // Affichage du départ
+        gc.setFill(Color.CYAN);
+        gc.fillRect(laby.getLaby().depart.getX()*tailleCaseL, laby.getLaby().depart.getY()*tailleCaseH, tailleCaseL, tailleCaseH);
+
         // Affichage du monstre
 
 

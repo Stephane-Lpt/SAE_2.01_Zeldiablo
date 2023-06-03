@@ -26,6 +26,8 @@ public class Labyrinthe {
 
     public static final char MONSTRE = 'M';
 
+    public static final char AMULETTE = 'A';
+
     public static final char CASEPIEGEE = 'p';
 
     public static final char CASEDECLENCHEUR = 'd';
@@ -39,7 +41,7 @@ public class Labyrinthe {
     public static final String DROITE = "Droite";
 
     /**
-     * attribut du personnage
+     * attribut des personnages
      */
     public Heros heros;
     public Monstre monstre;
@@ -61,6 +63,12 @@ public class Labyrinthe {
      */
     public ArrayList<Case> cases;
 
+    /**
+     * L'amulette du labyrinthe
+     */
+    public Amulette amulette;
+
+    public Entite depart;
 
     /**
      * retourne la case suivante selon une actions
@@ -147,11 +155,14 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute PJ
                         this.heros = new Heros(colonne, numeroLigne, 10);
+                        this.depart=new Entite(colonne, numeroLigne);
                         break;
                     case MONSTRE:
                         // pas de mur
                         this.murs[colonne][numeroLigne] = false;
-                        // ajoute PJ
+                        // ajoute monstre
+                        this.monstre = new Monstre(colonne, numeroLigne, 10);
+                        // ajoute monstre dans liste
                         this.monstres.add(new Monstre(colonne, numeroLigne, 10));
                         break;
                     case CASEPIEGEE:
@@ -160,6 +171,12 @@ public class Labyrinthe {
 
                     case CASEDECLENCHEUR:
                         this.cases.add(new CaseDeclencheur(colonne, numeroLigne));
+                        break;
+
+                    case AMULETTE:
+                        // pas de mur
+                        this.murs[colonne][numeroLigne] = false;
+                        this.amulette=new Amulette(colonne, numeroLigne);
                         break;
                     default:
                         throw new Error("caractere inconnu " + c);
@@ -196,6 +213,9 @@ public class Labyrinthe {
 
             verifierPresenceCase(suivante[0], suivante[1], this.heros);
 
+            if((this.heros.x==this.amulette.x) && (this.heros.y==this.amulette.y) && !(this.amulette.getPossede())){
+                this.amulette.setPossede();
+            }
 
         }
 
@@ -236,7 +256,12 @@ public class Labyrinthe {
      * @return fin du jeu
      */
     public boolean etreFini() {
-        return false;
+        if((this.heros.x==this.depart.x) && (this.heros.y==this.depart.y) && (this.amulette.getPossede())){
+            System.out.println("Bien joué, tu as gagné");
+            return true;
+        } else{
+            return false;
+        }
     }
 
     // ##################################
