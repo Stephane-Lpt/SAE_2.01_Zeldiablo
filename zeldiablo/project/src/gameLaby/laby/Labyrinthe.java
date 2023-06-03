@@ -26,6 +26,8 @@ public class Labyrinthe {
 
     public static final char MONSTRE = 'M';
 
+    public static final char AMULETTE = 'A';
+
     public static final char CASEPIEGEE = 'p';
 
     public static final char CASEDECLENCHEUR = 'd';
@@ -39,7 +41,7 @@ public class Labyrinthe {
     public static final String DROITE = "Droite";
 
     /**
-     * attribut du personnage
+     * attribut des personnages
      */
     public Heros heros;
     public Monstre monstre;
@@ -55,6 +57,10 @@ public class Labyrinthe {
      */
     public ArrayList<Case> cases;
 
+    /**
+     * L'amulette du labyrinthe
+     */
+    public Amulette amulette;
 
     /**
      * retourne la case suivante selon une actions
@@ -153,6 +159,10 @@ public class Labyrinthe {
 
                     case CASEDECLENCHEUR:
                         this.cases.add(new CaseDeclencheur(colonne, numeroLigne));
+                        break;
+
+                    case AMULETTE:
+                        this.amulette=new Amulette(colonne, numeroLigne);
                         break;
                     default:
                         throw new Error("caractere inconnu " + c);
