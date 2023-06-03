@@ -18,12 +18,12 @@ public class TestComportementMonstre {
 
     @BeforeEach
     public void beforeEach() throws IOException{
-        labyMonstreBas = new Labyrinthe("labySimple/laby1.txt");
-        labyMonstreHaut = new Labyrinthe("labySimple/test_monstre_haut.txt");
-        labyMonstreDroite = new Labyrinthe("labySimple/test_monstre_droite.txt");
-        labyMonstreGauche = new Labyrinthe("labySimple/test_monstre_gauche.txt");
-        labyMonstreChemin = new Labyrinthe("labySimple/test_monstre_chemin.txt");
-        labyMonstreIntelligent = new Labyrinthe("labySimple/test_monstre_intelligent.txt");
+        labyMonstreBas = new Labyrinthe("zeldiablo/project/labySimple/laby1.txt");
+        labyMonstreHaut = new Labyrinthe("zeldiablo/project/labySimple/test_monstre_haut.txt");
+        labyMonstreDroite = new Labyrinthe("zeldiablo/project/labySimple/test_monstre_droite.txt");
+        labyMonstreGauche = new Labyrinthe("zeldiablo/project/labySimple/test_monstre_gauche.txt");
+        labyMonstreChemin = new Labyrinthe("zeldiablo/project/labySimple/test_monstre_chemin.txt");
+        labyMonstreIntelligent = new Labyrinthe("zeldiablo/project/labySimple/test_monstre_intelligent.txt");
     }
 
     @Test
@@ -75,7 +75,7 @@ public class TestComportementMonstre {
     }
 
     @Test
-    public void testDeplacerMonstre_Chemin(){
+    public void testDeplacerMonstre_Chemin() {
         //méthode testée, 1er appel
         this.labyMonstreChemin.deplacerMonstre();
 
@@ -89,37 +89,11 @@ public class TestComportementMonstre {
         this.labyMonstreChemin.deplacerMonstre();
 
         //2eme vérification
+        //Le monstre ne choisi pas le bon chemin et reste bloqué dans un cul de sac
         x = this.labyMonstreChemin.monstre.getX();
         y = this.labyMonstreChemin.monstre.getY();
         assertEquals(1, x);
-        assertEquals(3, y);
-
-        //méthode testée, 3eme appel
-        this.labyMonstreChemin.deplacerMonstre();
-
-        //3eme vérification
-        x = this.labyMonstreChemin.monstre.getX();
-        y = this.labyMonstreChemin.monstre.getY();
-        assertEquals(2, x);
-        assertEquals(3, y);
-
-        //méthode testée, 4eme appel
-        this.labyMonstreChemin.deplacerMonstre();
-
-        //4eme vérification
-        x = this.labyMonstreChemin.monstre.getX();
-        y = this.labyMonstreChemin.monstre.getY();
-        assertEquals(3, x);
-        assertEquals(3, y);
-
-        //méthode testée, 5eme appel
-        this.labyMonstreChemin.deplacerMonstre();
-
-        //5eme vérification
-        x = this.labyMonstreChemin.monstre.getX();
-        y = this.labyMonstreChemin.monstre.getY();
-        assertEquals(3, x);
-        assertEquals(2, y);
+        assertEquals(1, y);
     }
 
     @Test

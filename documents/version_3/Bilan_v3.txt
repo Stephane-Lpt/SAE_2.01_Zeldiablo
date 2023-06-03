@@ -1,0 +1,12 @@
+Bilan Version 3 :
+
+Bugs résolus : 
+	- Toutes les classes sont mieux implémentées
+
+Bugs restants :
+	- Le monstre bouge encore même s'il est collé au joueur
+
+Ce qui a été validé :
+	- le déplacement semi-intelligent du monstre
+	- le déplacement intelligent du monstre
+	- l'ajout de cases piègées et déclencheurs

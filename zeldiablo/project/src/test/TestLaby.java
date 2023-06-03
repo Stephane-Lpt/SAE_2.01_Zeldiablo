@@ -15,9 +15,9 @@ public class TestLaby {
 
     @BeforeEach
     public void beforeEach() throws IOException{
-        laby = new Labyrinthe("labySimple/laby0.txt");
-        labyMurs = new Labyrinthe("labySimple/labyTestMurs.txt");
-        labyMonstre = new Labyrinthe("labySimple/laby1.txt");
+        laby = new Labyrinthe("zeldiablo/project/labySimple/laby0.txt");
+        labyMurs = new Labyrinthe("zeldiablo/project/labySimple/labyTestMurs.txt");
+        labyMonstre = new Labyrinthe("zeldiablo/project/labySimple/laby1.txt");
     }
 
     @Test

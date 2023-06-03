@@ -11,8 +11,8 @@ public class TestCase {
 
     @BeforeEach
     public void setup() throws IOException {
-        laby = new Labyrinthe("labySimple/laby1.txt");
-        labySansCase = new Labyrinthe("labySimple/laby0.txt");
+        laby = new Labyrinthe("zeldiablo/project/labySimple/laby1.txt");
+        labySansCase = new Labyrinthe("zeldiablo/project/labySimple/laby0.txt");
     }
 
     @Test
