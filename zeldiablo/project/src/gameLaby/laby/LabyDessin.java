@@ -64,8 +64,8 @@ public class LabyDessin implements DessinJeu {
         // Affichage du monstre
 
 
+        gc.setFill(Color.PURPLE);
         for(Monstre m : laby.getLaby().monstres){
-            gc.setFill(Color.PURPLE);
             gc.fillOval(m.x*tailleCaseL,m.y*tailleCaseH, tailleCaseL, tailleCaseH);
         }
 

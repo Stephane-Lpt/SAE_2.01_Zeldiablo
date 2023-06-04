@@ -44,6 +44,9 @@ public class LabyJeu implements Jeu{
         if (clavier.espace){
             for(Monstre m : this.laby.verifierPresenceMonstreCaseAdjacente(this.laby.heros.x, this.laby.heros.y)){
                 this.laby.heros.attaquer(m);
+                if(m.etreMort()){
+                    this.laby.monstres.remove(m);
+                }
                 System.out.println(m.getPv());
             }
             try {

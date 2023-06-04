@@ -159,7 +159,7 @@ public class Labyrinthe {
                         // pas de mur
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute monstre dans liste
-                        this.monstres.add(new Monstre(colonne, numeroLigne, 10));
+                        this.monstres.add(new Monstre(colonne, numeroLigne, 2));
                         break;
                     case CASEPIEGEE:
                         this.cases.add(new CasePiegee(colonne, numeroLigne));
