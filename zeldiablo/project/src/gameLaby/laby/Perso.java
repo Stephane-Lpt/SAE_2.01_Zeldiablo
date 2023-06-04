@@ -37,10 +37,8 @@ public abstract class Perso extends Entite{
      * permet de changer le nombre de points de vie
      * @param p le nombre de points de vie à ajouter (argument positif) ou à soustraire (argument négatif)
      */
-    public void changerPv(int p){
-        if(this.pv + p >= 0){
-            this.pv += p;
-        }
+    public void changerPv(int v){
+            this.pv += v;
     }
 
     /**

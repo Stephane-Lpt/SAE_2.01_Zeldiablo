@@ -182,7 +182,6 @@ public class Labyrinthe {
                         throw new Error("caractere inconnu " + c);
                 }
             }
-
             // lecture
             ligne = bfRead.readLine();
             numeroLigne++;
@@ -191,6 +190,7 @@ public class Labyrinthe {
         // ferme fichier
         bfRead.close();
     }
+
 
 
     /**
@@ -331,9 +331,11 @@ public class Labyrinthe {
                 }
             }
         }
-
-
     }
+
+
+
+
 
     /**
      * Méthode qui vérifie qu'une case est libre
@@ -396,7 +398,6 @@ public class Labyrinthe {
     }
 
     public void deplacerMonstreIntelligent(){
-
         for(Monstre m : this.monstres){
             GrapheListe g = this.genererGraphe();
 
@@ -409,7 +410,67 @@ public class Labyrinthe {
             m.x = Integer.parseInt(l.get(1).substring(1, 2));
             m.y = Integer.parseInt(l.get(1).substring(3, 4));
         }
-
-
     }
+
+
+
+    /**
+     * Verifie si un monstre est présent sur une case adjacente à celle aux coordonnées x,y
+     * @param x le numéro de colonne de la case
+     * @param y le numéro de ligne de la case
+     * @return une liste de monstres qui sont présents sur les cases adjacentes
+     */
+    public ArrayList<Monstre> verifierPresenceMonstreCaseAdjacente(int x, int y){
+        ArrayList<Monstre> listePersosProche = new ArrayList<Monstre>();
+        if(!this.murs[x][y]){
+            for(Monstre m : this.monstres){
+                if(m.etrePresent(x+1, y) || m.etrePresent(x,y+1) || m.etrePresent(x-1,y) || m.etrePresent(x,y-1))
+                    listePersosProche.add(m);
+            }
+        }
+
+        return listePersosProche;
+    }
+
+    /**
+     * Verifie la présence du héros sur une case adjacente à celle aux coordonnées x,y
+     * @param x le numéro de colonne de la case
+     * @param y le numéro de ligne de la case
+     * @return true si le personnage est présent sur une case adjacente ou false sinon
+     */
+    public boolean verifierPresenceHerosCaseAjacente(int x,int y){
+        if(!this.murs[x][y]){
+            if(this.heros.etrePresent(x+1, y) || this.heros.etrePresent(x,y+1) || this.heros.etrePresent(x-1,y) || this.heros.etrePresent(x,y-1)){
+                return true;
+            }
+        }
+        return false;
+        // Cette méthode permet d'éviter de la duplication de la méthode etrePresent
+    }
+
+
+    /**
+     * Lorsque l'utilisateur appuie sur espace
+     * Alors l'héros attaque tout autour de lui, et si des monstres s'y trouvent
+     * Ils perdent un point de vie
+     */
+    public void attaqueHeros(){
+        // On veut stocker dans cette liste tous les monstres à proximité du héros
+        ArrayList<Monstre> l = verifierPresenceMonstreCaseAdjacente(this.heros.getX(), this.heros.getY());
+        for(Monstre m : l){
+            this.heros.attaquer(m);
+        }
+    }
+
+    /**
+     * Si un monstre se trouve à côté du héros, alors il l'attaque et lui fait perdre un point de vie
+     */
+    public void attaqueMonstre(){
+        for(Monstre m : this.monstres){
+            if(verifierPresenceHerosCaseAjacente(this.heros.getX(), this.heros.getY())){
+                m.attaquer(this.heros);
+            }
+        }
+    }
+
 }

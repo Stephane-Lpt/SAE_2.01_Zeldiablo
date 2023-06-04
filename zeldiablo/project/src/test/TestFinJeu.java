@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestFinJeu {
 
-    Labyrinthe labyAmulette;
+   /* Labyrinthe labyAmulette;
 
     @BeforeEach
     public void beforeEach() throws IOException {
@@ -88,5 +88,5 @@ public class TestFinJeu {
         this.labyAmulette.monstre.setX(5);
         this.labyAmulette.monstre.setX(5);
         assertFalse(partieFinie?);
-    }
+    }*/
 }

@@ -14,4 +14,8 @@ public class Monstre extends Perso{
     public Monstre(int x, int y, int pp){
         super(x, y, pp);
     }
+
+    public void attaquer(Perso p){
+        p.changerPv(-1);
+    }
 }
