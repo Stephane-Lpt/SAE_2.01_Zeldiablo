@@ -8,6 +8,6 @@ activate laby
     laby -> laby : getSuivant(monstre.x,monstre.y, Gauche)
     laby --> laby
     main <-- laby
-deactivate laby
+desactivate laby
 
 @enduml

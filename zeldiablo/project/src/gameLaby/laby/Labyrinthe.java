@@ -44,7 +44,6 @@ public class Labyrinthe {
      * attribut des personnages
      */
     public Heros heros;
-    public Monstre monstre;
 
 
     /**
@@ -124,7 +123,6 @@ public class Labyrinthe {
         // creation labyrinthe vide
         this.murs = new boolean[nbColonnes][nbLignes];
         this.heros = null;
-        this.monstre=null;
 
         // On instancie les cases piégées et déclencheurs
         this.cases = new ArrayList<Case>();
@@ -160,8 +158,6 @@ public class Labyrinthe {
                     case MONSTRE:
                         // pas de mur
                         this.murs[colonne][numeroLigne] = false;
-                        // ajoute monstre
-                        this.monstre = new Monstre(colonne, numeroLigne, 10);
                         // ajoute monstre dans liste
                         this.monstres.add(new Monstre(colonne, numeroLigne, 10));
                         break;
@@ -306,7 +302,7 @@ public class Labyrinthe {
                 deplacerMonstre1(m);
             }
             else{
-                this.monstre.attaquer(this.heros);
+                m.attaquer(this.heros);
                 System.out.println(this.heros.getPv());
             }
         }
@@ -449,13 +445,6 @@ public class Labyrinthe {
         }
         return false;
         // Cette méthode permet d'éviter de la duplication de la méthode etrePresent
-    }
-
-    public void attaqueHeros(){
-        ArrayList<Monstre> l = verifierPresenceMonstreCaseAdjacente(this.heros.getX(), this.heros.getY());
-        for(Monstre m : l){
-            this.heros.attaquer(m);
-        }
     }
 
 

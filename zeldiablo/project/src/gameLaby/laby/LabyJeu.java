@@ -52,16 +52,13 @@ public class LabyJeu implements Jeu{
                 e.getStackTrace();
             }
         }
-
         if (Math.random() < (secondes / 5)) {
             this.laby.faireActionMonstres();
         }
         if(etreFini()){
             Platform.exit();
         }
-        if(clavier.espace){
-            this.laby.attaqueHeros();
-        }
+
     }
 
     /**

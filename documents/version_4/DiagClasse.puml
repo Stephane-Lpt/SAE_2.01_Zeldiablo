@@ -77,13 +77,18 @@ class Labyrinthe{
     + {static} GAUCHE : String
     + {static} DROITE : String
     + murs : boolean
+    + monstres : ArrayList<Monstre>
+    + heros : Heros
+    + cases : ArrayList<Case>
+    + amulette : Amulette
+    + depart : Entite
 
     + Labyrinthe(String)
     + {static} getSuivant(int, int, String) : int[]
-    + deplacerPerso(String)
-    + deplacerMonstre(String)
-    + attaqueHeros()
-    + attaqueMonstre()
+    + deplacerPerso()
+    + deplacerMonstre(Monstre m)
+    + deplacerMonstreIntelligent(Monstre m)
+    + faireActionMonstres()
     + verifierPresenceMonstreCaseAdjacente(int : x, int :y) : ArrayList<Monstre>
     + verifierPresenceHerosCaseAdjacente(int : x, int : y) : boolean
     + etreFini() : boolean

@@ -1,0 +1,19 @@
+@startuml
+
+actor "Utilisateur" as user
+participant "Clavier" as clavier
+participant "LabyJeu" as labyjeu
+participant "Labyrinthe" as laby
+
+participant "Monstre" as monstre
+participant "Heros" as heros
+
+user --> clavier: appuyerTouche(SPACE)
+
+
+
+
+
+
+
+@enduml
