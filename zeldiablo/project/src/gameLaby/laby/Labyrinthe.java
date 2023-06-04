@@ -298,7 +298,7 @@ public class Labyrinthe {
 
     public void faireActionMonstres(){
         for(Monstre m : this.monstres){
-            if(!(verifierPresenceHerosCaseAjacente(m.x,m.y))){
+            if(!(verifierPresenceHerosCaseAdjacente(m.x,m.y))){
                 deplacerMonstre1(m);
             }
             else{
@@ -437,7 +437,7 @@ public class Labyrinthe {
      * @param y le numéro de ligne de la case
      * @return true si le personnage est présent sur une case adjacente ou false sinon
      */
-    public boolean verifierPresenceHerosCaseAjacente(int x,int y){
+    public boolean verifierPresenceHerosCaseAdjacente(int x,int y){
         if(!this.murs[x][y]){
             if(this.heros.etrePresent(x+1, y) || this.heros.etrePresent(x,y+1) || this.heros.etrePresent(x-1,y) || this.heros.etrePresent(x,y-1)){
                 return true;

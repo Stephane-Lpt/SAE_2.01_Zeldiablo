@@ -1,19 +1,21 @@
 @startuml
+hide footbox
 
-actor "Utilisateur" as user
-participant "Clavier" as clavier
-participant "LabyJeu" as labyjeu
-participant "Labyrinthe" as laby
-
-participant "Monstre" as monstre
-participant "Heros" as heros
-
-user --> clavier: appuyerTouche(SPACE)
+participant "jeuLaby:LabyJeu" as game
+participant "laby:Labyrinthe" as laby
+participant "monstres:ArrayList<Monstre>" as monstres
+participant "heros:Heros" as heros
+participant "monstre:Monstre" as monstre
 
 
+game -> game: update(double, Clavier)
+loop monstres
+game -> monstres: get(i)
+game <-- monstres
+game -> laby: verifierPresenceMonstreCaseAdjacente(int, int)
+game <-- laby
 
-
-
-
+heros -> heros:attaquer(monstre)
+end
 
 @enduml

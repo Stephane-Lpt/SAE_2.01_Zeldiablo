@@ -1,0 +1,22 @@
+@startuml
+
+participant "laby:Labyrinthe" as laby
+participant "monstres:ArrayList<Monstre>" as monstres
+participant "monstre:Monstre" as monstre
+participant "heros:Heros" as heros
+
+laby -> laby: faireActionMonstres()
+loop monstres
+laby -> monstres: get(i)
+laby <-- monstres
+alt
+laby -> laby: verifierCaseAdjacente(x, y)
+laby -> laby: deplacerMonstre(monstre)
+end
+alt
+monstre -> monstre: attaquer(heros)
+end
+
+end
+
+@enduml
