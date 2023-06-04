@@ -54,7 +54,7 @@ public class LabyJeu implements Jeu{
         }
 
         if (Math.random() < (secondes / 5)) {
-            this.laby.deplacerMonstre();
+            this.laby.faireActionMonstres();
         }
         if(etreFini()){
             Platform.exit();

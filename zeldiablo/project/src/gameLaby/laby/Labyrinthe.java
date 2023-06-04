@@ -300,14 +300,22 @@ public class Labyrinthe {
         return this.murs[x][y];
     }
 
+    public void faireActionMonstres(){
+        for(Monstre m : this.monstres){
+            if(!(verifierPresenceHerosCaseAjacente(m.x,m.y))){
+                deplacerMonstre1(m);
+            }
+            else{
+                this.monstre.attaquer(this.heros);
+                System.out.println(this.heros.getPv());
+            }
+        }
+    }
     /**
      * deplace tous les monstres en fonction de l'action.
      * gere la collision avec les murs et les personnages
      */
-    public void deplacerMonstre() {
-
-        for(Monstre m : this.monstres){
-            if(!(verifierPresenceHerosCaseAjacente(m.x,m.y))){
+    public void deplacerMonstre1(Monstre m) {
                 int[] courante = {m.x, m.y};
                 int[] h = getSuivant(courante[0], courante[1], Labyrinthe.HAUT);
                 int[] b = getSuivant(courante[0], courante[1], Labyrinthe.BAS);
@@ -334,14 +342,6 @@ public class Labyrinthe {
                         break;
                     }
                 }
-            }
-            else{
-                this.monstre.attaquer(this.heros);
-                System.out.println(this.heros.getPv());
-            }
-        }
-
-
     }
 
     /**
@@ -404,9 +404,7 @@ public class Labyrinthe {
         return graphe;
     }
 
-    public void deplacerMonstreIntelligent(){
-
-        for(Monstre m : this.monstres){
+    public void deplacerMonstreIntelligent(Monstre m){
             GrapheListe g = this.genererGraphe();
 
             //On utilise Dijkstra
@@ -417,9 +415,6 @@ public class Labyrinthe {
             // on met a jour la position du monstre
             m.x = Integer.parseInt(l.get(1).substring(1, 2));
             m.y = Integer.parseInt(l.get(1).substring(3, 4));
-        }
-
-
     }
 
     /**
