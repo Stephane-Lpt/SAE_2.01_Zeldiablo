@@ -65,8 +65,11 @@ public class TestFinJeu {
         this.labyAmulette.deplacerPerso(HAUT);
         this.labyAmulette.deplacerMonstreIntelligent(this.labyAmulette.monstres.get(0));
 
-        this.labyAmulette.heros.setX(2);
-        this.labyAmulette.heros.setY(3);
+        this.labyAmulette.deplacerPerso(BAS);
+        this.labyAmulette.deplacerPerso(GAUCHE);
+        this.labyAmulette.deplacerPerso(GAUCHE);
+        this.labyAmulette.deplacerPerso(GAUCHE);
+        this.labyAmulette.deplacerPerso(HAUT);
         this.labyAmulette.deplacerMonstreIntelligent(this.labyAmulette.monstres.get(0));
 
         this.labyAmulette.deplacerPerso(BAS);
@@ -82,13 +85,15 @@ public class TestFinJeu {
     @Test
     public void testSortieMonstre(){
         //initialisation, on déplace le personnage hors de la case de sortie
-        this.labyAmulette.heros.setX(2);
-        this.labyAmulette.heros.setY(6);
+        this.labyAmulette.deplacerPerso(DROITE);
+        this.labyAmulette.deplacerPerso(HAUT);
 
         //vérification, on déplace le monstre sur la case de sortie
         this.labyAmulette.deplacerMonstreIntelligent(this.labyAmulette.monstres.get(0));
-        this.labyAmulette.heros.setX(3);
-        this.labyAmulette.heros.setY(5);
+        this.labyAmulette.deplacerPerso(BAS);
+        this.labyAmulette.deplacerPerso(BAS);
+        this.labyAmulette.deplacerPerso(BAS);
+        this.labyAmulette.deplacerPerso(GAUCHE);
         this.labyAmulette.deplacerMonstreIntelligent(this.labyAmulette.monstres.get(0));
 
         assertFalse(this.labyAmulette.etreFini());
@@ -97,7 +102,8 @@ public class TestFinJeu {
     @Test
     public void testHerosZeroPv(){
         //initialisation, on déplace le personnage sur l'amulette
-        this.labyAmulette.heros.changerPv(0);
+        this.labyAmulette.heros.changerPv(-100);
+        this.labyAmulette.deplacerPerso(BAS);
 
         //récupération de l'amulette
         //vérification
