@@ -41,8 +41,20 @@ public class LabyJeu implements Jeu{
         if (clavier.bas) {
             this.laby.deplacerPerso(Labyrinthe.BAS);
         }
+        if (clavier.espace){
+            for(Monstre m : this.laby.verifierPresenceMonstreCaseAdjacente(this.laby.heros.x, this.laby.heros.y)){
+                this.laby.heros.attaquer(m);
+                System.out.println(m.getPv());
+            }
+            try {
+                Thread.sleep(1000); // L'attaque a lieu et empêche le déplacement du joueur pendant 1 secondes
+            } catch(InterruptedException e){
+                e.getStackTrace();
+            }
+        }
+
         if (Math.random() < (secondes / 5)) {
-            this.laby.deplacerMonstre();
+            this.laby.faireActionMonstres();
         }
         if(etreFini()){
             Platform.exit();

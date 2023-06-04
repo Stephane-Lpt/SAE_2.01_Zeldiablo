@@ -28,7 +28,7 @@ public class TestComportementMonstre {
     @Test
     public void testDeplacerMonstre_Bas(){
         //méthode testée
-        this.labyMonstreBas.deplacerMonstre();
+        this.labyMonstreBas.faireActionMonstres();
 
         //vérification
         int x = this.labyMonstreBas.monstres.get(0).getX();
@@ -40,7 +40,7 @@ public class TestComportementMonstre {
     @Test
     public void testDeplacerMonstre_Haut(){
         //méthode testée
-        this.labyMonstreHaut.deplacerMonstre();
+        this.labyMonstreHaut.faireActionMonstres();
 
         //vérification
         int x = this.labyMonstreHaut.monstres.get(0).getX();
@@ -52,7 +52,7 @@ public class TestComportementMonstre {
     @Test
     public void testDeplacerMonstre_Droite(){
         //méthode testée
-        this.labyMonstreDroite.deplacerMonstre();
+        this.labyMonstreDroite.faireActionMonstres();
 
         //vérification
         int x = this.labyMonstreDroite.monstres.get(0).getX();
@@ -64,7 +64,7 @@ public class TestComportementMonstre {
     @Test
     public void testDeplacerMonstre_Gauche(){
         //méthode testée
-        this.labyMonstreGauche.deplacerMonstre();
+        this.labyMonstreGauche.faireActionMonstres();
 
         //vérification
         int x = this.labyMonstreGauche.monstres.get(0).getX();
@@ -76,7 +76,7 @@ public class TestComportementMonstre {
     @Test
     public void testDeplacerMonstre_Chemin() {
         //méthode testée, 1er appel
-        this.labyMonstreChemin.deplacerMonstre();
+        this.labyMonstreChemin.faireActionMonstres();
 
         //1ere vérification
         int x = this.labyMonstreChemin.monstres.get(0).getX();
@@ -85,7 +85,7 @@ public class TestComportementMonstre {
         assertEquals(2, y);
 
         //méthode testée, 2eme appel
-        this.labyMonstreChemin.deplacerMonstre();
+        this.labyMonstreChemin.faireActionMonstres();
 
         //2eme vérification
         //Le monstre ne choisi pas le bon chemin et reste bloqué dans un cul de sac

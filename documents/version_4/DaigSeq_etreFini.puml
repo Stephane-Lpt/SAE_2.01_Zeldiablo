@@ -1,0 +1,37 @@
+@startuml
+title etreFini() Sequence Diagram
+
+LabyJeu -> Labyrinthe: etreFini()
+
+activate Labyrinthe
+Labyrinthe -> Heros: getX()
+activate Heros
+Heros --> Labyrinthe: coordonée de x
+
+Labyrinthe -> Heros: getY()
+Heros --> Labyrinthe: coordonée de y
+
+Labyrinthe -> Amulette: getPossede()
+activate Amulette
+Amulette --> Labyrinthe: true ou false
+
+alt Amulette possédé
+    Labyrinthe -> Labyrinthe: display "Bien joué, tu as gagné"
+    Labyrinthe --> LabyJeu: true (jeu fini)
+else Heros mort
+    Labyrinthe -> Heros: etreMort()
+    activate Heros
+    Heros --> Labyrinthe: true
+
+    Labyrinthe -> Labyrinthe: display "Le héros est mort, tu as perdu"
+    Labyrinthe --> LabyJeu: true (jeu fini)
+else
+    Labyrinthe --> LabyJeu: false (jeu pas fini)
+end
+
+
+deactivate Heros
+deactivate Labyrinthe
+deactivate Amulette
+
+@enduml

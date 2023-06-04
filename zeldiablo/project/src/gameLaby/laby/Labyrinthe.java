@@ -182,6 +182,7 @@ public class Labyrinthe {
                         throw new Error("caractere inconnu " + c);
                 }
             }
+
             // lecture
             ligne = bfRead.readLine();
             numeroLigne++;
@@ -190,7 +191,6 @@ public class Labyrinthe {
         // ferme fichier
         bfRead.close();
     }
-
 
 
     /**
@@ -240,7 +240,7 @@ public class Labyrinthe {
                 } else if (p instanceof Heros) {
                     this.heros.changerPv(-1);
                 }
-            casePresente.setTrouvee();
+                casePresente.setTrouvee();
             }
             else if (casePresente instanceof CaseDeclencheur){
                 // On vérifie si dans ce cas là, il y a une case déclencheur
@@ -251,13 +251,16 @@ public class Labyrinthe {
     }
 
     /**
-     * jamais fini
+     * Fini si le héros est mort ou si il atteint l'entrée avec l'amulette
      *
      * @return fin du jeu
      */
     public boolean etreFini() {
         if((this.heros.x==this.depart.x) && (this.heros.y==this.depart.y) && (this.amulette.getPossede())){
             System.out.println("Bien joué, tu as gagné");
+            return true;
+        } else if (this.heros.etreMort()) {
+            System.out.println("Le héros est mort, tu as perdu");
             return true;
         } else{
             return false;
@@ -297,45 +300,49 @@ public class Labyrinthe {
         return this.murs[x][y];
     }
 
-    /**
-     * deplace un monstre en fonction de l'action.
-     * gere la collision avec les murs et les personnages
-     */
-    public void deplacerMonstre() {
-
+    public void faireActionMonstres(){
         for(Monstre m : this.monstres){
-            int[] courante = {m.x, m.y};
-            int[] h=getSuivant(courante[0], courante[1], Labyrinthe.HAUT);
-            int[] b=getSuivant(courante[0], courante[1], Labyrinthe.BAS);
-            int[] d=getSuivant(courante[0], courante[1], Labyrinthe.DROITE);
-            int[] g=getSuivant(courante[0], courante[1], Labyrinthe.GAUCHE);
-
-            Tuple tH=new Tuple(h, Math.sqrt(Math.pow(this.heros.x - h[0], 2) + Math.pow(this.heros.y - h[1], 2)));
-            Tuple tB=new Tuple(b, Math.sqrt(Math.pow(this.heros.x - b[0], 2) + Math.pow(this.heros.y - b[1], 2)));
-            Tuple tD=new Tuple(d, Math.sqrt(Math.pow(this.heros.x - d[0], 2) + Math.pow(this.heros.y - d[1], 2)));
-            Tuple tG=new Tuple(g, Math.sqrt(Math.pow(this.heros.x - g[0], 2) + Math.pow(this.heros.y - g[1], 2)));
-
-            ArrayList<Tuple> classement = new ArrayList<Tuple>();
-            classement.addAll(Arrays.asList(tH,tB,tD,tG));
-
-            Collections.sort(classement, (t1, t2) -> Double.compare(t1.getDist(), t2.getDist()));
-
-            for (int i = 0; i < classement.size(); i++) {
-                int[] suivante = classement.get(i).getCoord();
-
-                if (etreLibre(suivante[0], suivante[1])) {
-                    m.x = suivante[0];
-                    m.y = suivante[1];
-                    verifierPresenceCase(suivante[0], suivante[1], m);
-                    break;
-                }
+            if(!(verifierPresenceHerosCaseAjacente(m.x,m.y))){
+                deplacerMonstre1(m);
+            }
+            else{
+                this.monstre.attaquer(this.heros);
+                System.out.println(this.heros.getPv());
             }
         }
     }
+    /**
+     * deplace tous les monstres en fonction de l'action.
+     * gere la collision avec les murs et les personnages
+     */
+    public void deplacerMonstre1(Monstre m) {
+        int[] courante = {m.x, m.y};
+        int[] h = getSuivant(courante[0], courante[1], Labyrinthe.HAUT);
+        int[] b = getSuivant(courante[0], courante[1], Labyrinthe.BAS);
+        int[] d = getSuivant(courante[0], courante[1], Labyrinthe.DROITE);
+        int[] g = getSuivant(courante[0], courante[1], Labyrinthe.GAUCHE);
 
+        Tuple tH = new Tuple(h, Math.sqrt(Math.pow(this.heros.x - h[0], 2) + Math.pow(this.heros.y - h[1], 2)));
+        Tuple tB = new Tuple(b, Math.sqrt(Math.pow(this.heros.x - b[0], 2) + Math.pow(this.heros.y - b[1], 2)));
+        Tuple tD = new Tuple(d, Math.sqrt(Math.pow(this.heros.x - d[0], 2) + Math.pow(this.heros.y - d[1], 2)));
+        Tuple tG = new Tuple(g, Math.sqrt(Math.pow(this.heros.x - g[0], 2) + Math.pow(this.heros.y - g[1], 2)));
 
+        ArrayList<Tuple> classement = new ArrayList<Tuple>();
+        classement.addAll(Arrays.asList(tH, tB, tD, tG));
 
+        Collections.sort(classement, (t1, t2) -> Double.compare(t1.getDist(), t2.getDist()));
 
+        for (int i = 0; i < classement.size(); i++) {
+            int[] suivante = classement.get(i).getCoord();
+
+            if (etreLibre(suivante[0], suivante[1])) {
+                m.x = suivante[0];
+                m.y = suivante[1];
+                verifierPresenceCase(suivante[0], suivante[1], m);
+                break;
+            }
+        }
+    }
 
     /**
      * Méthode qui vérifie qu'une case est libre
@@ -397,22 +404,18 @@ public class Labyrinthe {
         return graphe;
     }
 
-    public void deplacerMonstreIntelligent(){
-        for(Monstre m : this.monstres){
-            GrapheListe g = this.genererGraphe();
+    public void deplacerMonstreIntelligent(Monstre m){
+        GrapheListe g = this.genererGraphe();
 
-            //On utilise Dijkstra
-            Valeur dij = (new Dijkstra()).resoudre(g, "("+m.x+","+m.y+")");
-            //On utilise calculerChemin
-            List<String> l = dij.calculerChemin("("+this.heros.x+","+this.heros.y+")");
+        //On utilise Dijkstra
+        Valeur dij = (new Dijkstra()).resoudre(g, "("+m.x+","+m.y+")");
+        //On utilise calculerChemin
+        List<String> l = dij.calculerChemin("("+this.heros.x+","+this.heros.y+")");
 
-            // on met a jour la position du monstre
-            m.x = Integer.parseInt(l.get(1).substring(1, 2));
-            m.y = Integer.parseInt(l.get(1).substring(3, 4));
-        }
+        // on met a jour la position du monstre
+        m.x = Integer.parseInt(l.get(1).substring(1, 2));
+        m.y = Integer.parseInt(l.get(1).substring(3, 4));
     }
-
-
 
     /**
      * Verifie si un monstre est présent sur une case adjacente à celle aux coordonnées x,y
@@ -448,29 +451,5 @@ public class Labyrinthe {
         // Cette méthode permet d'éviter de la duplication de la méthode etrePresent
     }
 
-
-    /**
-     * Lorsque l'utilisateur appuie sur espace
-     * Alors l'héros attaque tout autour de lui, et si des monstres s'y trouvent
-     * Ils perdent un point de vie
-     */
-    public void attaqueHeros(){
-        // On veut stocker dans cette liste tous les monstres à proximité du héros
-        ArrayList<Monstre> l = verifierPresenceMonstreCaseAdjacente(this.heros.getX(), this.heros.getY());
-        for(Monstre m : l){
-            this.heros.attaquer(m);
-        }
-    }
-
-    /**
-     * Si un monstre se trouve à côté du héros, alors il l'attaque et lui fait perdre un point de vie
-     */
-    public void attaqueMonstre(){
-        for(Monstre m : this.monstres){
-            if(verifierPresenceHerosCaseAjacente(this.heros.getX(), this.heros.getY())){
-                m.attaquer(this.heros);
-            }
-        }
-    }
 
 }

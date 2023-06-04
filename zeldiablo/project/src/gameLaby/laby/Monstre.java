@@ -16,6 +16,8 @@ public class Monstre extends Perso{
     }
 
     public void attaquer(Perso p){
-        p.changerPv(-1);
+        if(p instanceof Heros){
+            p.changerPv(-1);
+        }
     }
 }
