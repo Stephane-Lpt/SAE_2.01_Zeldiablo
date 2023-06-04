@@ -89,6 +89,7 @@ class Labyrinthe{
     + deplacerMonstre(Monstre m)
     + deplacerMonstreIntelligent(Monstre m)
     + faireActionMonstres()
+    + attaquerMonstresAutour():
     + verifierPresenceMonstreCaseAdjacente(int : x, int :y) : ArrayList<Monstre>
     + verifierPresenceHerosCaseAdjacente(int : x, int : y) : boolean
     + etreFini() : boolean
