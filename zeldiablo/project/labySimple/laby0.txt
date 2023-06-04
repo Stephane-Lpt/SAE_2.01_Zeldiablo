@@ -1,7 +1,7 @@
 5
 7
 XXXXXXX
-XM....X
+XM...AX
 X..P..X
 X.....X
 XXXXXXX
