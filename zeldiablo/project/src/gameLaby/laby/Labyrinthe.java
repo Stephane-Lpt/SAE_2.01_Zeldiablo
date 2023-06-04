@@ -336,7 +336,7 @@ public class Labyrinthe {
                 }
             }
             else{
-                this.heros.changerPv(-1);
+                this.monstre.attaquer(this.heros);
                 System.out.println(this.heros.getPv());
             }
         }
