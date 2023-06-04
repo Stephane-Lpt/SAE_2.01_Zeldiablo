@@ -8,7 +8,7 @@ import static gameLaby.laby.Labyrinthe.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestFinJeu {
-/*
+
     Labyrinthe labyAmulette;
 
     @BeforeEach
@@ -108,5 +108,5 @@ public class TestFinJeu {
         //récupération de l'amulette
         //vérification
         assertTrue(this.labyAmulette.etreFini());
-    }*/
+    }
 }

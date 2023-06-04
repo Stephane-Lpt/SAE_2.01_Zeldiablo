@@ -72,5 +72,10 @@ public class LabyDessin implements DessinJeu {
         // Affichage du perso en dernier pour qu'il soit au premier plan
         gc.setFill(Color.RED);
         gc.fillOval(laby.getLaby().heros.x*tailleCaseL, laby.getLaby().heros.y*tailleCaseH, tailleCaseL, tailleCaseH);
+
+        gc.fillText("Points de vie Héros : " + laby.getLaby().heros.getPv(),10,30);
+        for(int i=1;i<=laby.getLaby().monstres.size();i++){
+            gc.fillText("Points de vie Monstre n°" + i + ": " + laby.getLaby().monstres.get(i-1).getPv(),10,i*20+30);
+        }
     }
 }

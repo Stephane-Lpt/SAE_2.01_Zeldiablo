@@ -299,11 +299,10 @@ public class Labyrinthe {
     public void faireActionMonstres(){
         for(Monstre m : this.monstres){
             if(!(verifierPresenceHerosCaseAdjacente(m.x,m.y))){
-                deplacerMonstre1(m);
+                deplacerMonstre(m);
             }
             else{
                 m.attaquer(this.heros);
-                System.out.println(this.heros.getPv());
             }
         }
     }
@@ -311,7 +310,7 @@ public class Labyrinthe {
      * deplace tous les monstres en fonction de l'action.
      * gere la collision avec les murs et les personnages
      */
-    public void deplacerMonstre1(Monstre m) {
+    public void deplacerMonstre(Monstre m) {
         int[] courante = {m.x, m.y};
         int[] h = getSuivant(courante[0], courante[1], Labyrinthe.HAUT);
         int[] b = getSuivant(courante[0], courante[1], Labyrinthe.BAS);
@@ -445,6 +444,20 @@ public class Labyrinthe {
         }
         return false;
         // Cette méthode permet d'éviter de la duplication de la méthode etrePresent
+    }
+
+    public void attaquerMonstresAutour(){
+        for(Monstre m : this.verifierPresenceMonstreCaseAdjacente(this.heros.x, this.heros.y)){
+            this.heros.attaquer(m);
+            if(m.etreMort()){
+                this.monstres.remove(m);
+            }
+        }
+        try {
+            Thread.sleep(1000); // L'attaque a lieu et empêche le déplacement du joueur pendant 1 secondes
+        } catch(InterruptedException e){
+            e.getStackTrace();
+        }
     }
 
 

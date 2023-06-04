@@ -13,7 +13,7 @@ public class LabyJeu implements Jeu{
 
     public LabyJeu(){
         try {
-            this.laby = new Labyrinthe("zeldiablo/project/labySimple/laby1.txt");
+            this.laby = new Labyrinthe("zeldiablo/project/labySimple/labyPlusieursMonstres.txt");
         }
         catch(IOException e){
             System.err.println("Erreur de chargement du fichier pour charger le labyrinthe");
@@ -42,18 +42,7 @@ public class LabyJeu implements Jeu{
             this.laby.deplacerPerso(Labyrinthe.BAS);
         }
         if (clavier.espace){
-            for(Monstre m : this.laby.verifierPresenceMonstreCaseAdjacente(this.laby.heros.x, this.laby.heros.y)){
-                this.laby.heros.attaquer(m);
-                if(m.etreMort()){
-                    this.laby.monstres.remove(m);
-                }
-                System.out.println(m.getPv());
-            }
-            try {
-                Thread.sleep(1000); // L'attaque a lieu et empêche le déplacement du joueur pendant 1 secondes
-            } catch(InterruptedException e){
-                e.getStackTrace();
-            }
+            this.laby.attaquerMonstresAutour();
         }
         if (Math.random() < (secondes / 5)) {
             this.laby.faireActionMonstres();
