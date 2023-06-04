@@ -62,11 +62,14 @@ public class LabyDessin implements DessinJeu {
         gc.fillRect(laby.getLaby().depart.getX()*tailleCaseL, laby.getLaby().depart.getY()*tailleCaseH, tailleCaseL, tailleCaseH);
 
         // Affichage du monstre
-
-
-        gc.setFill(Color.PURPLE);
         for(Monstre m : laby.getLaby().monstres){
-            gc.fillOval(m.x*tailleCaseL,m.y*tailleCaseH, tailleCaseL, tailleCaseH);
+            if(m instanceof Fantome){
+                gc.setFill(Color.DARKGRAY);
+                gc.fillOval(m.x*tailleCaseL,m.y*tailleCaseH, tailleCaseL, tailleCaseH);
+            } else {
+                gc.setFill(Color.PURPLE);
+                gc.fillOval(m.x*tailleCaseL,m.y*tailleCaseH, tailleCaseL, tailleCaseH);
+            }
         }
 
         // Affichage du perso en dernier pour qu'il soit au premier plan

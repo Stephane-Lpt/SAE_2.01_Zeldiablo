@@ -26,6 +26,8 @@ public class Labyrinthe {
 
     public static final char MONSTRE = 'M';
 
+    public static final char FANTOME = 'F';
+
     public static final char AMULETTE = 'A';
 
     public static final char CASEPIEGEE = 'p';
@@ -160,6 +162,12 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute monstre dans liste
                         this.monstres.add(new Monstre(colonne, numeroLigne, 2));
+                        break;
+                    case FANTOME:
+                        // pas de mur
+                        this.murs[colonne][numeroLigne] = false;
+                        // ajoute monstre dans liste
+                        this.monstres.add(new Fantome(colonne, numeroLigne, 2));
                         break;
                     case CASEPIEGEE:
                         this.cases.add(new CasePiegee(colonne, numeroLigne));
@@ -330,7 +338,12 @@ public class Labyrinthe {
         for (int i = 0; i < classement.size(); i++) {
             int[] suivante = classement.get(i).getCoord();
 
-            if (etreLibre(suivante[0], suivante[1])) {
+            if(m instanceof Fantome && verifierPresenceMonstreCaseAdjacente(m.x, m.y).isEmpty()){
+                m.x = suivante[0];
+                m.y = suivante[1];
+                verifierPresenceCase(suivante[0], suivante[1], m);
+                break;
+            } else if (etreLibre(suivante[0], suivante[1])) {
                 m.x = suivante[0];
                 m.y = suivante[1];
                 verifierPresenceCase(suivante[0], suivante[1], m);
@@ -437,10 +450,8 @@ public class Labyrinthe {
      * @return true si le personnage est présent sur une case adjacente ou false sinon
      */
     public boolean verifierPresenceHerosCaseAdjacente(int x,int y){
-        if(!this.murs[x][y]){
-            if(this.heros.etrePresent(x+1, y) || this.heros.etrePresent(x,y+1) || this.heros.etrePresent(x-1,y) || this.heros.etrePresent(x,y-1)){
-                return true;
-            }
+        if(this.heros.etrePresent(x+1, y) || this.heros.etrePresent(x,y+1) || this.heros.etrePresent(x-1,y) || this.heros.etrePresent(x,y-1)){
+            return true;
         }
         return false;
         // Cette méthode permet d'éviter de la duplication de la méthode etrePresent
