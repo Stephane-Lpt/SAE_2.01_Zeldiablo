@@ -89,4 +89,14 @@ public class TestFinJeu {
         this.labyAmulette.monstre.setX(5);
         assertFalse(this.labyAmulette.etreFini());
     }
+
+    @Test
+    public void testHerosZeroPv(){
+        //initialisation, on déplace le personnage sur l'amulette
+        this.labyAmulette.heros.changerPv(0);
+
+        //récupération de l'amulette
+        //vérification
+        assertTrue(this.labyAmulette.etreFini());
+    }
 }
