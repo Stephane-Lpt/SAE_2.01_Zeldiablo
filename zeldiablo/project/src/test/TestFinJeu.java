@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import static gameLaby.laby.Labyrinthe.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestFinJeu {
@@ -12,14 +13,13 @@ public class TestFinJeu {
 
     @BeforeEach
     public void beforeEach() throws IOException {
-        labyAmulette = new Labyrinthe("zeldiablo/project/labySimple/laby1.txt");
+        labyAmulette = new Labyrinthe("zeldiablo/project/labySimple/test_Amulette.txt");
     }
 
     @Test
     public void testRecupererAmulette(){
         //initialisation, on déplace le personnage sur l'amulette
-        this.labyAmulette.heros.setX(1);
-        this.labyAmulette.heros.setY(8);
+        this.labyAmulette.deplacerPerso(HAUT);
 
         //récupération de l'amulette
         //vérification
@@ -29,32 +29,29 @@ public class TestFinJeu {
     @Test
     public void testFinJeu(){
         //initialisation, on déplace le personnage sur l'amulette
-        this.labyAmulette.heros.setX(1);
-        this.labyAmulette.heros.setY(8);
+        this.labyAmulette.deplacerPerso(HAUT);
 
         //vérification, on déplace le personnage sur la case de sortie
-        this.labyAmulette.heros.setX(5);
-        this.labyAmulette.heros.setX(5);
+        this.labyAmulette.deplacerPerso(BAS);
         assertTrue(this.labyAmulette.etreFini());
     }
 
     @Test
     public void testFinSansAmulette(){
         //initialisation, on déplace le personnage mais pas sur l'amulette
-        this.labyAmulette.heros.setX(5);
-        this.labyAmulette.heros.setY(7);
+        this.labyAmulette.deplacerPerso(DROITE);
 
         //vérification, on déplace le personnage sur la case de sortie
-        this.labyAmulette.heros.setX(5);
-        this.labyAmulette.heros.setY(5);
+        this.labyAmulette.deplacerPerso(GAUCHE);
         assertFalse(this.labyAmulette.etreFini());
     }
 
     @Test
     public void testRecupererAmuletteMonstre(){
-        //initialisation, on déplace le monstre sur l'amulette
-        this.labyAmulette.monstre.setX(1);
-        this.labyAmulette.monstre.setY(8);
+        //initialisation, on déplace le perso sur un coté de l'amulette eton déplace le monstre sur l'amulette
+        this.labyAmulette.deplacerPerso(DROITE);
+        this.labyAmulette.deplacerPerso(HAUT);
+        this.labyAmulette.deplacerMonstreIntelligent();
 
         //non récupération de l'amulette
         //vérification
@@ -64,11 +61,9 @@ public class TestFinJeu {
     @Test
     public void testAmuletteToujoursPresenteApresPassageMonstre(){
         //initialisation, on déplace le monstre sur l'amulette puis on l'enlève et enfin on déplace le personnage sur l'amulette
-        this.labyAmulette.monstre.setX(1);
-        this.labyAmulette.monstre.setY(8);
-
-        this.labyAmulette.monstre.setX(1);
-        this.labyAmulette.monstre.setY(1);
+        this.labyAmulette.deplacerPerso(DROITE);
+        this.labyAmulette.deplacerPerso(HAUT);
+        this.labyAmulette.deplacerMonstreIntelligent();
 
         this.labyAmulette.heros.setX(1);
         this.labyAmulette.heros.setY(8);
