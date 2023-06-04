@@ -451,5 +451,12 @@ public class Labyrinthe {
         // Cette méthode permet d'éviter de la duplication de la méthode etrePresent
     }
 
+    public void attaqueHeros(){
+        ArrayList<Monstre> l = verifierPresenceMonstreCaseAdjacente(this.heros.getX(), this.heros.getY());
+        for(Monstre m : l){
+            this.heros.attaquer(m);
+        }
+    }
+
 
 }

@@ -98,7 +98,7 @@ public class TestComportementMonstre {
     @Test
     public void testMonstreIntelligent(){
         //méthode testée, 1er appel
-        this.labyMonstreIntelligent.deplacerMonstreIntelligent();
+        this.labyMonstreIntelligent.deplacerMonstreIntelligent(this.labyMonstreIntelligent.monstres.get(0));
 
         //1er vérification
         int x = this.labyMonstreIntelligent.monstres.get(0).getX();
@@ -107,7 +107,7 @@ public class TestComportementMonstre {
         assertEquals(3, y);
 
         //méthode testée, 2eme appel
-        this.labyMonstreIntelligent.deplacerMonstreIntelligent();
+        this.labyMonstreIntelligent.deplacerMonstreIntelligent(this.labyMonstreIntelligent.monstres.get(0));
 
         //2eme vérification
         x = this.labyMonstreIntelligent.monstres.get(0).getX();
@@ -116,7 +116,7 @@ public class TestComportementMonstre {
         assertEquals(2, y);
 
         //méthode testée, 3eme appel
-        this.labyMonstreIntelligent.deplacerMonstreIntelligent();
+        this.labyMonstreIntelligent.deplacerMonstreIntelligent(this.labyMonstreIntelligent.monstres.get(0));
 
         //3eme vérification
         x = this.labyMonstreIntelligent.monstres.get(0).getX();
@@ -125,7 +125,7 @@ public class TestComportementMonstre {
         assertEquals(1, y);
 
         //méthode testée, 4eme appel
-        this.labyMonstreIntelligent.deplacerMonstreIntelligent();
+        this.labyMonstreIntelligent.deplacerMonstreIntelligent(this.labyMonstreIntelligent.monstres.get(0));
 
         //4eme vérification
         x = this.labyMonstreIntelligent.monstres.get(0).getX();
@@ -134,7 +134,7 @@ public class TestComportementMonstre {
         assertEquals(1, y);
 
         //méthode testée, 5eme appel
-        this.labyMonstreIntelligent.deplacerMonstreIntelligent();
+        this.labyMonstreIntelligent.deplacerMonstreIntelligent(this.labyMonstreIntelligent.monstres.get(0));
 
         //5eme vérification
         x = this.labyMonstreIntelligent.monstres.get(0).getX();
@@ -143,7 +143,7 @@ public class TestComportementMonstre {
         assertEquals(1, y);
 
         //méthode testée, 6eme appel
-        this.labyMonstreIntelligent.deplacerMonstreIntelligent();
+        this.labyMonstreIntelligent.deplacerMonstreIntelligent(this.labyMonstreIntelligent.monstres.get(0));
 
         //6eme vérification
         x = this.labyMonstreIntelligent.monstres.get(0).getX();
@@ -152,7 +152,7 @@ public class TestComportementMonstre {
         assertEquals(1, y);
 
         //méthode testée, 7eme appel
-        this.labyMonstreIntelligent.deplacerMonstreIntelligent();
+        this.labyMonstreIntelligent.deplacerMonstreIntelligent(this.labyMonstreIntelligent.monstres.get(0));
 
         //7eme vérification
         x = this.labyMonstreIntelligent.monstres.get(0).getX();
@@ -161,7 +161,7 @@ public class TestComportementMonstre {
         assertEquals(1, y);
 
         //méthode testée, 8eme appel
-        this.labyMonstreIntelligent.deplacerMonstreIntelligent();
+        this.labyMonstreIntelligent.deplacerMonstreIntelligent(this.labyMonstreIntelligent.monstres.get(0));
 
         //8eme vérification
         x = this.labyMonstreIntelligent.monstres.get(0).getX();
@@ -170,7 +170,7 @@ public class TestComportementMonstre {
         assertEquals(1, y);
 
         //méthode testée, 9eme appel
-        this.labyMonstreIntelligent.deplacerMonstreIntelligent();
+        this.labyMonstreIntelligent.deplacerMonstreIntelligent(this.labyMonstreIntelligent.monstres.get(0));
 
         //9eme vérification
         x = this.labyMonstreIntelligent.monstres.get(0).getX();
@@ -179,7 +179,7 @@ public class TestComportementMonstre {
         assertEquals(2, y);
 
         //méthode testée, 10eme appel
-        this.labyMonstreIntelligent.deplacerMonstreIntelligent();
+        this.labyMonstreIntelligent.deplacerMonstreIntelligent(this.labyMonstreIntelligent.monstres.get(0));
 
         //10eme vérification
         x = this.labyMonstreIntelligent.monstres.get(0).getX();
@@ -188,7 +188,7 @@ public class TestComportementMonstre {
         assertEquals(3, y);
 
         //méthode testée, 11eme appel
-        this.labyMonstreIntelligent.deplacerMonstreIntelligent();
+        this.labyMonstreIntelligent.deplacerMonstreIntelligent(this.labyMonstreIntelligent.monstres.get(0));
 
         //11eme vérification
         x = this.labyMonstreIntelligent.monstres.get(0).getX();
