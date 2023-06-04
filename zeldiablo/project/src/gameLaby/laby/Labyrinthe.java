@@ -301,37 +301,43 @@ public class Labyrinthe {
     }
 
     /**
-     * deplace un monstre en fonction de l'action.
+     * deplace tous les monstres en fonction de l'action.
      * gere la collision avec les murs et les personnages
      */
     public void deplacerMonstre() {
 
         for(Monstre m : this.monstres){
-            int[] courante = {m.x, m.y};
-            int[] h=getSuivant(courante[0], courante[1], Labyrinthe.HAUT);
-            int[] b=getSuivant(courante[0], courante[1], Labyrinthe.BAS);
-            int[] d=getSuivant(courante[0], courante[1], Labyrinthe.DROITE);
-            int[] g=getSuivant(courante[0], courante[1], Labyrinthe.GAUCHE);
+            if(!(verifierPresenceHerosCaseAjacente(m.x,m.y))){
+                int[] courante = {m.x, m.y};
+                int[] h = getSuivant(courante[0], courante[1], Labyrinthe.HAUT);
+                int[] b = getSuivant(courante[0], courante[1], Labyrinthe.BAS);
+                int[] d = getSuivant(courante[0], courante[1], Labyrinthe.DROITE);
+                int[] g = getSuivant(courante[0], courante[1], Labyrinthe.GAUCHE);
 
-            Tuple tH=new Tuple(h, Math.sqrt(Math.pow(this.heros.x - h[0], 2) + Math.pow(this.heros.y - h[1], 2)));
-            Tuple tB=new Tuple(b, Math.sqrt(Math.pow(this.heros.x - b[0], 2) + Math.pow(this.heros.y - b[1], 2)));
-            Tuple tD=new Tuple(d, Math.sqrt(Math.pow(this.heros.x - d[0], 2) + Math.pow(this.heros.y - d[1], 2)));
-            Tuple tG=new Tuple(g, Math.sqrt(Math.pow(this.heros.x - g[0], 2) + Math.pow(this.heros.y - g[1], 2)));
+                Tuple tH = new Tuple(h, Math.sqrt(Math.pow(this.heros.x - h[0], 2) + Math.pow(this.heros.y - h[1], 2)));
+                Tuple tB = new Tuple(b, Math.sqrt(Math.pow(this.heros.x - b[0], 2) + Math.pow(this.heros.y - b[1], 2)));
+                Tuple tD = new Tuple(d, Math.sqrt(Math.pow(this.heros.x - d[0], 2) + Math.pow(this.heros.y - d[1], 2)));
+                Tuple tG = new Tuple(g, Math.sqrt(Math.pow(this.heros.x - g[0], 2) + Math.pow(this.heros.y - g[1], 2)));
 
-            ArrayList<Tuple> classement = new ArrayList<Tuple>();
-            classement.addAll(Arrays.asList(tH,tB,tD,tG));
+                ArrayList<Tuple> classement = new ArrayList<Tuple>();
+                classement.addAll(Arrays.asList(tH, tB, tD, tG));
 
-            Collections.sort(classement, (t1, t2) -> Double.compare(t1.getDist(), t2.getDist()));
+                Collections.sort(classement, (t1, t2) -> Double.compare(t1.getDist(), t2.getDist()));
 
-            for (int i = 0; i < classement.size(); i++) {
-                int[] suivante = classement.get(i).getCoord();
+                for (int i = 0; i < classement.size(); i++) {
+                    int[] suivante = classement.get(i).getCoord();
 
-                if (etreLibre(suivante[0], suivante[1])) {
-                    m.x = suivante[0];
-                    m.y = suivante[1];
-                    verifierPresenceCase(suivante[0], suivante[1], m);
-                    break;
+                    if (etreLibre(suivante[0], suivante[1])) {
+                        m.x = suivante[0];
+                        m.y = suivante[1];
+                        verifierPresenceCase(suivante[0], suivante[1], m);
+                        break;
+                    }
                 }
+            }
+            else{
+                this.heros.changerPv(-1);
+                System.out.println(this.heros.getPv());
             }
         }
 
@@ -415,4 +421,40 @@ public class Labyrinthe {
 
 
     }
+
+    /**
+     * Verifie si un monstre est présent sur une case adjacente à celle aux coordonnées x,y
+     * @param x le numéro de colonne de la case
+     * @param y le numéro de ligne de la case
+     * @return une liste de monstres qui sont présents sur les cases adjacentes
+     */
+    public ArrayList<Monstre> verifierPresenceMonstreCaseAdjacente(int x, int y){
+        ArrayList<Monstre> listePersosProche = new ArrayList<Monstre>();
+        if(!this.murs[x][y]){
+            for(Monstre m : this.monstres){
+                if(m.etrePresent(x+1, y) || m.etrePresent(x,y+1) || m.etrePresent(x-1,y) || m.etrePresent(x,y-1))
+                    listePersosProche.add(m);
+            }
+        }
+
+        return listePersosProche;
+    }
+
+    /**
+     * Verifie la présence du héros sur une case adjacente à celle aux coordonnées x,y
+     * @param x le numéro de colonne de la case
+     * @param y le numéro de ligne de la case
+     * @return true si le personnage est présent sur une case adjacente ou false sinon
+     */
+    public boolean verifierPresenceHerosCaseAjacente(int x,int y){
+        if(!this.murs[x][y]){
+            if(this.heros.etrePresent(x+1, y) || this.heros.etrePresent(x,y+1) || this.heros.etrePresent(x-1,y) || this.heros.etrePresent(x,y-1)){
+                return true;
+            }
+        }
+        return false;
+        // Cette méthode permet d'éviter de la duplication de la méthode etrePresent
+    }
+
+
 }
