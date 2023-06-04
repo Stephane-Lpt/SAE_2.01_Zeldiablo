@@ -1,0 +1,13 @@
+@startuml
+
+participant "Labyrinthe" as laby
+participant "Monstre" as monstre
+participant "Tuple" as tuple
+participant "Héros" as heros
+
+
+
+
+
+
+@enduml

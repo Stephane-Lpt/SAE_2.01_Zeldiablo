@@ -59,6 +59,9 @@ public class LabyJeu implements Jeu{
         if(etreFini()){
             Platform.exit();
         }
+        if(clavier.espace){
+            this.laby.attaqueHeros();
+        }
     }
 
     /**
