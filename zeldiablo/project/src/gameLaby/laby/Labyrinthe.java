@@ -251,13 +251,16 @@ public class Labyrinthe {
     }
 
     /**
-     * jamais fini
+     * Fini si le héros est mort ou si il atteint l'entrée avec l'amulette
      *
      * @return fin du jeu
      */
     public boolean etreFini() {
         if((this.heros.x==this.depart.x) && (this.heros.y==this.depart.y) && (this.amulette.getPossede())){
             System.out.println("Bien joué, tu as gagné");
+            return true;
+        } else if (this.heros.etreMort()) {
+            System.out.println("Le héros est mort, tu as perdu");
             return true;
         } else{
             return false;
