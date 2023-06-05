@@ -34,9 +34,15 @@ loop i (pour chaque tuple dans classement)
     laby -> tuple: suivante = classement.get(i).getCoord()
     laby -> laby: estLibre(suivante[0], suivante[1])
     laby <-- laby: boolean
-    alt (si la case suivante est libre)
+    alt (monstre=Fantome et case libre ou mur)
         laby -> monstre: monstre.x = suivante[0]
         laby -> monstre: monstre.y = suivante[1]
+    else (case libre)
+        laby -> monstre: monstre.x = suivante[0]
+        laby -> monstre: monstre.y = suivante[1]
+        alt (si monstre=Troll et pas pris de dégat)
+          laby -> monstre: changerPv(1);
+        end
     end
 end
 
