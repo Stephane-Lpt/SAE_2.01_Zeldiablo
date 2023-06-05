@@ -307,6 +307,9 @@ public class Labyrinthe {
         return this.murs[x][y];
     }
 
+    /**
+     * méthode qui permet de choisir l'action que le monstre affectue : attaquer ou se déplacer
+     */
     public void faireActionMonstres(){
         for(Monstre m : this.monstres){
             if(!(verifierPresenceHerosCaseAdjacente(m.x,m.y))){
@@ -424,6 +427,11 @@ public class Labyrinthe {
         return graphe;
     }
 
+    /**
+     * méthode qui utilise l'algorithme de Dijkstra pour permettre aux monstres de se déplacer intelligemment
+     *
+     * @param m le monstre à faire déplacer
+     */
     public void deplacerMonstreIntelligent(Monstre m){
         GrapheListe g = this.genererGraphe();
 
@@ -469,6 +477,9 @@ public class Labyrinthe {
         // Cette méthode permet d'éviter de la duplication de la méthode etrePresent
     }
 
+    /**
+     * méthode qui permet de vérifier les monstres présents autour du personnage et de les attaquer
+     */
     public void attaquerMonstresAutour(){
         for(Monstre m : this.verifierPresenceMonstreCaseAdjacente(this.heros.x, this.heros.y)){
             this.heros.attaquer(m);
