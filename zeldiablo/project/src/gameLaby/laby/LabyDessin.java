@@ -81,10 +81,10 @@ public class LabyDessin implements DessinJeu {
             for (Monstre m : laby.getLaby().monstres) {
                 if (m instanceof Fantome) {
                     gc.drawImage(SwingFXUtils.toFXImage(spriteFantome, null), m.x * tailleCaseL, m.y * tailleCaseH, tailleCaseL, tailleCaseH);
-                }/*
+                }
                 else if(m instanceof Troll){
                     gc.drawImage(SwingFXUtils.toFXImage(spriteTroll, null), m.x * tailleCaseL, m.y * tailleCaseH, tailleCaseL, tailleCaseH);
-                }*/
+                }
                 else {
                     gc.drawImage(SwingFXUtils.toFXImage(spriteMonstre, null), m.x * tailleCaseL, m.y * tailleCaseH, tailleCaseL, tailleCaseH);
                 }
@@ -101,6 +101,9 @@ public class LabyDessin implements DessinJeu {
                 if (m instanceof Fantome) {
                     gc.setFill(Color.DARKGRAY);
                     gc.fillOval(m.x * tailleCaseL, m.y * tailleCaseH, tailleCaseL, tailleCaseH);
+                }else if(m instanceof Troll) {
+                        gc.setFill(Color.DARKGREEN);
+                        gc.fillOval(m.x * tailleCaseL, m.y * tailleCaseH, tailleCaseL, tailleCaseH);
                 } else {
                     gc.setFill(Color.PURPLE);
                     gc.fillOval(m.x * tailleCaseL, m.y * tailleCaseH, tailleCaseL, tailleCaseH);

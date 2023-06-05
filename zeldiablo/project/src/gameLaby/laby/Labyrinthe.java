@@ -28,6 +28,8 @@ public class Labyrinthe {
 
     public static final char FANTOME = 'F';
 
+    public static final char TROLL = 'T';
+
     public static final char AMULETTE = 'A';
 
     public static final char CASEPIEGEE = 'p';
@@ -58,7 +60,6 @@ public class Labyrinthe {
      */
     public boolean[][] murs;
 
-
     /**
      * Les cases du labyrinthe
      */
@@ -70,6 +71,8 @@ public class Labyrinthe {
     public Amulette amulette;
 
     public Entite depart;
+
+
 
     /**
      * retourne la case suivante selon une actions
@@ -166,8 +169,14 @@ public class Labyrinthe {
                     case FANTOME:
                         // pas de mur
                         this.murs[colonne][numeroLigne] = false;
-                        // ajoute monstre dans liste
+                        // ajoute fantome dans liste
                         this.monstres.add(new Fantome(colonne, numeroLigne, 2));
+                        break;
+                    case TROLL:
+                        // pas de mur
+                        this.murs[colonne][numeroLigne] = false;
+                        // ajoute troll dans liste
+                        this.monstres.add(new Troll(colonne, numeroLigne, 3));
                         break;
                     case CASEPIEGEE:
                         this.cases.add(new CasePiegee(colonne, numeroLigne));
@@ -223,9 +232,7 @@ public class Labyrinthe {
 
         }
 
-
     }
-
 
     /**
      * permet de vérifier s'il y a une case (Déclencheur, Piège, ...) présente à des coordonnées du labyrinthe ET de faire une action sur le personnage qui est sur la case
@@ -271,10 +278,6 @@ public class Labyrinthe {
         }
     }
 
-    // ##################################
-    // GETTER
-    // ##################################
-
     /**
      * return taille selon Y
      *
@@ -314,6 +317,7 @@ public class Labyrinthe {
             }
         }
     }
+
     /**
      * deplace tous les monstres en fonction de l'action.
      * gere la collision avec les murs et les personnages
@@ -347,8 +351,16 @@ public class Labyrinthe {
                 m.x = suivante[0];
                 m.y = suivante[1];
                 verifierPresenceCase(suivante[0], suivante[1], m);
+                if(m instanceof Troll){
+                    if(((Troll) m).getAjouterVieTroll()){
+                        m.changerPv(+1);
+                        System.out.println("ajouter de la vie + 1");
+                    }
+
+                }
                 break;
             }
+
         }
     }
 
@@ -460,6 +472,13 @@ public class Labyrinthe {
     public void attaquerMonstresAutour(){
         for(Monstre m : this.verifierPresenceMonstreCaseAdjacente(this.heros.x, this.heros.y)){
             this.heros.attaquer(m);
+            if(m instanceof Troll){
+                ((Troll) m).setAjouterVieTroll(false);
+                System.out.println("ajouter vie a faux");
+            }else{
+                ((Troll) m).setAjouterVieTroll(true);
+                System.out.println("ajouter vie a vrai");
+            }
             if(m.etreMort()){
                 this.monstres.remove(m);
             }
