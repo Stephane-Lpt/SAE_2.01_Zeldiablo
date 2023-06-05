@@ -1,4 +1,4 @@
-Fonctionnalité 1 : Fin du jeu : mort du héros
+﻿Fonctionnalité 1 : Fin du jeu : mort du héros: Jawad/Nathan
 
 Descriptif :
     Lorsque le héros n'a plus de points de vie, le jeu s'arrête et la partie est perdue.
@@ -9,7 +9,7 @@ Critères de validation
     - Quand le héros meurt, un message de fin est affiché sur la console et le jeu s'arrête.
 
 
-Fonctionnalité 2 : Mise en place de l'amulette
+Fonctionnalité 2 : Mise en place de l'amulette: Jawad/Nathan
 
 Descriptif :
     Au lancement du jeu, une amulette est placée sur une case vide du labyrinthe. Le placement de l'amulette est toujours le même et dépend du niveau.
@@ -20,7 +20,7 @@ Critères de validation
     - L'amulette est affichée dans le jeu sous la forme d'un cercle jaune sur la case vide où elle se trouve.
 
 
-Fonctionnalité 3 : Acquisition de l'amulette
+Fonctionnalité 3 : Acquisition de l'amulette: Jawad/Nathan
 
 Descriptif :
     Dés que le joueur demande à déplacer le héros sur l'amulette, le héros se déplace et prend l'amulette.
@@ -31,7 +31,7 @@ Critères de validation
     - Un monstre ne récupère pas l'amulette.
 
 
-Fonctionnalité 4 : Fin du jeu : victoire du héros
+Fonctionnalité 4 : Fin du jeu : victoire du héros: Jawad/Nathan
 
 Descriptif :
     Une fois que le héros a pris l'amulette, il peut retourner à l'entrée du labyrinthe et remporter le jeu.
@@ -41,7 +41,7 @@ Critères de validation
     - Lorsque le héros ne possède pas l'amulette, le jeu ne s'arrête pas même si le héros retourne à l'entrée.
 
 
-Fonctionnalité 5 : Attaque des monstres
+Fonctionnalité 5 : Attaque des monstres: Stéphane/Stanislas
 
 Descriptif :
     Lorsqu'un monstre doit agir, si le monstre se trouve à coté du héros, alors il ne se déplace pas mais il attaque celui-ci.
@@ -51,7 +51,7 @@ Critères de validation
     - Lorsque le monstre est loin du joueur, il n'attaque pas mais se déplace.
 
 
-Fonctionnalité 6 : Attaque du joueur
+Fonctionnalité 6 : Attaque du joueur: Stéphane/Stanislas
 
 Descriptif :
     Lorsque le joueur appuie sur une touche donnée (par défaut la touche espace), il effectue une attaque contre les monstres qui se trouvent à côté de lui.
@@ -63,7 +63,7 @@ Critères de validation
     - S'il n'y a aucun monstre autour du joueur, l'attaque à quand même lieu et empêche le déplacement du joueur, mais les monstres ne prennent pas de dégâts.
 
 
-Fonctionnalité 7 : Mort des monstres
+Fonctionnalité 7 : Mort des monstres: Stéphane/Stanislas
 
 Descriptif :
     Lorsqu'un monstre n'a plus de points de vie, il meurt et disparait du jeu.
