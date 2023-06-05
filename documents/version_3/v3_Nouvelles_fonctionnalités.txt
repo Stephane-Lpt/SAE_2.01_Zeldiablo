@@ -1,11 +1,11 @@
-- fonctionnalité 1 : 1.4 Cases déclencheur
+﻿- fonctionnalité 1 : 1.4 Cases déclencheur: Stéphane/Stanislas
 - descriptif texte : Lorsque une entité arrive sur certaines cases, ces cases déclenchent un eet.
 - critères de validation :
    - critère 1 Les cases avec effet sont des cases traversables.
    - critère 2 Lorsqu'un personnage (héros ou monstre) marche sur cette case, elle déclenche immédiatement un effet
    - critère 3 Cet effet se traduit pour le moment, par un affichage dans la console à préciser.
 
-- foncitonnalité 2 : 1.5 Cases piégées
+- foncitonnalité 2 : 1.5 Cases piégées: Stéphane/Stanislas
 - descriptif texte : Lorsque une entité (héros ou monstre) arrive sur une case piégée, il subit des dégâts.
 - crtières de validation :
     - critère 1 Les dégâts ne se déclenchent que lorsque le joueur arrive sur la case, il peut ensuite rester sur cette case aussi longtemps qu'il le souhaite sans subir d'autres dégâts.
@@ -13,7 +13,7 @@
     - critère 3 (optionnel) Lorsqu'une case a été détectée comme un piège, elle s'affiche différemment dans le labyrinthe (en brun) ce qui permet au joueur d'en tenir compte ensuite
 
 
-- fonctionnalité 3 : 2.5 Monstres avec intelligence variable
+- fonctionnalité 3 : 2.5 Monstres avec intelligence variable: Jawad/Nathan
 - descriptif texte : En plus d'être de type différents (orc, troll, fantôme), les monstres peuvent avoir
                      des degré d'intelligence différent. En fonction de ce degré d'intelligence, ils se déplacent
                      différemment.

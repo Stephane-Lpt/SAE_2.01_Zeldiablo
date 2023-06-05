@@ -1,4 +1,4 @@
-Fonctionnalité 1 : Fantômes
+﻿Fonctionnalité 1 : Fantômes: Jawad/Nathan
 
 Descriptif :
     Le labyrinthe dispose d'un nouveau type de monstre : les fantômes.
@@ -8,7 +8,7 @@ Critères de validation
     - Les attaques des fantômes fonctionnent de la même manière que les attaques des monstres de base.
 
 
-Fonctionnalité 2 : Troll
+Fonctionnalité 2 : Troll: Jawad/Nathan
 
 Descriptif :
     Les trolls sont un nouveau type de monstre. Un troll se régénère au fur et à mesure.
@@ -19,7 +19,7 @@ Critères de validation
     - Un troll a par défaut 3 points de vie (à adapter).
 
 
-Fonctionnalité 3 : Affichage avec des sprites
+Fonctionnalité 3 : Affichage avec des sprites: Stéphane/Stanislas
 
 Descriptif :
     La fenêtre n'affiche plus des figures de base (rond, ...) mais des sprites représentant les personnages et les objets
@@ -31,7 +31,7 @@ Critères de validation
     - Il est possible de charger une image (de type BufferedImage en mémoire grâce à la classe ImageIO et la méthode statique read).
 
 
-Fonctionnalité 4 : Configuration du clavier
+Fonctionnalité 4 : Configuration du clavier: Stéphane/Stanislas
 
 Descriptif :
     Il est possible de reconfigurer dans un fichier texte les touches pour contrôler le personnage.
@@ -42,7 +42,7 @@ Critères de validation
     - le fichier de configuration est chargé une seule fois au lancement de l'application.
 
 
-Fonctionnalité 5 : Labyrinthe par défaut
+Fonctionnalité 5 : Labyrinthe par défaut: Jawad/Nathan
 
 Descriptif :
     Au lancement du jeu, un labyrinthe par défaut est créé et le personnage est placé au centre de celui-ci.
