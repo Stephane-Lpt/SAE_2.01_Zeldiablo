@@ -184,7 +184,7 @@ Objet <|-- Amulette
 
 
 Labyrinthe "1" -> "1" Heros: - heros
-Labyrinthe "1" -> "1" Monstre : - monstre
+Labyrinthe "1" -> "0..*" Monstre : - monstre
 Labyrinthe "1" -> "1" Entite : - depart
 Labyrinthe "1" -> "1" Amulette : - amulette
 LabyJeu "1" -> "1" Labyrinthe : - laby
