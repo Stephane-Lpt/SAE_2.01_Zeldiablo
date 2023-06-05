@@ -1,0 +1,12 @@
+10
+10
+XXXXXXXXXX
+X......MAX
+X......MMX
+X........X
+X...P....X
+X........X
+X........X
+X........X
+X........X
+XXXXXXXXXX
