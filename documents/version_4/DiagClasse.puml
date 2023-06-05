@@ -43,7 +43,7 @@ class Clavier{
 - bas: boolean
 - gauche: boolean
 - droite: boolean
-- espace : boolean
+- attaque : boolean
 + appuyerTouche(event : KeyEvent)
 + relacherTouche(event : KeyEvent)
 }

@@ -13,7 +13,7 @@ public class LabyJeu implements Jeu{
 
     public LabyJeu(){
         try {
-            this.laby = new Labyrinthe("zeldiablo/project/labySimple/test_Fantome.txt");
+            this.laby = new Labyrinthe("zeldiablo/project/labySimple/labyPlusieursMonstres.txt");
         }
         catch(IOException e){
             System.err.println("Erreur de chargement du fichier pour charger le labyrinthe");
@@ -41,7 +41,7 @@ public class LabyJeu implements Jeu{
         if (clavier.bas) {
             this.laby.deplacerPerso(Labyrinthe.BAS);
         }
-        if (clavier.espace){
+        if (clavier.attaque){
             this.laby.attaquerMonstresAutour();
         }
         if (Math.random() < (secondes / 5)) {

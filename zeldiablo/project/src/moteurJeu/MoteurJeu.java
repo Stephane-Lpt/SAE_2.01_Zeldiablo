@@ -47,7 +47,7 @@ public class MoteurJeu extends Application {
     /**
      * touches appuyee entre deux frame
      */
-    Clavier controle = new Clavier();
+    Clavier controle = new Clavier("zeldiablo/project/configTouches.txt");
 
     /**
      * lancement d'un jeu

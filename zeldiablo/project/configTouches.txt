@@ -1,0 +1,5 @@
+Haut:T
+Bas:G
+Gauche:F
+Droite:H
+Attaquer:M
