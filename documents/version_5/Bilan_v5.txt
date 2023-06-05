@@ -1,0 +1,15 @@
+Bilan Version 5 :
+
+Bug résolu :
+	- aucun (à notre connaissance)
+
+Bug restant :
+	- vitesse de la partie : le personnage se déplace trop vite et les monstres pas assez
+
+Ce qui a été validé :
+    - ajout de deux nouveaux monstres :
+        - les fantômes, ils peuvent passer à travers les murs
+        - les trolls, ils peuvent récupérer des points de vie
+    - l'affichage amélioré de nos personnages et monstres
+    - la configuration personnalisée du clavier
+    - l'ajout d'un labyrinthe par défaut
