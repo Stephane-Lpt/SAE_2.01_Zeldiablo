@@ -16,7 +16,11 @@ public class LabyJeu implements Jeu{
             this.laby = new Labyrinthe("zeldiablo/project/labySimple/labyPlusieursMonstres.txt");
         }
         catch(IOException e){
-            System.err.println("Erreur de chargement du fichier pour charger le labyrinthe");
+            try{
+                this.laby = new Labyrinthe("zeldiablo/project/labySimple/labyDefaut.txt");
+            } catch (IOException e1){
+                System.err.println("Erreur de chargement du fichier pour charger le labyrinthe");
+            }
         }
     }
 

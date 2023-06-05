@@ -43,7 +43,7 @@ class Clavier{
 - bas: boolean
 - gauche: boolean
 - droite: boolean
-- attaque : boolean
+- espace : boolean
 + appuyerTouche(event : KeyEvent)
 + relacherTouche(event : KeyEvent)
 }
@@ -54,109 +54,130 @@ MoteurJeu "1" --> "1" Clavier : - clavier
 package gameLaby{
 
 class LabyJeu{
-- laby : Labyrinthe
-+ labyJeu()
-+ update(secondes : double, clavier : Clavier)
-+ init() : boolean
-+ getLaby() : Labyrinthe
+    - laby : Labyrinthe
+    + labyJeu()
+    + update(double, Clavier)
+    + init()
+    + etreFini() : boolean
+    + getLaby() : Labyrinthe
 }
 Jeu <|.. LabyJeu
 
 class LabyDessin{
-+ dessinerJeu(jeu : Jeu, canvas : Canvas)
-
+    + dessinerJeu(Jeu, Canvas)
 }
 
 class Labyrinthe{
     + {static} MUR : char
     + {static} PJ : char
-    + {static} MONSTRE : char
     + {static} VIDE : char
+    + {static} MONSTRE : char
+    + {static} FANTOME : char
+    + {static} TROLL : char
+    + {static} AMULETTE : char
+    + {static} CASEPIEGEE : char
+    + {static} CASEDECLENCHEUR : char
     + {static} HAUT : String
     + {static} BAS : String
     + {static} GAUCHE : String
     + {static} DROITE : String
-    + murs : boolean
-    + monstres : ArrayList<Monstre>
     + heros : Heros
+    + monstres : ArrayList<Monstre>
+    + murs : boolean[][]
     + cases : ArrayList<Case>
     + amulette : Amulette
     + depart : Entite
 
-    + Labyrinthe(String)
     + {static} getSuivant(int, int, String) : int[]
-    + deplacerPerso()
-    + deplacerMonstre(Monstre m)
-    + deplacerMonstreIntelligent(Monstre m)
-    + faireActionMonstres()
-    + attaquerMonstresAutour():
-    + verifierPresenceMonstreCaseAdjacente(int : x, int :y) : ArrayList<Monstre>
-    + verifierPresenceHerosCaseAdjacente(int : x, int : y) : boolean
+    + Labyrinthe(String)
+    + deplacerPerso(String)
+    + verifierPresenceCase(int, int, Perso)
     + etreFini() : boolean
     + getLengthY() : int
     + getLength() : int
     + getMur(int, int) : boolean
+    + faireActionMonstres()
+    + deplacerMonstre(Monstre m)
+    + ettreLibre(int, int) : boolean
+    + genererGraphe() : GrapheListe
+    + deplacerMonstreIntelligent(Monstre m)
+    + verifierPresenceMonstreCaseAdjacente(int : x, int :y) : ArrayList<Monstre>
+    + verifierPresenceHerosCaseAdjacente(int : x, int : y) : boolean
+    + attaquerMonstresAutour():
 }
 
 class Entite{
     + x : int
     + y : int
-    + Perso(int, int)
+    + Entite(int, int)
     + etrePresent(int, int) : boolean
     + getX() : int
     + getY() : int
+    + setX(int)
+    + setY(int)
 }
 abstract class Perso{
     - pv : int
-    + Perso(int : dx, int : dy, int : pV)
-    + abstract attaquer(Perso p)
-    + changerPv(int : v)
+    + Perso(int, int, int)
+    + abstract attaquer(Perso)
+    + changerPv(int)
     + getPv() : int
+    + etreMort() : boolean
 }
 
 Entite <|-- Perso
 
 class Monstre{
-    + Monstre(int, int)
-    + attaquer(Perso p)
+    + Monstre(int, int, int)
+    + attaquer(Perso)
 }
 
 class Heros{
-    + Heros(int, int)
-    + attaquer(Perso p)
+    + Heros(int, int, int)
+    + attaquer(Perso)
 }
 
 class Case{
     - trouvee : boolean
-    + Case(int dx, int dy)
-    + equals(Object o) : boolean
+    + Case(int, int)
+    + equals(Object) : boolean
     + setTrouvee()
     + getTrouvee() : boolean
 }
 Entite <|-- Case
 
 class CasePiegee{
-    + CasePiegee(int dx, int dy)
+    + CasePiegee(int, int)
 }
 Case <|-- CasePiegee
 
 class CaseDeclencheur{
-    + CaseDeclencheur(int dx, int dy)
+    + CaseDeclencheur(int, int)
 }
 Case <|-- CaseDeclencheur
 
 class Objet{
-    + Object(int,int)
+    + Object(int, int)
 }
 Entite <|-- Objet
 
 class Amulette{
     - possede : boolean
-    + Amulette(int,int)
+    + Amulette(int, int)
     + setPossede()
     + getPossede() : boolean
 }
 
+class Troll{
+    - ajouterVieTroll : boolean
+    + Troll(int, int, int)
+    + getAjouterVieTroll() : boolean
+    + setAjouterVieTroll(boolean)
+}
+
+class Fantome{
+    + Fantome(int, int, int)
+}
 
 Objet <|-- Amulette
 
@@ -169,6 +190,8 @@ Perso <|-- Monstre
 Perso <|-- Heros
 DessinJeu <|.. LabyDessin
 
+Monstre <|-- Fantome
+Monstre <|-- Troll
 
 }
 

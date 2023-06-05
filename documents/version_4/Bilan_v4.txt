@@ -1,10 +1,16 @@
 Bilan Version 4 :
 
-Bugs résolus : 
-	-
+Bug résolu :
+	- Le monstre ne bouge plus s'il est collé au joueur
 
-Bugs restants :
-	-
+Bug restant :
+	- aucun (à notre connaissance)
 
 Ce qui a été validé :
-	-
+    - ajout d'une classe Amulette qui permet de représenter la clé de sortie de la partie
+	- la fin du jeu peut se passer de 2 manières différentes :
+	    - Le joueur n'a plus de vie
+	    - Le joueur arrive à sortir du labyrinthe avec l'amulette
+	- les monstres et le personnage sont maintenant capables de s'attaquer au corps à corps
+	- si un monster n'a plus de vie, il meurt (disparait du labyrinthe)
+
