@@ -1,0 +1,45 @@
+@startuml
+title affichage sprites Sequence Diagram
+
+participant "labyDessin:LabyDessin" as labyDessin
+participant "gc:GraphicsContext" as gc
+participant "canvas:Canvas" as canvas
+participant "bF:BufferedImage" as bF
+
+labyDessin -> labyDessin: dessinerJeu
+labyDessin -> gc: create
+labyDessin -> canvas:getWidth()
+labyDessin -> canvas:getHeight()
+labyDessin -> gc: setFill(Color.WHITE)
+labyDessin -> gc: fillRect(0,0, largeurFenetre, hauteurFenetre)
+labyDessin -> bF: create
+activate bF
+labyDessin <-- bF: IOException
+labyDessin <-- bF: ImageIO.read()
+deactivate bF
+loop
+    labyDessin -> bF: getSubImage(cordonneeX, coordonneeY)
+    loop monstres
+        alt Fantome
+            gc -> gc:drawImage(spriteFantome, coordonneeX, coordonneeY, tailleL, tailleH)
+            gc <-- gc
+        end
+        alt Troll
+            gc -> gc:drawImage(spriteTroll, coordonneeX, coordonneeY, tailleL, tailleH)
+            gc <-- gc
+        end
+        alt Monstre
+            gc -> gc:drawImage(spriteMonstre, coordonneeX, coordonneseY, tailleL, tailleH)
+            gc <-- gc
+        end
+    end
+    labyDessin <-- bF
+end
+
+labyDessin <-- labyDessin
+
+
+
+
+
+@enduml
