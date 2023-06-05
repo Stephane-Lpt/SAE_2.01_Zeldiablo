@@ -359,6 +359,9 @@ public class Labyrinthe {
                         m.changerPv(+1);
                         System.out.println("ajouter de la vie + 1");
                     }
+                    else{
+                        ((Troll) m).setAjouterVieTroll(true);
+                    }
 
                 }
                 break;
@@ -485,10 +488,6 @@ public class Labyrinthe {
             this.heros.attaquer(m);
             if(m instanceof Troll){
                 ((Troll) m).setAjouterVieTroll(false);
-                System.out.println("ajouter vie a faux");
-            }else{
-                ((Troll) m).setAjouterVieTroll(true);
-                System.out.println("ajouter vie a vrai");
             }
             if(m.etreMort()){
                 this.monstres.remove(m);
