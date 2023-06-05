@@ -156,6 +156,18 @@ class Amulette{
     + setPossede()
     + getPossede() : boolean
 }
+
+class Troll{
+    - ajouterVieTroll : boolean
+    + Troll(int,int, pp)
+    + getAjouterVieTroll() : boolean
+    + setAjouterVieTroll(boolean)
+}
+
+class Fantome{
+    + Fantome(int,int, app)
+}
+
 Objet <|-- Amulette
 
 
@@ -166,6 +178,9 @@ LabyJeu "1" -> "1" Labyrinthe : - laby
 Perso <|-- Monstre
 Perso <|-- Heros
 DessinJeu <|.. LabyDessin
+
+Monstre <|-- Fantome
+Monstre <|-- Troll
 
 }
 

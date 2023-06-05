@@ -17,10 +17,16 @@ public class Troll extends Monstre{
         super(x, y, pp);
     }
 
+    /**
+     * @return b boolean correspondant à la condition d'ajout de vie au troll
+     */
     public boolean getAjouterVieTroll(){
         return this.ajouterVieTroll;
     }
 
+    /**
+     * @param b boolean correspondant à la condition d'ajout de vie au troll
+     */
     public void setAjouterVieTroll(boolean b){
         this.ajouterVieTroll = b;
     }
