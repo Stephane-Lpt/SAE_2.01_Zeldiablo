@@ -39,11 +39,16 @@ interface DessinJeu{
 MoteurJeu "1" --> "1" DessinJeu : - <static> dessin
 
 class Clavier{
-- haut: boolean
-- bas: boolean
-- gauche: boolean
-- droite: boolean
-- espace : boolean
++ haut: boolean
++ bas: boolean
++ gauche: boolean
++ droite: boolean
++ attaque : boolean
+- h : String
+- b : String
+- g : String
+- d : String
+- a : String
 + appuyerTouche(event : KeyEvent)
 + relacherTouche(event : KeyEvent)
 }
@@ -54,7 +59,6 @@ MoteurJeu "1" --> "1" Clavier : - clavier
 package gameLaby{
 
 class LabyJeu{
-    - laby : Labyrinthe
     + labyJeu()
     + update(double, Clavier)
     + init()
@@ -81,12 +85,9 @@ class Labyrinthe{
     + {static} BAS : String
     + {static} GAUCHE : String
     + {static} DROITE : String
-    + heros : Heros
-    + monstres : ArrayList<Monstre>
     + murs : boolean[][]
     + cases : ArrayList<Case>
-    + amulette : Amulette
-    + depart : Entite
+
 
     + {static} getSuivant(int, int, String) : int[]
     + Labyrinthe(String)
@@ -184,6 +185,8 @@ Objet <|-- Amulette
 
 Labyrinthe "1" -> "1" Heros: - heros
 Labyrinthe "1" -> "1" Monstre : - monstre
+Labyrinthe "1" -> "1" Entite : - depart
+Labyrinthe "1" -> "1" Amulette : - amulette
 LabyJeu "1" -> "1" Labyrinthe : - laby
 
 Perso <|-- Monstre

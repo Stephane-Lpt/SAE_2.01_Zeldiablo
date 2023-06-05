@@ -40,3 +40,14 @@ Critères de validation
     - Les touches sont décrites dans un fichier texte nomme "configTouches.txt"
     - Si le fichier n'existe pas, ce sont les touches par défaut qui sont utilisées.
     - le fichier de configuration est chargé une seule fois au lancement de l'application.
+
+
+Fonctionnalité 5 : Labyrinthe par défaut
+
+Descriptif :
+    Au lancement du jeu, un labyrinthe par défaut est créé et le personnage est placé au centre de celui-ci.
+
+Critères de validation
+    - Le labyrinthe par défaut est constitué d'une arène de taille 10*10
+    - Le personnage est placé au centre de l'arène
+    - Les monstres (s'il y en a) sont placés sur des cases vides (à adapter).
