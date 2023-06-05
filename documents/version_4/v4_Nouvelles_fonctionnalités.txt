@@ -1,0 +1,42 @@
+Fonctionnalité 1 : Fantômes
+
+Descriptif :
+    Le labyrinthe dispose d'un nouveau type de monstre : les fantômes.
+Critères de validation
+    - Les fantômes peuvent traverser des murs mais pas les autres personnages (les autres monstres ou le héros)
+    - Les autres monstres continuent à être bloqués par des murs.
+    - Les attaques des fantômes fonctionnent de la même manière que les attaques des monstres de base.
+
+
+Fonctionnalité 2 : Troll
+
+Descriptif :
+    Les trolls sont un nouveau type de monstre. Un troll se régénère au fur et à mesure.
+Critères de validation
+    - Un troll se déplace de la même manière qu'un monstre de base (les murs sont des obstacles).
+    - Si un Troll ne prend aucun dégât pendant un tour de jeu, il regagne un point de vie.
+    - Les attaques des trolls fonctionnent de la même manière que les attaques des monstres de base.
+    - Un troll a par défaut 3 points de vie (à adapter).
+
+
+Fonctionnalité 3 : Affichage avec des sprites
+
+Descriptif :
+    La fenêtre n'affiche plus des figures de base (rond, ...) mais des sprites représentant les personnages et les objets
+
+Critères de validation
+    - Les sprites concernent les murs, les monstres et le héros.
+    - Ils sont chargés une fois pour toute au lancement de l'application et ils peuvent être affichés dans le JPanel grâce à la méthode drawImage.
+    - Vous pourrez utiliser l'image http://www.qcfdesign.com/?p=354 qui est un ensemble de sprites pour le jeu Desktop Dungeons. Ces sprites sont disposés régulièrement dans l'image et sont donc facile à extraire à partir de l'Image.
+    - Il est possible de charger une image (de type BufferedImage en mémoire grâce à la classe ImageIO et la méthode statique read).
+
+
+Fonctionnalité 4 : Configuration du clavier
+
+Descriptif :
+    Il est possible de reconfigurer dans un fichier texte les touches pour contrôler le personnage.
+
+Critères de validation
+    - Les touches sont décrites dans un fichier texte nomme "configTouches.txt"
+    - Si le fichier n'existe pas, ce sont les touches par défaut qui sont utilisées.
+    - le fichier de configuration est chargé une seule fois au lancement de l'application.
